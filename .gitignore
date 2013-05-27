@@ -16,6 +16,7 @@
 /community/vendor
 /community/tmp/*
 /community/docs
+/community/install
 
 #PHPBB3 Styles. Ignore all, unignore those we care about.
 /community/styles/*
