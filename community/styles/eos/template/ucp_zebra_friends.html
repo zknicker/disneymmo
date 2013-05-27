@@ -1,0 +1,84 @@
+<!-- INCLUDE ucp_header.html -->
+            <div class="ui-utilitybar-actions-container">
+                <div class="ui-utilitybar-actions hidden">
+                    {S_HIDDEN_FIELDS}
+                    {S_FORM_TOKEN}                    
+                </div>
+            </div>
+        </div>
+        <!-- IF ERROR -->
+        <div class="usercp-component usercp-error">
+            <p>{ERROR}</p>
+        </div>
+        <!-- ENDIF -->
+        <div class="usercp-component group">
+            <aside class="gutter">
+                <div>
+                    <span>{L_TITLE}</span>
+                    <p>Friends enable you quick access to members you communicate with frequently.  Manage all of your friends here!</p>
+                </div>
+            </aside>
+            <div class="core">
+                <fieldset class="fields2">
+                <section>
+                    <dl>
+                        <dt>
+                            <label for="add">Add Friend:</label>
+                            <span class="find-member">(<a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a>)</span>
+                        </dt>
+                        <dd>
+                            <input type="text" name="add" id="add">{USERNAMES}</input>
+                            <input type="submit" name="submit" value="Add Friend"></input>
+                        </dd>
+                    </dl>
+                </section>
+                <section>
+                    <dl>
+                        <dt><label>{L_YOUR_FRIENDS}:</label></dt>
+                        <dd>
+                            <!-- IF .username_options -->
+                            <ul class="friend-blocks">
+                                <!-- BEGIN username_options -->
+                                <li class="friend-block">
+                                    <div class="avatar avatar-large">
+                                        <img src="{username_options.AVATAR}">
+                                    </div>
+                                    <a class="friend-remove" data-friend-id="{username_options.USER_ID}" data-tooltip="Remove friend"><span>X</span></a>
+                                    <p class="friend-username">{username_options.USERNAME}</p>
+                                </li>
+                                <!-- END username_options -->
+                            </ul>
+                            <!-- ELSE -->
+                            <strong class="huge">{L_NO_FRIENDS}</strong>
+                            <!-- ENDIF -->
+                        </dd>
+                    </dl>
+                </section>
+                </fieldset>
+            </div>
+        </div>
+        <script type="text/javascript">
+        $(function() {
+            $('.friend-block .friend-remove').click(function(e) {
+                
+                e.preventDefault();
+                
+                var user_id = $(this).data('friend-id');
+                var $parent = $(this).parent('.friend-block');
+                $.ajax({
+                    url: '{FRIENDS_REMOVE_AJAX_URL}',
+                    dataType: 'html',
+                    type: 'post',
+                    data: {
+                        user_id_to_remove: user_id
+                    },
+                    success: function(data) {
+                        dmmo.notifications.post(data);
+                        $parent.css('display', 'none').blur();
+                    }
+                })
+            });
+        
+        });
+        </script>
+<!-- INCLUDE ucp_footer.html -->

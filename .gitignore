@@ -1,0 +1,58 @@
+#Ignore everything. Unignore directories and files as needed.
+/*
+
+#PHPBB3. Unignore everything in /community, and then reignore sensitive
+#and other non-repository files.
+!community
+/community/cache/*.html
+/community/cache/*.php
+/community/cache/*.lock
+/community/config.php
+/community/ext/*
+/community/files/*
+/community/images/avatars/gallery/*
+/community/images/avatars/upload/*
+/community/store/*
+/community/vendor
+/community/tmp/*
+/community/docs
+
+#PHPBB3 Styles. Ignore all, unignore those we care about.
+/community/styles/*
+!/community/styles/eos
+!/community/styles/art_ultra_blue
+
+#DISNEYMMO
+!js
+!css
+!commingsoon
+!php
+!config
+!images
+!lib
+
+#DISNEYMMO root level files.
+!404.html
+!eos.index.php
+!favicon.ico
+!robots.txt
+!*.htaccess
+!*.gitignore
+
+#DISNEYMMO images. Ignore generated images.
+images/ads
+images/articles
+!images/articles/default
+images/chat
+images/jquery-ui
+images/news
+images/previews
+images/profiles
+images/showcase
+images/theme
+
+#MISCELLANEOUS
+*.DS_Store
+_localized
+_unlocalized
+*.swp

@@ -1,0 +1,186 @@
+<!-- INCLUDE overall_header.html -->    
+<div class="forum-page-container group">
+    <section class="forum-section">
+        <form id="postform" method="post" action="{S_POST_ACTION}"{S_FORM_ENCTYPE}>
+        <div class="forum-section-pre group" style="height: 41px;">
+            <div class="discussion-info">
+                <h1><!-- IF MODE == post -->Topic<!-- ELSE -->Post<!-- ENDIF --> Editor</h1>
+                <!-- INCLUDE breadcrumb.html -->
+            </div>
+        </div>
+        <div class="ui-utilitybar-container">
+            <div class="ui-utilitybar-actions-container">
+                <div class="ui-utilitybar-actions">
+                    {S_HIDDEN_ADDRESS_FIELD}
+                    {S_HIDDEN_FIELDS}
+                    <button class="button-as-anchor utility-action-button" accesskey="s" tabindex="6" name="post" value="{L_SUBMIT}"><!-- IF MODE == 'post' -->Create Discussion<!-- ENDIF --><!-- IF MODE == 'reply' -->Post Reply<!-- ENDIF --><!-- IF MODE == 'edit' -->Submit Changes<!-- ENDIF --></button>
+                    <!-- IF S_SAVE_ALLOWED --><button class="button-as-anchor utility-action-button" accesskey="k" tabindex="7" name="save" value="{L_SAVE_DRAFT}">Save Draft</button><!-- ENDIF -->
+                    <!-- IF S_HAS_DRAFTS --><button class="button-as-anchor utility-action-button" accesskey="d" tabindex="8" name="load" value="{L_LOAD_DRAFT}" onclick="load_draft = true;">Load Draft</button><!-- ENDIF -->
+                    <button class="button-as-anchor utility-action-button" tabindex="5" name="preview" value="{L_PREVIEW}"<!-- IF not S_PRIVMSGS --> onclick="document.getElementById('postform').action += '#preview';"<!-- ENDIF -->>Preview</button>
+                </div>
+            </div>
+        </div>
+        <div class="forum-section-content group">
+            <!-- IF S_DISPLAY_FILTER_CHOICE -->
+            <div id="category-1" class="step-category editor-step group">
+                <div class="step-instruction">
+                    <span>category</span>
+                    <p>Please choose a category for your new discussion. You can only choose one, and you cannot change your choice later.</p>
+                </div>
+                <div class="step-interaction">
+                    <ul>
+                        <input type="hidden" id="category-input-1" name="f" value="{FORUM_ID}" />
+                        <!-- BEGIN category_filters -->
+                        <li class="clickable<!-- IF category_filters.SELECTED --> selected<!-- ENDIF -->" data-filter-id="{category_filters.FORUM_ID}"><div style="background-image: url({category_filters.FILTER_ICON});"></div>{category_filters.FILTER_NAME}</li>
+                        <!-- END category_filters -->
+                    </ul>
+                </div>
+            </div>
+            <!-- ENDIF -->
+            <!-- IF S_POST_ACTION or S_PRIVMSGS or S_EDIT_DRAFT -->
+            <!-- IF MODE == post or S_FIRST_POST -->
+            <div class="step-new-discussion-title editor-step group">
+                <div class="step-instruction">
+                    <span>topic title</span>
+                    <p>What should your topic be called?</p>
+                </div>
+                <div class="step-interaction">
+                     <input type="text" name="subject" id="editor-title" size="45" maxlength="<!-- IF S_NEW_MESSAGE -->60<!-- ELSE -->64<!-- ENDIF -->" tabindex="2" value="{SUBJECT}{DRAFT_SUBJECT}" class="inputbox autowidth" />
+                </div>
+            </div>
+            <!-- ELSE IF MODE == reply or MODE == edit -->
+            <div class="step-reply-title editor-step group">
+                <div class="step-instruction">
+                    <!-- IF MODE == reply -->
+                    <span>compose reply</span>
+                    <!-- ELSEIF MODE == edit -->
+                    <span>edit reply in</span>
+                    <!-- ENDIF -->
+                </div>
+                <div class="step-interaction">
+                    <h2>{TOPIC_TITLE}</h2>
+                    <input type="text" name="subject" id="editor-title" style="display: none;" size="45" maxlength="<!-- IF S_NEW_MESSAGE -->60<!-- ELSE -->64<!-- ENDIF -->" tabindex="2" value="{SUBJECT}{DRAFT_SUBJECT}" class="inputbox autowidth" />
+                </div>
+            </div>
+            <!-- ENDIF -->
+            <!-- ENDIF -->
+
+            <!-- IF S_DRAFT_LOADED -->
+            <div class="editor-step editor-notice">
+                <p>{L_DRAFT_LOADED}</p>
+            </div>
+            <!-- ENDIF -->
+
+            <!-- IF S_SHOW_DRAFTS --><!-- INCLUDE drafts.html --><!-- ENDIF -->
+
+            <!-- IF S_POST_REVIEW --><!-- INCLUDE posting_review.html --><!-- ENDIF -->
+
+            <!-- IF S_UNGLOBALISE -->
+            <div class="panel bg3">
+                <div class="inner"><span class="corners-top"><span></span></span>
+                <fieldset class="fields1">
+                    <h2>{L_SELECT_DESTINATION_FORUM}</h2>
+                    <p>{L_UNGLOBALISE_EXPLAIN}</p>
+                    <dl>
+                        <dt><label for="to_forum_id">{L_MOVE}:</label></dt>
+                        <dd><select id="to_forum_id" name="to_forum_id">{S_FORUM_SELECT}</select></dd>
+                    </dl>
+                    
+                    <dl>
+                        <dt>&nbsp;</dt>
+                        <dd><input class="button1" type="submit" name="post" value="{L_CONFIRM}" /> <input class="button2" type="submit" name="cancel_unglobalise" value="{L_CANCEL}" /></dd>
+                    </dl>
+                </fieldset>
+
+                <span class="corners-bottom"><span></span></span></div>
+            </div>
+            <!-- ENDIF -->
+            <!-- IF S_DISPLAY_PREVIEW --><!-- INCLUDE posting_preview.html --><!-- ENDIF -->
+            <!-- DEFINE $EXTRA_POSTING_OPTIONS = 1 -->
+            
+            <!-- IF ERROR -->
+            <div class="editor-step editor-error">
+                <p>{ERROR}</p>
+            </div>
+            <!-- ENDIF -->
+            <div class="editor-step">
+            <!-- INCLUDE posting_editor.html -->
+            {S_FORM_TOKEN}
+            </div>
+            
+            <!-- IF S_SHOW_ATTACH_BOX --><!-- INCLUDE posting_attach_body.html --><!-- ENDIF -->
+            <!-- IF S_SHOW_POLL_BOX or S_POLL_DELETE --><!-- INCLUDE posting_poll_body.html --><!-- ENDIF -->
+            <!-- IF not S_SHOW_DRAFTS and not $SIG_EDIT eq 1 -->
+            <div class="step-options editor-step group">
+                <div class="step-instruction">
+                    <span>extra options</span>
+                    <p>Customize your post further with these extra options.</p>
+                </div>
+                <div class="step-interaction">
+                    <div class="step-options-users">
+                        <!-- IF S_BBCODE_ALLOWED -->
+                            <div><label for="disable_bbcode"><input type="checkbox" name="disable_bbcode" id="disable_bbcode"{S_BBCODE_CHECKED} />{L_DISABLE_BBCODE}</label></div>
+                        <!-- ENDIF -->
+                        <!-- IF S_SMILIES_ALLOWED -->
+                            <div><label for="disable_smilies"><input type="checkbox" name="disable_smilies" id="disable_smilies"{S_SMILIES_CHECKED} />{L_DISABLE_SMILIES}</label></div>
+                        <!-- ENDIF -->
+                        <!-- IF S_LINKS_ALLOWED -->
+                            <div><label for="disable_magic_url"><input type="checkbox" name="disable_magic_url" id="disable_magic_url"{S_MAGIC_URL_CHECKED} />{L_DISABLE_MAGIC_URL}</label></div>
+                        <!-- ENDIF -->
+                        <!-- IF S_SIG_ALLOWED -->
+                            <div><label for="attach_sig"><input type="checkbox" name="attach_sig" id="attach_sig"{S_SIGNATURE_CHECKED} />Attach a signature</label></div>
+                        <!-- ENDIF -->
+                        <!-- IF S_NOTIFY_ALLOWED -->
+                            <div><label for="notify"><input type="checkbox" name="notify" id="notify"{S_NOTIFY_CHECKED} />{L_NOTIFY_REPLY}</label></div>
+                        <!-- ENDIF -->
+                        <!-- IF S_LOCK_TOPIC_ALLOWED -->
+                            <div><label for="lock_topic"><input type="checkbox" name="lock_topic" id="lock_topic"{S_LOCK_TOPIC_CHECKED} />{L_LOCK_TOPIC}</label></div>
+                        <!-- ENDIF -->
+                        <!-- IF S_LOCK_POST_ALLOWED -->
+                            <div><label for="lock_post"><input type="checkbox" name="lock_post" id="lock_post"{S_LOCK_POST_CHECKED} />{L_LOCK_POST} [{L_LOCK_POST_EXPLAIN}]</label></div>
+                        <!-- ENDIF -->
+                        <!-- IF S_DELETE_ALLOWED -->
+                            <div><label for="delete"><input type="checkbox" name="delete" id="delete" />Delete Message</label></div>
+                        <!-- ENDIF -->
+                    </div>
+                    <div class="step-options-mods">
+                        <!-- IF S_TYPE_TOGGLE -->
+                        <dl>
+                            <dt><label for="topic_type-0"><!-- IF S_EDIT_POST -->{L_CHANGE_TOPIC_TO}<!-- ELSE -->{L_POST_TOPIC_AS}<!-- ENDIF -->:</label></dt>
+                            <dd><!-- BEGIN topic_type --><label for="topic_type-{topic_type.VALUE}"><input type="radio" name="topic_type" id="topic_type-{topic_type.VALUE}" value="{topic_type.VALUE}"{topic_type.S_CHECKED} />{topic_type.L_TOPIC_TYPE}</label> <!-- END topic_type --></dd>
+                        </dl>
+                        <!-- ENDIF -->
+
+                        <!-- IF S_TOPIC_TYPE_ANNOUNCE or S_TOPIC_TYPE_STICKY -->
+                        <dl class="group">
+                            <dt><label for="topic_time_limit">{L_STICK_TOPIC_FOR}:</label></dt>
+                            <dd class="option-desc">{L_STICK_TOPIC_FOR_EXPLAIN}</dd>
+                            <dd class="option-input"><input type="text" name="topic_time_limit" id="topic_time_limit" size="3" maxlength="3" value="{TOPIC_TIME_LIMIT}" class="inputbox autowidth" /></dd>
+                        </dl>
+                        <!-- ENDIF -->
+
+                        <!-- IF S_EDIT_REASON -->
+                        <dl class="group">
+                            <dt class="option-desc"><label for="edit_reason">{L_EDIT_REASON}:</label></dt>
+                            <dd><input type="text" name="edit_reason" id="edit_reason" value="{EDIT_REASON}" class="inputbox" /></dd>
+                        </dl>
+                        <!-- ENDIF -->
+                    </div>
+                </div>
+            </div>
+            <!-- ENDIF -->
+            <!-- IF S_DISPLAY_REVIEW -->
+                <!-- INCLUDE posting_topic_review.html -->
+            <!-- ENDIF -->
+        </div>
+        </form>
+    </section>
+</div>
+
+<!-- INCLUDE overall_footer.html -->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        dmmo.discussionEditor.initializeCategorySelector($('#category-1'), $('#category-input-1'));
+    });
+</script>

@@ -1,0 +1,24 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^disneymmo\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.disneymmo\.com$
+RewriteRule ^/?$ "http\:\/\/disneymmo\.com\/community" [R=301,L]
+RewriteRule ^eos$ eos.index.php?style=4 [NC]
+RewriteRule ^eos/$ eos.index.php?style=4 [NC]
+##RewriteRule ^eos$ community/portal.php?style=4 [NC]
+##RewriteRule ^eos/$ community/portal.php?style=4 [NC]
+
+### PHPBB REWRITE RULES
+
+RewriteRule ^eos/community$ community/portal.php?style=4
+RewriteRule ^eos/community-dev$ community-dev/portal.php?style=4
+RewriteRule ^community/([0-9]+)$ community/viewforum.php?style=4&surl=true&f=$1&%{QUERY_STRING}
+RewriteRule ^community/discussion/([0-9]+)([0]{1})([0-9]+)$ community/viewtopic.php?style=4&surl=true&f=$1&t=$3%{QUERY_STRING}
+
+ErrorDocument 404 /404.html
+Options -Indexes
+
+### HOSTGATOR PHP 5.3
+Action application/x-hg-php53 /cgi-sys/php53
+AddType application/x-httpd-php53 .php

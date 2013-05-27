@@ -1,0 +1,57 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_ACP_SMILIES_CATEGORIES}</h1>
+
+<form id="acp_smilies_categories" method="post" action="{U_ACTION}">
+	<!-- IF CAT_EDIT or CAT_ADD -->
+		<fieldset>
+			<legend>{L_CAT_DETAILS}</legend>
+			<dl>
+				<dt><label for="cat_name">{L_CAT_NAME}:</label><br /><span>{L_CAT_NAME_EXPLAIN}</span></dt>
+				<dd><input class="medium" type="text" id="cat_name" name="cat_name" size="25" maxlength="255" value="{CAT_NAME}" /></dd>
+			</dl>
+			<dl>
+				<dt><label for="cat_icon">{L_CAT_ICON}:</label><br /><span>{L_CAT_ICON_EXPLAIN}</span></dt>
+				<dd><input class="medium" type="text" id="cat_icon" name="cat_icon" size="25" maxlength="255" value="{CAT_ICON}" /></dd>
+			</dl>
+		</fieldset>
+
+		<fieldset class="submit-buttons">
+			<input class="button1" type="submit" name="submit" value="{L_SUBMIT}" />&nbsp;&nbsp;
+			<input class="button1" type="reset" value="{L_RESET}" name="reset" />
+			{S_FORM_TOKEN}
+		</fieldset>
+	<!-- ENDIF -->
+
+	<!-- IF CAT_LIST -->
+		<fieldset class="quick">
+			{L_CREATE_CAT}:
+				<input type="text" name="cat_name" value="" />
+				<input class="button2" type="submit" name="create_cat" value="{L_SUBMIT}" />
+				<input type="hidden" name="action" value="add" />
+		</fieldset>
+
+		<table cellspacing="1">
+		<tr>
+			<th style="width: 10%;">{L_ICON}</th>
+			<th style="width: 65%">{L_CAT_NAME}</th>
+			<th>{L_ACTION}</th>
+		</tr>
+			<!-- BEGIN cats -->
+				<tr <!-- IF cats.S_ROW_COUNT is even -->class="col1"<!-- ELSE -->class="col2"<!-- ENDIF -->>
+					<td><!-- IF cats.CAT_ICON --><img src="{cats.CAT_ICON}" border="0" /> <!-- ENDIF --></td>
+					<td><strong>{cats.CAT_NAME}</strong></td>
+					<td style="text-align: center;"><a href="{cats.U_EDIT}">{ICON_EDIT}</a>&nbsp;&nbsp;<!-- IF cats.U_DELETE --><a href="{cats.U_DELETE}">{ICON_DELETE}</a><!-- ELSE -->{L_DELETE}<!-- ENDIF --></td>
+				</tr>
+			<!-- BEGINELSE -->
+				<tr>
+					<td colspan="3" class="row3">{L_NO_CATS}</td>
+				</tr>
+			<!-- END cats -->
+		</table>
+	<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE overall_footer.html -->

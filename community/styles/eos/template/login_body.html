@@ -1,0 +1,48 @@
+<!-- INCLUDE overall_header_core.html -->
+    <script type="text/javascript">
+    // <![CDATA[
+        onload_functions.push('document.getElementById("<!-- IF S_ADMIN_AUTH -->{PASSWORD_CREDENTIAL}<!-- ELSE -->{USERNAME_CREDENTIAL}<!-- ENDIF -->").focus();');
+    // ]]>
+    
+    
+    </script>
+    <div class="{DMMO_RANDOM_GAME_PREF} usm-container usm-background">
+        <div class="usm-login-container">
+        <form action="{S_LOGIN_ACTION}" method="post" id="login">
+            <a class="usm-login-logo" href="{DMMO_NAV_HOME}"></a>
+            <div class="usm-login-fields">
+                <dl class="username-field">
+                    <dt><label for="{USERNAME_CREDENTIAL}">{L_USERNAME}:</label></dt>
+                    <dd><input type="text" tabindex="1" name="{USERNAME_CREDENTIAL}" id="{USERNAME_CREDENTIAL}" size="25" value="{USERNAME}" class="inputbox autowidth" /></dd>
+                </dl>
+                <dl class="password-field">
+                    <dt><label for="{PASSWORD_CREDENTIAL}">{L_PASSWORD}:</label></dt>
+                    <dd><input type="password" tabindex="2" id="{PASSWORD_CREDENTIAL}" name="{PASSWORD_CREDENTIAL}" size="25" class="inputbox autowidth" /></dd>
+                </dl>
+            </div>
+            <div class="usm-login-controls">
+                {S_LOGIN_REDIRECT}
+                <input id="{USERNAME_CREDENTIAL}-login" type="submit" name="login" tabindex="6" value="Login" />
+                <!-- IF not S_ADMIN_AUTH and S_REGISTER_ENABLED -->
+                <a class="button-generic" href="{U_REGISTER}" class="button2">Create An Account</a>
+                <!-- ENDIF -->
+            </div>
+        </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // Update the login button with the user's username input.
+        $('#{USERNAME_CREDENTIAL}').bind('keyup focusout', function() {
+        
+            var username = $(this).val();
+            if (username.length > 0) {
+            
+                $('#{USERNAME_CREDENTIAL}-login').val('Login as ' + username); 
+                
+            } else {
+            
+                $('#{USERNAME_CREDENTIAL}-login').val('Login');
+            }
+        });
+    </script>
+<!-- INCLUDE overall_footer_core.html -->

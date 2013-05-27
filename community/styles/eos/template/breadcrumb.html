@@ -1,0 +1,26 @@
+<ul class="breadcrumb">
+    <li id="crumb-root"><a class="crumb" href="{DMMO_NAV_FORUMS}">Community</a></li>
+    <!-- IF PARENT_NAME and PARENT_NAME != FORUM_NAME -->
+    <li id="crumb-parent"><a class="crumb" href="{DMMO_U_PARENT}">{PARENT_NAME}</a></li>
+    <!-- ENDIF -->
+    <!-- IF DMMO_U_FORUM_FILTERED -->
+    <li id="crumb-filter-forum"><a class="crumb" href="{DMMO_U_FORUM_FILTERED}">{FORUM_NAME}</a></li>
+    <!-- ELSE -->
+    <li id="crumb-forum"><a class="crumb" href="{U_VIEW_FORUM}">{FORUM_NAME}</a></li>
+    <!-- ENDIF -->
+    <!-- IF FILTERS_ARE_ACTIVE -->
+    <li id="crumb-filtered-discussions-label"><span class="crumb">Filtered Discussions</span></li>
+    <!-- ENDIF -->
+    <!-- IF TOPIC_AUTHOR -->
+    <li id="crumb-discussion-author"><span class="crumb">Discussion by {TOPIC_AUTHOR_FULL}</span></li>
+    <!-- ENDIF -->
+    <!-- IF MODE == post -->
+    <li id="crumb-editor-post"><span class="crumb">Create New Topic</span></li>
+    <!-- ENDIF -->
+    <!-- IF MODE == reply -->
+    <li id="crumb-editor-reply"><span class="crumb">Create New Reply</span></li>
+    <!-- ENDIF -->
+    <!-- IF MODE == edit -->
+    <li id="crumb-editor-edit"><span class="crumb">Edit Post</span></li>
+    <!-- ENDIF -->
+</ul>

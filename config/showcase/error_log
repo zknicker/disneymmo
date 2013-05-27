@@ -1,0 +1,35 @@
+[06-May-2013 23:18:15 America/Chicago] PHP Parse error:  syntax error, unexpected '[' in /home/xiris/public_html/config/showcase/editor.php on line 41
+[06-May-2013 23:18:16 America/Chicago] PHP Parse error:  syntax error, unexpected '[' in /home/xiris/public_html/config/showcase/editor.php on line 41
+[06-May-2013 23:18:32 America/Chicago] PHP Parse error:  syntax error, unexpected T_VAR in /home/xiris/public_html/config/showcase/editor.php on line 41
+[06-May-2013 23:18:33 America/Chicago] PHP Parse error:  syntax error, unexpected T_VAR in /home/xiris/public_html/config/showcase/editor.php on line 41
+[06-May-2013 23:18:40 America/Chicago] PHP Parse error:  syntax error, unexpected T_VAR in /home/xiris/public_html/config/showcase/editor.php on line 41
+[06-May-2013 23:18:40 America/Chicago] PHP Parse error:  syntax error, unexpected T_VAR in /home/xiris/public_html/config/showcase/editor.php on line 41
+[06-May-2013 23:18:58 America/Chicago] PHP Parse error:  syntax error, unexpected T_VAR in /home/xiris/public_html/config/showcase/editor.php on line 41
+[06-May-2013 23:19:00 America/Chicago] PHP Parse error:  syntax error, unexpected T_VAR in /home/xiris/public_html/config/showcase/editor.php on line 41
+[06-May-2013 23:19:01 America/Chicago] PHP Parse error:  syntax error, unexpected T_VAR in /home/xiris/public_html/config/showcase/editor.php on line 41
+[06-May-2013 23:19:01 America/Chicago] PHP Parse error:  syntax error, unexpected T_VAR in /home/xiris/public_html/config/showcase/editor.php on line 41
+[06-May-2013 23:19:06 America/Chicago] PHP Parse error:  syntax error, unexpected '[' in /home/xiris/public_html/config/showcase/editor.functions.php on line 16
+[06-May-2013 23:19:07 America/Chicago] PHP Parse error:  syntax error, unexpected '[' in /home/xiris/public_html/config/showcase/editor.functions.php on line 16
+[06-May-2013 23:19:25 America/Chicago] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/xiris/public_html/config/showcase/editor.functions.php on line 17
+[06-May-2013 23:19:26 America/Chicago] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/xiris/public_html/config/showcase/editor.functions.php on line 17
+[06-May-2013 23:19:38 America/Chicago] PHP Parse error:  syntax error, unexpected '{' in /home/xiris/public_html/config/showcase/editor.functions.php on line 34
+[06-May-2013 23:19:38 America/Chicago] PHP Parse error:  syntax error, unexpected '{' in /home/xiris/public_html/config/showcase/editor.functions.php on line 34
+[06-May-2013 23:21:42 America/Chicago] PHP Fatal error:  Cannot break/continue 1 level in /home/xiris/public_html/config/showcase/editor.functions.php on line 37
+[06-May-2013 23:34:07 America/Chicago] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting ')' in /home/xiris/public_html/config/showcase/editor.functions.php on line 23
+[06-May-2013 23:34:50 America/Chicago] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting ')' in /home/xiris/public_html/config/showcase/editor.functions.php on line 23
+[06-May-2013 23:34:52 America/Chicago] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting ')' in /home/xiris/public_html/config/showcase/editor.functions.php on line 23
+[06-May-2013 23:41:24 America/Chicago] PHP Parse error:  syntax error, unexpected T_ELSE in /home/xiris/public_html/config/showcase/editor.php on line 241
+[06-May-2013 23:59:02 America/Chicago] PHP Fatal error:  Cannot redeclare constructShowcaseArray() (previously declared in /home/xiris/public_html/php/eos.functions.php:25) in /home/xiris/public_html/php/eos.functions.php on line 57
+[07-May-2013 00:06:49 America/Chicago] PHP Fatal error:  Cannot redeclare writeShowcaseJSON() (previously declared in /home/xiris/public_html/config/showcase/editor.functions.php:16) in /home/xiris/public_html/config/showcase/editor.functions.php on line 34
+[07-May-2013 00:07:31 America/Chicago] PHP Fatal error:  Cannot use object of type stdClass as array in /home/xiris/public_html/config/showcase/editor.php on line 115
+[07-May-2013 00:07:36 America/Chicago] PHP Fatal error:  Cannot use object of type stdClass as array in /home/xiris/public_html/config/showcase/editor.php on line 115
+[07-May-2013 00:07:52 America/Chicago] PHP Fatal error:  Cannot use object of type stdClass as array in /home/xiris/public_html/config/showcase/editor.php on line 115
+[07-May-2013 00:08:33 America/Chicago] PHP Fatal error:  Cannot use object of type stdClass as array in /home/xiris/public_html/config/showcase/editor.php on line 115
+[07-May-2013 19:49:37 America/Chicago] PHP Parse error:  syntax error, unexpected '{' in /home/xiris/public_html/config/showcase/editor.functions.php on line 67
+[07-May-2013 19:50:30 America/Chicago] PHP Parse error:  syntax error, unexpected T_RETURN, expecting ',' or ';' in /home/xiris/public_html/config/showcase/editor.functions.php on line 90
+[07-May-2013 21:17:38 America/Chicago] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting ')' in /home/xiris/public_html/php/eos.config.php on line 48
+[07-May-2013 21:17:59 America/Chicago] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting ')' in /home/xiris/public_html/php/eos.config.php on line 70
+[07-May-2013 21:18:01 America/Chicago] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING, expecting ')' in /home/xiris/public_html/php/eos.config.php on line 70
+[07-May-2013 21:20:09 America/Chicago] PHP Fatal error:  Call to undefined function getParamsForSingleItem() in /home/xiris/public_html/config/showcase/editor.php on line 45
+[07-May-2013 21:24:00 America/Chicago] PHP Fatal error:  Call to undefined function url_encode() in /home/xiris/public_html/php/eos.functions.php on line 861
+[07-May-2013 21:36:01 America/Chicago] PHP Fatal error:  Call to undefined function url_encode() in /home/xiris/public_html/php/eos.functions.php on line 865

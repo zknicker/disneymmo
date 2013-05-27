@@ -1,0 +1,188 @@
+<!-- INCLUDE overall_header.html -->
+    <div class="eos-container group">
+        <section id="forum-selector" class="forum-section">
+            <div class="forum-section-pre">
+                <h2>Discussion Categories</h2>
+            </div>
+            <div class="forum-section-content">
+				<ul class="forum-blocks group">
+					<li class="forum-cp"><a href="{DMMO_FORUM_CP}" class="forum-container">
+                        <div class="roller"><span></span></div>
+						<p class="description"><strong>Club Penguin</strong> takes you to cold lands of igloo-building penguins and epic adventures.</p>
+					</a></li>
+					<li class="forum-ph"><a href="{DMMO_FORUM_PH}" class="forum-container">
+                        <div class="roller"><span></span></div>
+						<p class="description"><strong>Pixie Hollow</strong> brings out your personal inner-fairy. Sprout wings and fly with friends!</p>
+					</a></li>
+					<li class="forum-po"><a href="{DMMO_FORUM_PO}" class="forum-container">
+                        <div class="roller"><span></span></div>
+						<p class="description"><strong>Pirates Online</strong> is a world of pirates ready to engage in battle and a fun time.</p>
+					</a></li>
+					<li class="forum-tt"><a href="{DMMO_FORUM_TT}" class="forum-container">
+                        <div class="roller"><span></span></div>
+						<p class="description"><strong>ToonTown</strong> and its city streets are overflowing with cogs.  Go on an adventure!</p>
+					</a></li>
+					<li class="forum-og"><a href="{DMMO_FORUM_OG}" class="forum-container">
+                        <div class="roller"><span></span></div>
+						<p class="description"><strong>Other Games</strong> are great too! Discuss those non-MMO games that you love.</p>
+					</a></li>
+					<li class="forum-dis"><a href="{DMMO_FORUM_DIS}" class="forum-container">
+                        <div class="roller"><span></span></div>
+						<p class="description"><strong>Disney General</strong> discussion ranges from the parks to the media. Come on in!</p>
+					</a></li>
+					<li class="forum-crt"><a href="{DMMO_FORUM_CRT}" class="forum-container">
+                        <div class="roller"><span></span></div>
+						<p class="description"><strong>Creativity</strong>, there's a bit of it in all of us. Share your creations; view others.</p>
+					</a></li>
+					<li class="forum-ot"><a href="{DMMO_FORUM_OT}" class="forum-container">
+                        <div class="roller"><span></span></div>
+						<p class="description"><strong>Off-Topic</strong> discussions can be some of the best. Not every discussion can be Disney.</p>
+					</a></li>
+					<li class="forum-dmmo"><a href="{DMMO_FORUM_SPT}" class="forum-container">
+                        <div class="roller"><span></span></div>
+						<p class="description"><strong>Site Support</strong> is here to give you the help that you need. Stop in for assistance.</p>
+					</a></li>
+                    <!-- IF DMMO_CAN_VIEW_STAFF_FORUM -->
+                    <li class="forum-staff"><a href="{DMMO_FORUM_STAFF}" class="forum-container">
+                        <div class="roller"><span></span></div>
+						<p class="description"><strong>Staff</strong> only beyond this point. This special place is for the brave and awesome.</p>
+					</a></li>
+                    <!-- ELSE -->
+                    <li class="forum-extra"><div class="forum-container">
+                        <div class="roller"><span></span></div>
+					</div></li>
+                    <!-- ENDIF -->
+				</ul>
+			</div>
+            <script type="text/javascript">
+            // Forum selector setup code. This should be moved
+            // elsewhere as soon as possible.
+            var $forumSelector = $('#forum-selector');
+            
+            function computeGoldenRatio(width, factor) {
+        
+                var result = width;
+                var goldenRatio = 1.618;
+                while(factor >= 1) {
+                
+                    result = result / goldenRatio;
+                    factor--;
+                }
+                return result;
+            }
+            
+            function configForumBlocks() {
+            
+                // Variables.
+                var rightMargin = 5;
+               
+                var workingWidth = $forumSelector.width();
+                var effectiveWidth = workingWidth + rightMargin; // the last one has no margin
+                
+                // Logic.
+                var blocksPerRow = 4;
+                while(effectiveWidth / blocksPerRow > 290) {
+                
+                    blocksPerRow++;
+                }
+                
+                calculatedWidth = effectiveWidth / blocksPerRow - rightMargin;
+                leftoverPx = Math.ceil((calculatedWidth - Math.floor(calculatedWidth)) * blocksPerRow);
+                finalWidth = Math.floor(calculatedWidth);
+                finalHeight = computeGoldenRatio(finalWidth, 3) + 10;
+                
+                $forumSelector.find('li .forum-container').css({
+                
+                    'width' : finalWidth + 'px'
+                });
+                
+                $forumSelector.find('li .roller').css({
+                
+                    'height' : finalHeight + 'px'
+                });
+                
+                $forumSelector.find('li').removeClass('no-right-margin');
+                $forumSelector.find('li:nth-child(' + blocksPerRow + 'n)').addClass('no-right-margin');
+                
+                var fontSize;
+                if (finalWidth >= 275) fontSize = 13;
+                else if (finalWidth < 275 && finalWidth >= 255) fontSize = 12;
+                else if (finalWidth < 255 && finalWidth >= 241) fontSize = 11;
+                else if (finalWidth < 241) fontSize = 10;
+                
+                $forumSelector.find('.description').css({
+                
+                    'font-size' : fontSize + 'px'
+                });
+            }
+                
+            function resizeEvents() {
+                
+                $(window).resize(function() {
+            
+                    configForumBlocks();
+                });
+            }
+            
+            // Setup the forum selector.
+            $('.forum-blocks').css('width', '101%');
+            configForumBlocks();
+            resizeEvents();
+            </script>
+        </section>
+        <section class="discussions-list forum-section">
+            <div class="forum-section-pre">
+                <h2>Popular Discussions</h2>
+            </div>
+			<table class="forum-section-content">
+                <tr class="discussions-list-row discussions-list-guide">
+                    <td class="discussion-icon"></td>
+                    <td class="discussion-subject"><span>Subject</span></td>
+                    <td class="discussion-topic"></td>
+                    <td class="discussion-stats"></td>
+                    <td class="discussion-last"><span>Last Post</span></td>
+                </tr>
+                <!-- BEGIN active_topics -->
+				<tr class="discussions-list-row">
+					<td class="discussion-icon"><div class="discussion-icon-general" style="background-image: url({active_topics.FILTER_ICON})" data-tooltip="{active_topics.FILTER_NAME}"></div></td>
+					<td class="discussion-subject"><a id="t-{active_topics.TOPIC_ID}" class="topic-title" href="{active_topics.TOPIC_LINK}">{active_topics.TOPIC_TITLE}</a><a href="{active_topics.TOPIC_LAST_REPLY_LINK}" class="topic-latest-reply clickable">Last Post</a><!-- IF active_topics.PAGINATION --><span class="per-pagination">{active_topics.PAGINATION}</span><!-- ENDIF --></td>
+					<td class="discussion-topic"><a href="{active_topics.CATEGORY_LINK}" class="tag-{active_topics.CATEGORY_ABBR}">{active_topics.CATEGORY}</a></td>
+					<td class="discussion-stats">
+                        <dl class="group stat-replies"><dd>{active_topics.REPLIES}</dd><dt>Replies</dt></dl>
+                        <dl class="group stat-views"><dd>{active_topics.VIEWS}</dd><dt>Views</dt></dl>
+                    </td>
+					<td class="discussion-last">
+                        <a href="{active_topics.LAST_POSTER_LINK}" class="discussion-last-avatar avatar"><img src="{active_topics.LAST_POSTER_AVATAR}" /></a>
+                        <div class="discussion-last-user">{active_topics.LAST_POSTER}</div>
+                        <div class="discussion-last-time">{active_topics.LAST_POST_TIME}</div>
+                    </td>
+				</tr>
+                <!-- END active_topics -->
+			</table>
+		</section>
+        <section id="community-information" class="forum-section">
+            <div class="forum-section-pre group">
+                <div class="community-stats-block">
+                    <h2>Community Stats</h2>
+                </div>
+                <div class="community-online-users-block">
+                    <h2>Online Users<!-- IF U_VIEWONLINE --> <span class="community-online-users-count">({DMMO_LOGGED_IN_USERS})</span><!-- ENDIF --></h2>
+                </div>
+            </div>
+            <div class="forum-section-content">
+                <div class="community-stats community-stats-block">
+                    <dl class="group"><dt>Posts:</dt><dd>{TOTAL_POSTS}</dd></dl>
+                    <dl class="group"><dt>Discussions:</dt><dd>{TOTAL_TOPICS}</dd></dl>
+                    <dl class="group"><dt>Members:</dt><dd>{TOTAL_USERS}</dd></dl>
+                    <dl class="group"><dt>Latest Member:</dt><dd>{NEWEST_USER}</dd></dl>
+                </div>
+                <div class="community-online-users community-online-users-block">
+                    <ul>
+                        {DMMO_LOGGED_IN_USER_LIST}
+                    </ul>
+                </div>
+            </div>
+		</section>
+	</div>
+
+<!-- INCLUDE overall_footer.html -->

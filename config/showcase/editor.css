@@ -1,0 +1,15 @@
+
+    .dese-preview-showcase { width: 1090px; padding-bottom: 40px; margin: 0 auto 40px auto; }
+
+    .dese-slide-editor { margin-top: 60px; }
+    .dese-slide-controls { height: 40px; }
+        
+        .dese-slide-controls h3 { float: left; line-height: 40px; font-size: 34px; text-transform: uppercase; font-weight: bold; }
+        .dese-controls-type { width: 250px; float: left; margin: 2px 0 0 30px; }
+        .dese-controls-bar { float: left; margin: 0 0 0 30px; }
+        .dese-controls-bar li { display: block; float: left; padding: 8px 15px 0 15px; font-size: 27px; }
+        .dese-controls-bar li:hover { color: #1596CC; cursor: pointer; }
+        
+    .dese-slide-fields { margin: 20px 0 0 20px; padding: 24px; background: #F2F2F2; border: 1px dotted #DFDFDF; }
+    
+    hr { margin: 30px 5% 30px 5%; border-top: 3px dotted #AFAFAF; }

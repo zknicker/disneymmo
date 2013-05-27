@@ -1,0 +1,76 @@
+<!-- INCLUDE overall_header.html -->
+<div class="eos-container view-forum group">
+    <section class="forum-section">
+        <div class="forum-section-pre group">
+            <form class="discussions-filter-form" name="discussions-filter" method="post" action="{S_FORUM_ACTION}">
+                <div class="discussions-filter-menu">
+                    <div class="discussions-filter-menu-label">
+                        <span>Filters</span>
+                    </div>
+                    <ul class="group">
+                        <li class="discussions-filter-menu-control" data-tooltip="Reset filter choices.">
+                            <button class="button-as-anchor" type="reset" data-icon="&#xe018;"></button>
+                        </li>
+                        <li class="discussions-filter-menu-control" data-tooltip="Submit filter choices.">
+                            <button class="button-as-anchor" type="submit" data-icon="&#xe017;"></button>
+                        </li>
+                        <!-- BEGIN category_filters -->
+                        <li id="filter-{category_filters.FORUM_ID}" class="discussions-filter-block {category_filters.FILTER_CLASS}" style="background-image: url({category_filters.FILTER_ICON})" data-tooltip="Filter by &quot;{category_filters.FILTER_NAME}&quot; discussions."></li>
+                        <input id="filter-{category_filters.FORUM_ID}-input" type="checkbox" name="efid[]" value="{category_filters.FORUM_ID}" style="display: none;" {category_filters.FILTER_CHECKED} />
+                        <!-- END category_filters -->
+                    </ul>
+                </div>
+            </form>
+            <div class="discussion-info">
+                <h2>{FORUM_NAME}</h2>
+                <!-- INCLUDE breadcrumb.html -->
+            </div>
+        </div>
+        <div class="ui-utilitybar-container">
+            <div class="ui-utilitybar-actions-container">
+                <div class="ui-utilitybar-actions">
+                    <a class="utility-action-button" href="{U_POST_NEW_TOPIC}">Create Discussion</a>
+                    <!-- IF S_DISPLAY_SEARCHBOX -->
+                    <div class="utility-search-field">
+                        <form method="get" id="topic-search" action="{S_SEARCHBOX_ACTION}">
+                        <fieldset>
+                            <input type="text" name="keywords" id="search_keywords" size="20" value="" />
+                            {S_SEARCH_LOCAL_HIDDEN_FIELDS}
+                        </fieldset>
+                        </form>
+                    </div>
+                    <!-- ENDIF -->
+                    <div class="utility-pagination">
+                        {PAGINATION}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="discussions-list forum-section-content">
+            <table class="no-top-border">
+                <tr class="discussions-list-row discussions-list-guide">
+                    <td class="discussion-icon"></td>
+                    <td class="discussion-subject"><span>Subject</span></td>
+                    <td class="discussion-stats"></td>
+                    <td class="discussion-last"><span>Last Post</span></td>
+                </tr>
+                <!-- BEGIN topicrow -->
+                <tr class="discussions-list-row<!-- IF topicrow.S_POST_GLOBAL --> global-announce<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
+                    <td class="discussion-icon"><div class="discussion-icon-general" style="background-image: url({topicrow.FILTER_ICON})" data-tooltip="{topicrow.FILTER_NAME}"></div></td>
+                    <td class="discussion-subject"><a href="{topicrow.U_VIEW_TOPIC}" class="topic-title">{topicrow.TOPIC_TITLE}</a><a href="{topicrow.U_LAST_POST}" class="topic-latest-reply clickable">Last Post</a><!-- IF topicrow.PAGINATION --><span class="per-pagination">{topicrow.PAGINATION}</span><!-- ENDIF --></td>
+                    <td class="discussion-stats">
+                        <dl class="group stat-views"><dd>{topicrow.REPLIES}</dd><dt>Replies</dt></dl>
+                        <dl class="group stat-replies"><dd>{topicrow.VIEWS}</dd><dt>Views</dt></dl>
+                    </td>
+                    <td class="discussion-last">
+                        <a href="{topicrow.LAST_POST_AUTHOR_LINK}" class="discussion-last-avatar"><img src="{topicrow.LAST_POST_AUTHOR_AVATAR}" /></a>
+                        <div class="discussion-last-user">{topicrow.LAST_POST_AUTHOR_FULL}</div>
+                        <div class="discussion-last-time">{topicrow.LAST_POST_TIME_RELATIVE}</div>
+                    </td>
+                </tr>
+                <!-- END topicrow -->
+            </table>
+        </div>
+    </section>
+</div>
+<!-- INCLUDE overall_footer.html -->

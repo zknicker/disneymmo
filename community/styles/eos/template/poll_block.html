@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+
+<br clear="all" />
+
+<table id="pl" class="tablebg" cellspacing="1" cellpadding="0" width="100%"><tr><th><span style="float: center">{POLL_TITLE}</span></th></tr></table>
+		<!-- BEGIN poll -->
+			<!-- IF poll.S_CAN_VOTE --><form method="post" action="{poll.S_POLL_ACTION}"><!-- ENDIF -->
+            
+            <input type="hidden" name="topic_id" value="{poll.TOPIC_ID}" />
+            <input type="hidden" name="forum_id" value="{poll.FORUM_ID}" />
+            <input type="hidden" name="cur_voted_id" value="{poll.CUR_VOTED_ID}" />
+            
+			<table class="tablebg" cellspacing="1" cellpadding="4" border="0" align="center" width="100%" style="font-size: 0.9em">
+				<tr>
+					<td class="row2" style="text-align: left">
+						<span class="gen"><b><a href="{poll.U_VIEW_TOPIC}">{poll.POLL_QUESTION}</a></b></span><!-- IF poll.L_POLL_LENGTH --><br /><span class="gensmall">{poll.L_POLL_LENGTH}</span><!-- ENDIF -->
+						<span class="gen" style="float: right">{L_AUTHOR}: {poll.POLL_AUTHOR} &raquo; {poll.POLL_TIME}</span>
+					</td>
+				</tr>
+				<!-- IF poll.S_POLL_HAS_OPTIONS -->
+				<tr>	
+					<td class="row1" align="center">
+						<table cellspacing="0" cellpadding="2" border="0">
+						<!-- BEGIN poll_option -->
+							<tr>
+							<!-- IF poll.S_CAN_VOTE -->
+								<td>
+									<!-- IF poll.S_IS_MULTI_CHOICE -->
+										<input type="checkbox" class="radio" name="vote_id[]" value="{poll.poll_option.POLL_OPTION_ID}"<!-- IF poll.poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> />
+									<!-- ELSE -->
+										<input type="radio" class="radio" name="vote_id[]" value="{poll.poll_option.POLL_OPTION_ID}"<!-- IF poll.poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> />
+									<!-- ENDIF -->
+								</td>
+							<!-- ENDIF -->
+								<td style="text-align: left"><span class="gen">{poll.poll_option.POLL_OPTION_CAPTION}</span></td>
+							<!-- IF poll.S_DISPLAY_RESULTS -->
+									<td dir="ltr" style="text-align: left; white-space: nowrap">{poll.poll_option.POLL_OPTION_IMG}</td>
+									<td class="gen" align="{S_CONTENT_FLOW_END}"><b>&nbsp;{poll.poll_option.POLL_OPTION_PERCENT}&nbsp;</b></td>
+									<td class="gen" style="white-space: nowrap">[ {poll.poll_option.POLL_OPTION_RESULT} ]</td>
+								<!-- IF poll.poll_option.POLL_OPTION_VOTED -->
+									<td class="gensmall" valign="top"><b title="{L_POLL_VOTED_OPTION}">x</b></td>
+								<!-- ENDIF -->
+							<!-- ENDIF -->
+							</tr>
+						<!-- END poll_option -->
+						</table>
+					</td>
+				</tr>
+				<!-- ELSE -->
+				<tr>
+					<td class="row1" align="center">
+						{L_NO_OPTIONS}
+					</td>
+				</tr>
+				<!-- ENDIF -->
+			<!-- IF poll.S_CAN_VOTE -->
+				<tr>
+					<td class="row2" align="center"><span class="gensmall">{poll.L_MAX_VOTES}</span><br /><br /><input type="submit" name="update" value="{L_SUBMIT_VOTE}" class="btnlite" /></td>
+				</tr>
+			<!-- ENDIF -->
+				<tr>
+					<td class="row1" align="center"><span class="genmed"><!-- IF poll.S_DISPLAY_RESULTS -->{L_TOTAL_VOTES}: <b>{poll.TOTAL_VOTES}</b><!-- ELSE --><b><a href="{poll.U_VIEW_RESULTS}">{L_VIEW_RESULTS}</a></b><!-- ENDIF --> | <b><a href="{poll.U_VIEW_TOPIC}">{L_VIEW_TOPIC}</a></b><!-- IF POLL_PAGINATION and not S_IS_BOT --> | {POLL_NUMBER} | <b>{POLL_PAGINATION}</b><!-- ENDIF --></span></td>
+				</tr>
+				</table>
+				<!-- IF poll.S_CAN_VOTE -->{S_FORM_TOKEN}
+				</form><!-- ENDIF -->
+		<!-- END poll -->
+<br />
+
+</body>
+</html>

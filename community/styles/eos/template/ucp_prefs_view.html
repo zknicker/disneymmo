@@ -1,0 +1,91 @@
+<!-- INCLUDE ucp_header.html -->
+            <div class="ui-utilitybar-actions-container">
+                <div class="ui-utilitybar-actions">
+                    <button class="button-as-anchor utility-action-button" type="submit" accesskey="s" tabindex="6" name="submit" value="{L_SUBMIT}">Save Changes</button>
+                    <button class="button-as-anchor utility-action-button" type="reset" accesskey="s" tabindex="6" name="reset" value="{L_RESET}">Reset</button>
+                    {S_HIDDEN_FIELDS}
+                    {S_FORM_TOKEN}                    
+                </div>
+            </div>
+        </div>
+<div class="usercp-component group">
+    <aside class="gutter">
+        <div>
+            <span>Global Settings</span>
+            <p>Modify a variety of global settings pertaining to your account and experience.</p>
+        </div>
+    </aside>
+    <div class="core">
+        <fieldset>
+        <!-- IF ERROR -->
+        <section>
+            <p class="error">{ERROR}</p>
+        </section>
+        <!-- ENDIF -->
+        <section>
+            <ul class="usercp-toggle-list">
+                <li>
+                    <label for="images">{L_VIEW_IMAGES}:</label></dt>
+                    <input type="hidden" name="images" id="imagesh" value="0" />
+                    <input type="checkbox" name="images" id="images"<!-- IF S_IMAGES --> value="1" checked="checked"<!-- ENDIF --> />
+                </li>
+                <li>
+                    <label for="images">{L_VIEW_FLASH}:</label></dt>
+                    <input type="hidden" name="flash" id="flashh" value="0" />
+                    <input type="checkbox" name="flash" id="flash"<!-- IF S_FLASH --> value="1" checked="checked"<!-- ENDIF --> />
+                </li>
+                <li>
+                    <label for="images">{L_VIEW_SMILIES}:</label></dt>
+                    <input type="hidden" name="smilies" id="smiliesh" value="0" />
+                    <input type="checkbox" name="smilies" id="smilies"<!-- IF S_SMILIES --> value="1" checked="checked"<!-- ENDIF --> />
+                </li>
+                <li>
+                    <label for="images">{L_VIEW_SIGS}:</label></dt>
+                    <input type="hidden" name="sigs" id="sigsh" value="0" />
+                    <input type="checkbox" name="sigs" id="sigs"<!-- IF S_SIGS --> value="1" checked="checked"<!-- ENDIF --> />
+                </li>
+                <li>
+                    <label for="images">{L_VIEW_AVATARS}:</label></dt>
+                    <input type="hidden" name="avatars" id="avatarsh" value="0" />
+                    <input type="checkbox" name="avatars" id="avatars"<!-- IF S_AVATARS --> value="1" checked="checked"<!-- ENDIF --> />
+                </li>
+                <li>
+                    <label for="images">{L_DISABLE_CENSORS}:</label></dt>
+                    <input type="hidden" name="wordcensor" id="wordcensorh" value="0" />
+                    <input type="checkbox" name="wordcensor" id="wordcensor"<!-- IF S_DISABLE_CENSORS --> value="1" checked="checked"<!-- ENDIF --> />
+                </li>
+            </ul>
+        </section>
+        <section class="columns">
+            <dl>
+                <dt><label>{L_VIEW_TOPICS_DAYS}:</label></dt>
+                <dd>{S_TOPIC_SORT_DAYS}</dd>
+            </dl>
+            <dl>
+                <dt><label>{L_VIEW_TOPICS_KEY}:</label></dt>
+                <dd>{S_TOPIC_SORT_KEY}</dd>
+            </dl>
+            <dl>
+                <dt><label>{L_VIEW_TOPICS_DIR}:</label></dt>
+                <dd>{S_TOPIC_SORT_DIR}</dd>
+            </dl>
+        </section>
+        <section class="columns">
+            <dl>
+                <dt><label>{L_VIEW_POSTS_DAYS}:</label></dt>
+                <dd>{S_POST_SORT_DAYS}</dd>
+            </dl>
+            <dl>
+                <dt><label>{L_VIEW_POSTS_KEY}:</label></dt>
+                <dd>{S_POST_SORT_KEY}</dd>
+            </dl>
+            <dl>
+                <dt><label>{L_VIEW_POSTS_DIR}:</label></dt>
+                <dd>{S_POST_SORT_DIR}</dd>
+            </dl>
+        </section>
+        </fieldset>
+    </div>
+</div>
+</div>
+<!-- INCLUDE ucp_footer.html -->

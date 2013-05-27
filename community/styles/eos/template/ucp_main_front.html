@@ -1,0 +1,67 @@
+<!-- INCLUDE ucp_header.html -->
+            <div class="ui-utilitybar-actions-container">
+                <div class="ui-utilitybar-actions hidden"></div>
+            </div>
+        </div>
+        <div class="usercp-component profile-overview group">
+            <div class="overview-segment group">
+                <div class="overview-avatar avatar avatar-large">{DMMO_AVATAR}</div>
+                <h3 class="overview-username">{DMMO_USERNAME}</h3>
+            </div>
+            <div class="overview-segment group">
+                <dl>
+                    <dt>{L_TOTAL_POSTS}:</dt> <dd><!-- IF S_DISPLAY_SEARCH --><a href="{U_SEARCH_USER}">{POSTS}</a><!-- ELSE -->{POSTS}<!-- ENDIF --></dd>
+                    <!-- IF POSTS_PCT -->
+                    <dt>Posts Per Day:</dt> <dd>{POSTS_DAY}</dd>
+                    <dt>% Of All Posts:</dt> <dd>{POSTS_PCT}</dd>
+                    <!-- ENDIF -->
+                </dl>
+            </div>
+            <div class="overview-segment group">
+                <dl>
+                    <dt>{L_JOINED}:</dt> <dd>{JOINED}</dd>
+                    <dt>{L_VISITED}:</dt> <dd>{LAST_VISIT_YOU}</dd>
+                    <!-- IF ACTIVE_TOPIC --><dt>{L_ACTIVE_IN_TOPIC}:</dt> <dd data-tooltip="{ACTIVE_TOPIC_POSTS}, or {ACTIVE_TOPIC_PCT}."><a href="{U_ACTIVE_TOPIC}">{ACTIVE_TOPIC}</a></dd><!-- ENDIF -->
+                </dl>
+            </div>
+            <!-- IF WARNINGS -->
+            <div class="overview-segment group">
+                <dl>
+                    <dt>{L_YOUR_WARNINGS}:</dt> <dd class="error">{WARNING_IMG} [{WARNINGS}]</dd>
+                </dl>
+            </div>
+            <!-- ENDIF -->
+        </div>
+        <!-- IF .friends_online or .friends_offline -->
+        <div class="usercp-component group">
+            <aside class="gutter">
+                <div>
+                    <span>Online Friends</span>
+                    <p>This is a list of your currently online friends. <a href="{DMMO_U_USERCP_FRIENDS}" data-tooltip="Friends are nice!">Manage your friends list</a> to add new users or remove old ones.</p>
+                </div>
+            </aside>
+            <div class="core">
+                <!-- IF .friends_online -->
+                <dl>
+                    <dd>
+                        <ul class="friend-blocks">
+                            <!-- BEGIN friends_online -->
+                            <li class="friend-block">
+                                <div class="avatar avatar-large">
+                                    <a class="friend-message" href="{friends_online.U_PM}"><span>Message</span></a>
+                                    <img height="{friends_online.AVATAR_HEIGHT}" width="{friends_online.AVATAR_WIDTH}" src="{friends_online.AVATAR_PATH}">
+                                </div>
+                                <p class="friend-username">{friends_online.USERNAME_FULL}</p>
+                            </li>
+                            <!-- END friends_online -->
+                        </ul>
+                    </dd>
+                </dl>
+                <!-- ELSE -->
+                <strong class="huge">No friends online.</strong>
+                <!-- ENDIF -->
+            </div>
+        </div>
+        <!-- ENDIF -->
+    
+<!-- INCLUDE ucp_footer.html -->

@@ -1,0 +1,44 @@
+<!-- IF S_HAS_POLL_OPTIONS -->
+	<div class="content">
+		<h2>{L_PREVIEW}: {POLL_QUESTION}</h2>
+		<p class="author"><!-- IF L_POLL_LENGTH -->{L_POLL_LENGTH}<br /><!-- ENDIF -->{L_MAX_VOTES}</p>
+
+		<fieldset class="polls">
+		<!-- BEGIN poll_option -->
+			<dl>
+				<dt><label for="vote_{poll_option.POLL_OPTION_ID}">{poll_option.POLL_OPTION_CAPTION}</label></dt>
+				<dd style="width: auto;"><!-- IF S_IS_MULTI_CHOICE --><input type="checkbox" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ELSE --><input type="radio" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ENDIF --></dd>
+			</dl>
+		<!-- END poll_option -->
+		</fieldset>
+	</div>
+<!-- ENDIF -->
+<section class="<!-- IF not S_PRIVMSGS -->editor-step <!-- ENDIF -->post-block">
+    <table>
+        <tr>
+            <td class="post-profile">
+                <div class="post-profile-wrapper">
+                    <div class="avatar avatar-large">{DMMO_AVATAR}</div>
+                    <div class="user-info">
+                        <div class="username">{DMMO_USERNAME_FULL}</div>
+                        <p class="status">Member</p>
+                        <div class="post-count" data-tooltip="You have {DMMO_POSTS} posts. Nice.">{DMMO_POSTS}</div>
+                        <div class="credits-count" data-tooltip="You have earned 2000 credits. Just remember, a person should never neglect their good posting habits for credits.">2000</div>
+                    </div>
+                </div>
+            </td>
+            <td class="post-content">
+                <div class="post-interior-padding"><p>
+                    {PREVIEW_MESSAGE}
+                    <!-- IF PREVIEW_SIGNATURE --><div class="signature">{PREVIEW_SIGNATURE}</div><!-- ENDIF -->
+                </p></div>
+            </td>
+            <td class="post-stamp">
+                <div class="post-interior-padding">
+                    Preview    
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="post-controls group"></div>
+</section>

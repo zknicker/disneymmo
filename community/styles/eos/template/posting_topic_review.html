@@ -1,0 +1,40 @@
+<script type="text/javascript">
+// <![CDATA[
+	bbcodeEnabled = {S_BBCODE_ALLOWED};
+// ]]>
+</script>
+<div class="step-discussion-review editor-step group">
+    <div class="step-instruction">
+        <span>discussion review</span>
+        <p>Contributing to the discussion is a lot easier when you are up-to-date on what is going on. Here is a convenient list of some of the more recent replies to this discussion!</p>
+    </div>
+    <div class="step-interaction">
+        <ul class="discussion-review-list">
+        <!-- BEGIN topic_review_row -->
+            <!-- IF topic_review_row.S_IGNORE_POST -->
+            <!-- ELSE -->
+            <li class="discussion-review-block group" id="pr{topic_review_row.POST_ID}">
+                <div class="discussion-review-user">
+                    <div class="avatar avatar-small">{topic_review_row.POST_AUTHOR_AVATAR}</div>
+                    <span class="discussion-review-username">{topic_review_row.POST_AUTHOR}</span>
+                    <span class="discussion-review-date" data-tooltip="{topic_review_row.POST_DATE}">{topic_review_row.POST_DATE_REL}</span>
+                </div>
+                <div class="discussion-review-body">
+                    {topic_review_row.MESSAGE}
+                    <!-- IF topic_review_row.S_HAS_ATTACHMENTS -->
+                        <dl class="attachbox">
+                            <dt>{L_ATTACHMENTS}</dt>
+                            <!-- BEGIN attachment -->
+                                <dd>{topic_review_row.attachment.DISPLAY_ATTACHMENT}</dd>
+                            <!-- END attachment -->
+                        </dl>
+                    <!-- ENDIF -->
+                </div>
+                <!-- IF topic_review_row.POSTER_QUOTE and topic_review_row.DECODED_MESSAGE -->
+                    <div id="message_{topic_review_row.POST_ID}" style="display: none;">{topic_review_row.DECODED_MESSAGE}</div>
+                <!-- ENDIF -->
+            </li>
+            <!-- ENDIF -->
+        <!-- END topic_review_row -->
+    </div>
+</div>

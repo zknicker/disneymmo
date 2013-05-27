@@ -1,0 +1,35 @@
+                    <!-- IF S_SHOW_POLL_BOX -->
+                    <div class="field-row">
+                        <dl class="long">
+                            <dt><label for="poll_title">{L_POLL_QUESTION}:</label></dt>
+                            <dd><input type="text" name="poll_title" id="poll_title" maxlength="255" value="{POLL_TITLE}" class="inputbox" /></dd>
+                        </dl>
+                    </div>
+                    <div class="field-row">
+                        <dl>
+                            <dt><label for="poll_option_text" data-tooltip="These are the options available to users for your poll. Separate each poll option with a new line.">{L_POLL_OPTIONS}:</label></dt>
+                            <dd><textarea name="poll_option_text" id="poll_option_text" rows="5" cols="35" class="inputbox">{POLL_OPTIONS}</textarea></dd>
+                        </dl>
+                        <dl class="short">
+                            <dt><label for="poll_max_options" data-tooltip="{L_POLL_MAX_OPTIONS_EXPLAIN}">{L_POLL_MAX_OPTIONS}:</label></dt>
+                            <dd><input type="text" name="poll_max_options" id="poll_max_options" size="3" maxlength="3" value="{POLL_MAX_OPTIONS}" class="inputbox autowidth" /></dd>
+                        </dl>
+                        <dl class="short">
+                            <dt><label for="poll_length" data-tooltip="Measured in days. Enter 0 or leave blank for a neverending poll.">{L_POLL_FOR}:</label></dt>
+                            <dd><input type="text" name="poll_length" id="poll_length" size="3" maxlength="3" value="{POLL_LENGTH}" class="inputbox autowidth" /></dd>
+                        </dl>
+                        <!-- IF S_POLL_VOTE_CHANGE -->
+                        <dl class="alongside">
+                            <dt><label for="poll_vote_change" data-tooltip="{L_POLL_VOTE_CHANGE_EXPLAIN}">{L_POLL_VOTE_CHANGE}:</label></dt>
+                            <dd><input type="checkbox" id="poll_vote_change" name="poll_vote_change"{VOTE_CHANGE_CHECKED} /></dd>
+                        </dl>
+                        <!-- ENDIF -->
+                    </div>
+                    <!-- ELSEIF S_POLL_DELETE -->
+                    <div class="field-row">
+                        <dl>
+                            <dt><label for="poll_delete">{L_POLL_DELETE}:</label></dt>
+                            <dd><label for="poll_delete"><input type="checkbox" name="poll_delete" id="poll_delete"<!-- IF S_POLL_DELETE_CHECKED --> checked="checked"<!-- ENDIF --> /> </label></dd>
+                        </dl>
+                    </div>
+                    <!-- ENDIF -->

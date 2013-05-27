@@ -1,0 +1,90 @@
+<!-- INCLUDE ucp_header.html -->
+            <div class="ui-utilitybar-actions-container">
+                <div class="ui-utilitybar-actions">
+                    <button class="button-as-anchor utility-action-button" type="submit" accesskey="s" tabindex="6" name="submit" value="{L_SUBMIT}">Save Changes</button>
+                    <button class="button-as-anchor utility-action-button" type="reset" accesskey="s" tabindex="6" name="reset" value="{L_RESET}">Reset</button>
+                    {S_HIDDEN_FIELDS}
+                    {S_FORM_TOKEN}                    
+                </div>
+            </div>
+        </div>
+        <div class="usercp-component">
+            <aside class="gutter">
+                <div>
+                    <span>{L_TITLE}</span>
+                    <p>Modify attributes pertaining to your profile that are used to share a bit about yourself with others. {L_PROFILE_INFO_NOTICE}</p>
+                </div>
+            </aside>
+            <div class="core">
+                <fieldset>
+                <!-- IF ERROR -->
+                <section>
+                    <p class="error">{ERROR}</p>
+                </section>
+                <!-- ENDIF -->
+                <section class="columns">
+                    <!-- BEGIN profile_fields -->
+                    <dl>
+                        <dt><label<!-- IF profile_fields.FIELD_ID --> for="{profile_fields.FIELD_ID}"<!-- ENDIF -->>{profile_fields.LANG_NAME}:<!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF --></label>
+                        <!-- IF profile_fields.LANG_EXPLAIN --><br /><span>{profile_fields.LANG_EXPLAIN}</span><!-- ENDIF --></dt>
+                        <!-- IF profile_fields.ERROR --><dd class="error">{profile_fields.ERROR}</dd><!-- ENDIF -->
+                        <dd>{profile_fields.FIELD}</dd>
+                    </dl>
+                    <!-- END profile_fields -->
+                </section>
+                <section class="columns">
+                    <dl>
+                        <dt><label for="icq">{L_UCP_ICQ}:</label></dt>
+                        <dd><input type="text" name="icq" id="icq" maxlength="15" value="{ICQ}" class="inputbox" /></dd>
+                    </dl>
+                    <dl>
+                        <dt><label for="aim">{L_UCP_AIM}:</label></dt>
+                        <dd><input type="text" name="aim" id="aim" maxlength="255" value="{AIM}" class="inputbox" /></dd>
+                    </dl>
+                    <dl>
+                        <dt><label for="msn">{L_UCP_MSNM}:</label></dt>
+                        <dd><input type="text" name="msn" id="msn" maxlength="255" value="{MSN}" class="inputbox" /></dd>
+                    </dl>
+                    <dl>
+                        <dt><label for="yim">{L_UCP_YIM}:</label></dt>
+                        <dd><input type="text" name="yim" id="yim" maxlength="255" value="{YIM}" class="inputbox" /></dd>
+                    </dl>
+                    <dl>
+                        <dt><label for="jabber">{L_UCP_JABBER}:</label></dt>
+                        <dd><input type="text" name="jabber" id="jabber" maxlength="255" value="{JABBER}" class="inputbox" /></dd>
+                    </dl>
+                    <dl>
+                        <dt><label for="website">{L_WEBSITE}:</label></dt>
+                        <dd><input type="text" name="website" id="website" maxlength="255" value="{WEBSITE}" class="inputbox" /></dd>
+                    </dl>
+                    <dl>
+                        <dt><label for="location">{L_LOCATION}:</label></dt>
+                        <dd><input type="text" name="location" id="location" maxlength="255" value="{LOCATION}" class="inputbox" /></dd>
+                    </dl>
+                </section>
+                <section class="columns">
+                    <dl>
+                        <dt><label for="occupation">{L_OCCUPATION}:</label></dt>
+                        <dd><textarea name="occupation" id="occupation" class="inputbox" rows="3" cols="30">{OCCUPATION}</textarea></dd>
+                    </dl>
+                    <dl>
+                        <dt><label for="interests">{L_INTERESTS}:</label></dt>
+                        <dd><textarea name="interests" id="interests" class="inputbox" rows="3" cols="30">{INTERESTS}</textarea></dd>
+                    </dl>
+                </section>
+                <section>
+                    <!-- IF S_BIRTHDAYS_ENABLED -->
+                    <dl class="auto">
+                        <dt><label for="bday_day" data-tooltip="{L_BIRTHDAY_EXPLAIN}">{L_BIRTHDAY}:</label></dt>
+                        <dd>
+                            <label for="bday_day">{L_DAY}: <select name="bday_day" id="bday_day">{S_BIRTHDAY_DAY_OPTIONS}</select></label> 
+                            <label for="bday_month">{L_MONTH}: <select name="bday_month" id="bday_month">{S_BIRTHDAY_MONTH_OPTIONS}</select></label> 
+                            <label for="bday_year">{L_YEAR}: <select name="bday_year" id="bday_year">{S_BIRTHDAY_YEAR_OPTIONS}</select></label>
+                        </dd>
+                    </dl>
+                    <!-- ENDIF -->
+                </section>
+                </fieldset>
+            </div>
+        </div>
+<!-- INCLUDE ucp_footer.html -->

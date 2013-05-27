@@ -1,0 +1,30 @@
+<div class="step-attachments editor-step group">
+    <div class="step-instruction">
+        <span>attachments</span>
+        <p>Create a new attachment by first selecting the file you would like to attach, and then typing an optional file comment to include with the attachment.</p>
+    </div>
+    <div class="step-interaction">
+        <div class="step-attachments-new">
+            <span class="step-attachments-label">Create New Attachment: <button name="add_file" class="button-as-anchor" onclick="upload = true;">(add)</button></span>
+            <div class="faux-file-viewer"><a href="javascript:;"><input type="file" name="fileupload" id="fileupload" maxlength="{FILESIZE}" value="" /></a></div>
+            <textarea class="file-comment" name="filecomment" id="filecomment" rows="1">{FILE_COMMENT}</textarea>
+        </div>
+        <div class="step-attachments-view">
+            <!-- IF S_HAS_ATTACHMENTS -->
+            <span class="step-attachments-label">View Current Attachments:</span>
+            <ul>
+                <!-- BEGIN attach_row -->
+                <li class="group">
+                    <button name="delete_file[{attach_row.ASSOC_INDEX}]" value="{L_DELETE_FILE}" class="button-as-anchor attachment-button attachment-delete"></button>
+                    <!-- IF S_INLINE_ATTACHMENT_OPTIONS --><a class="attachment-button attachment-inline" href="javascript: dmmo.discussionEditor.addAttachmentInline({attach_row.ASSOC_INDEX}, '{attach_row.A_FILENAME}');"></a><!-- ENDIF -->
+                    <textarea name="comment_list[{attach_row.ASSOC_INDEX}]" id="comment_list_{attach_row.ASSOC_INDEX}" rows="1">{attach_row.FILE_COMMENT}</textarea></dd>
+                    <a class="attachment-link" href="{attach_row.U_VIEW_ATTACHMENT}">{attach_row.FILENAME}</a></dd>
+                    {attach_row.S_HIDDEN}
+                </li>
+                <!-- END attach_row -->
+            </ul>
+            <!-- ENDIF -->
+            {S_FORM_TOKEN}                
+        </div>
+    </div>
+</div>

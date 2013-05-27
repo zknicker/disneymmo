@@ -1,0 +1,167 @@
+<!-- INCLUDE overall_header.html -->
+
+	<div class="eos-container group">
+	
+		<section id="main-showcase" class="cms-block cms-block-showcase showcase group">
+            <ul>
+                <!-- BEGIN showcase -->
+                <li class="slide">
+                    <div class="panel">
+                        <div class="slide-meta">
+                            <a class="slide-title" href="{showcase.TITLE_LINK}">{showcase.TITLE}</a>
+                            <a class="slide-origin tag-{showcase.CATEGORY}" href="{showcase.ORIGIN_LINK}">{showcase.ORIGIN}</a>
+                        </div>
+                        <div class="slide-bg" style="background-image: url({showcase.BACKGROUND_URL})"></div>
+                    </div>
+                    <div class="caption">
+                        {showcase.CAPTION}
+                        <div class="progress">
+                            <div class="progress-bar">
+                        </div>
+                    </div>
+                </li>
+                <!-- END showcase -->
+            </ul>
+		</section>
+        
+        <section class="cms-block cms-block-2 group">
+            <!-- BEGIN articles_feed(0,1) -->
+            <article class="news-article news-article-small {articles_feed.GAME}">
+                <a class="news-article-thumbnail" href="{articles_feed.LINK}" style="background-image: url({articles_feed.THUMBNAIL});"></a>
+                <h2 class="news-article-title"><a href="{articles_feed.LINK}">{articles_feed.TITLE}</a></h2>
+                <p class="news-article-desc">By <a class="tag-{articles_feed.GAME}" href="{articles_feed.AUTHOR_LINK}">{articles_feed.AUTHOR}</a>, {articles_feed.TIME}</p>
+				<p class="news-article-preview">{articles_feed.PREVIEW}</p>
+			</article>
+            <!-- END articles_feed -->
+            <div class="discussions-tracker">
+                <ul class="latest-discussions-tracker">
+                    <li class="discussion-tracker-header">
+                        <h4 class="cms-module-header" data-icon="&#xe01f;">Latest Discussions</h4>
+                    </li>
+                    <!-- BEGIN latest_discussions -->
+                    <li class="tracked-discussion group">
+                        <a href="{latest_discussions.LINK}">
+                            <div class="avatar poster-avatar" data-tooltip="Last post by {latest_discussions.USERNAME}.">{latest_discussions.AVATAR}</div>
+                            <div class="post-info">
+                                <div class="post-title">{latest_discussions.TITLE}</div>
+                                <div class="post-comments">{latest_discussions.REPLIES} comments</div>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- END latest_discussions -->
+                </ul>
+                <ul class="popular-discussions-tracker">
+                    <li class="discussion-tracker-header">
+                        <h4 class="cms-module-header" data-icon="&#xe020;">Popular Discussions</h4>
+                    </li>
+                    <!-- BEGIN popular_discussions -->
+                    <li class="tracked-discussion group">
+                        <a href="{popular_discussions.LINK}">
+                            <div class="avatar poster-avatar" data-tooltip="Last post by {popular_discussions.USERNAME}.">{popular_discussions.AVATAR}</div>
+                            <div class="post-info">
+                                <div class="post-title">{popular_discussions.TITLE}</div>
+                                <div class="post-comments">{popular_discussions.REPLIES} comments</div>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- END popular_discussions -->
+                </ul>
+			</div>
+        </section>
+        
+        <section class="cms-block cms-block-1 group">
+            <!-- BEGIN articles_feed(2,4) -->
+            <article class="news-article news-article-standard {articles_feed.GAME}">
+                <a class="news-article-thumbnail" href="{articles_feed.LINK}" style="background-image: url({articles_feed.THUMBNAIL});"></a>
+                <h2 class="news-article-title"><a href="{articles_feed.LINK}">{articles_feed.TITLE}</a></h2>
+                <p class="news-article-desc">By <a class="tag-{articles_feed.GAME}" href="{articles_feed.AUTHOR_LINK}">{articles_feed.AUTHOR}</a>, {articles_feed.TIME}</p>
+				<p class="news-article-preview">{articles_feed.PREVIEW}</p>
+			</article>
+            <!-- END articles_feed -->
+        </section>
+        
+        <section class="cms-block cms-block-1 group">
+            <!-- BEGIN articles_feed(5,7) -->
+            <article class="news-article news-article-standard {articles_feed.GAME}">
+                <a class="news-article-thumbnail" href="{articles_feed.LINK}" style="background-image: url({articles_feed.THUMBNAIL});"></a>
+                <h2 class="news-article-title"><a href="{articles_feed.LINK}">{articles_feed.TITLE}</a></h2>
+                <p class="news-article-desc">By <a class="tag-{articles_feed.GAME}" href="{articles_feed.AUTHOR_LINK}">{articles_feed.AUTHOR}</a>, {articles_feed.TIME}</p>
+				<p class="news-article-preview">{articles_feed.PREVIEW}</p>
+			</article>
+            <!-- END articles_feed -->
+        </section>
+        
+        <section class="cms-block cms-block-3 group">
+            <div class="latest-tweets">
+                <h4 class="cms-module-header" data-icon="&#xe022;">Recent Tweets</h4>
+                <ul class="tweet-blocks">
+                    <!-- BEGIN tweets -->
+                    <li class="tweet-block group">
+                        <a class="tweet-icon {tweets.ABBR}" href="{tweets.LINK}" data-tooltip="Tweet from {tweets.NAME}."></a>
+                        <div class="tweet-text" data-tooltip="{tweets.STATUS_PLAIN}">
+                            {tweets.STATUS}
+                        </div>
+                    </li>
+                    <!-- END tweets -->
+                </ul>
+            </div>
+            <!-- BEGIN latest_poll -->
+			<div id="homepage-poll" class="latest-poll ajax-poll<!-- IF latest_poll.S_CAN_VOTE --> voteable<!-- ENDIF -->">
+                <h4 class="cms-module-header" data-icon="&#xe021;">Cast Your Votes</h4>
+                <!-- IF latest_poll.S_CAN_VOTE -->
+                <form id="homepage-poll-form" method="post" name="homepage-poll-form" action="{latest_poll.S_POLL_ACTION}">
+                    <input type="hidden" name="topic_id" value="{latest_poll.TOPIC_ID}" />
+                    <input type="hidden" name="forum_id" value="{latest_poll.FORUM_ID}" />
+                    <input type="hidden" name="cur_voted_id" value="{latest_poll.CUR_VOTED_ID}" />
+                    <input type="hidden" name="vote_id[]" value="1" />
+                    <input type="hidden" name="update" value="1" />
+                <!-- ENDIF -->
+                
+                    <p class="latest-poll-question">{latest_poll.POLL_QUESTION}</p>
+                    <ul class="latest-poll-options">
+                        <!-- BEGIN options -->
+                        <li id="poid_{latest_poll.options.POLL_OPTION_ID}" class="latest-poll-option<!-- IF latest_poll.options.POLL_OPTION_VOTED --> voted<!-- ENDIF -->" data-poid="{latest_poll.options.POLL_OPTION_ID}">
+                            <div class="poll-option" style="width: {latest_poll.options.POLL_OPTION_WIDTH}%;">
+                                {latest_poll.options.POLL_OPTION_CAPTION} - {latest_poll.options.POLL_OPTION_PCT}%
+                            </div>
+                        </li>
+                        <!-- END options -->
+                    </ul>
+                    <!-- IF latest_poll.CUR_VOTED_ID -->
+                    <p class="latest-poll-thanks">Thanks for voting!</p>
+                    <!-- ENDIF -->
+                        
+                <!-- IF latest_poll.S_CAN_VOTE -->
+                    {S_FORM_TOKEN}
+                </form>
+                <!-- ENDIF -->
+                    
+			</div>
+            <!-- END latest_poll -->
+        </section>
+       
+        <section class="cms-block cms-block-1 group">
+            <!-- BEGIN articles_feed(8,10) -->
+            <article class="news-article news-article-standard {articles_feed.GAME}">
+                <a class="news-article-thumbnail" href="{articles_feed.LINK}" style="background-image: url({articles_feed.THUMBNAIL});"></a>
+                <h2 class="news-article-title"><a href="{articles_feed.LINK}">{articles_feed.TITLE}</a></h2>
+                <p class="news-article-desc">By <a class="tag-{articles_feed.GAME}" href="{articles_feed.AUTHOR_LINK}">{articles_feed.AUTHOR}</a>, {articles_feed.TIME}</p>
+				<p class="news-article-preview">{articles_feed.PREVIEW}</p>
+			</article>
+            <!-- END articles_feed -->
+        </section>
+        
+        <section class="cms-block cms-block-1 group">
+            <!-- BEGIN articles_feed(11,13) -->
+            <article class="news-article news-article-standard {articles_feed.GAME}">
+                <a class="news-article-thumbnail" href="{articles_feed.LINK}" style="background-image: url({articles_feed.THUMBNAIL});"></a>
+                <h2 class="news-article-title"><a href="{articles_feed.LINK}">{articles_feed.TITLE}</a></h2>
+                <p class="news-article-desc">By <a class="tag-{articles_feed.GAME}" href="{articles_feed.AUTHOR_LINK}">{articles_feed.AUTHOR}</a>, {articles_feed.TIME}</p>
+				<p class="news-article-preview">{articles_feed.PREVIEW}</p>
+			</article>
+            <!-- END articles_feed -->
+        </section>
+        <a id="more-news-button" href="javascript: dmmo.articles.retrieve(10);"></a>
+	</div>
+
+<!-- INCLUDE overall_footer.html -->

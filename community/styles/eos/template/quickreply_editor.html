@@ -1,0 +1,34 @@
+<form method="post" action="{U_QR_ACTION}">
+<table>
+    <tr>
+        <td class="post-profile">
+            <div class="post-profile-wrapper">
+                <div class="avatar avatar-large">{DMMO_AVATAR}</div>
+                <div class="user-info">
+                    <div class="username">{DMMO_USERNAME_FULL}</div>
+                    <p class="status">Member</p>
+                    <div class="post-count" data-tooltip="You have {DMMO_POSTS} posts. Nice.">{DMMO_POSTS}</div>
+                    <div class="credits-count" data-tooltip="You have earned 2000 credits. Just remember, a person should never neglect their good posting habits for credits.">2000</div>
+                </div>
+            </div>
+        </td>
+        <td class="post-content">
+            <div class="post-interior-padding">
+                <textarea name="message" rows="7" cols="76" tabindex="3"></textarea>
+            </div>
+        </td>
+        <td class="post-stamp">
+            <div class="post-interior-padding">
+                <a class="post-count" href="#pquickreply">New Reply</a>
+                <div class="post-date" data-tooltip="Go on, make something awesome happen with this post right now.">Right Now</div>
+            </div>
+        </td>
+    </tr>
+</table>
+<div class="post-controls group">
+    <button class="button-as-anchor post-control post-control-button post clickable" accesskey="s" tabindex="6" name="post">Post Reply</button>
+    <button class="button-as-anchor post-control post-control-button advanced clickable" accesskey="f" tabindex="7" name="full_editor">Full Editor</button>
+    {S_FORM_TOKEN}
+    {QR_HIDDEN_FIELDS}
+</div>
+</form>
