@@ -20,5 +20,5 @@ ErrorDocument 404 /404.html
 Options -Indexes
 
 ### HOSTGATOR PHP 5.3
-Action application/x-hg-php53 /cgi-sys/php53
-AddType application/x-httpd-php53 .php
+#Action application/x-hg-php53 /cgi-sys/php53
+#AddType application/x-httpd-php53 .php

@@ -41,7 +41,7 @@ $eos_config = array(
 	
 	/* showcase */
     "showcase_table"                =>  'phpbb_showcase',
-    "showcase_json_path"            =>  $_SERVER['DOCUMENT_ROOT'] . '/json/showcase.json',
+    "showcase_json_path"            =>  'json/showcase.json',
     "default_slide_bg"              =>  'images/news/default/dmmo/generic.jpg',
     "uploaded_slide_bg_path"        =>  'images/showcase/',
 	
