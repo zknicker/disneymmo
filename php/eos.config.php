@@ -21,12 +21,13 @@
 */
 
 $server_root = '/home/xiris/public_html';
+$server_name = (!empty($_SERVER['HTTP_HOST'])) ? strtolower($_SERVER['HTTP_HOST']) : ((!empty($_SERVER['SERVER_NAME'])) ? $_SERVER['SERVER_NAME'] : getenv('SERVER_NAME'));
 $eos_config = array(
 
     "website_name"                  =>  'disneymmo',
 
     /* dirs */
-    "public_root"                   =>  'http://disneymmo.com/',
+    "public_root"                   =>  'http://' + $server_name + '/',
     "server_root"                   =>  $server_root,
     "previews_dir"                  =>  $server_root . '/images/previews/',
     "profile_customizations_dir"    =>  $server_root . '/images/profiles/customizations',

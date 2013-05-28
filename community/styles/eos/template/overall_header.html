@@ -105,6 +105,7 @@
 					</li>
 				</ul>
 			</nav>
+            <!-- IF S_USER_LOGGED_IN -->
 			<div id="global-profile">
 				<a id="user-avatar" href="{DMMO_U_USER_PROFILE}">{DMMO_AVATAR}</a>
 				<a id="user-pms" class="global-profile-button" href="{U_PRIVATEMSGS}">
@@ -147,6 +148,9 @@
 					</div>
 					<div id="user-cp"><a href="#">View Your Control Panel</a></div>
 				</div>
+                <!-- ELSE -->
+                Not logged in!
+                <!-- ENDIF -->
 			</div>
         </div>
 	</header>

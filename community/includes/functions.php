@@ -4927,10 +4927,14 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'DMMO_U_USERCP_BLOG_META'           => append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=blog&mode=ucp_blog_title_description'),
 		'DMMO_U_USERCP_BLOG_PERMISSIONS'    => append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=blog&mode=ucp_blog_permissions'),
         
-		'DMMO_LOGGED_IN_USERS'		    => $dmmo_online_users,
-		'DMMO_LOGGED_IN_USER_LIST'		=> $dmmo_online_userlist,
+		'DMMO_LOGGED_IN_USERS'		    	=> $dmmo_online_users,
+		'DMMO_LOGGED_IN_USER_LIST'			=> $dmmo_online_userlist,
         
-        'DMMO_CAN_VIEW_STAFF_FORUM'     => $auth->acl_get('f_list', 14),
+        'DMMO_CAN_VIEW_STAFF_FORUM'     	=> $auth->acl_get('f_list', 14),
+
+        // CSS, JS, etc. includes
+        'DMMO_CSS_DIR'						=> $phpbb_root_path . "../css",
+        'DMMO_JS_DIR'						=> $phpbb_root_path . "../js"
 	));
 
 
