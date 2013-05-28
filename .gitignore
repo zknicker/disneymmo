@@ -31,6 +31,7 @@
 !config
 !images
 !lib
+!fonts
 
 #DISNEYMMO root level files.
 !404.html
@@ -57,3 +58,4 @@ images/theme
 _localized
 _unlocalized
 *.swp
+error_log
