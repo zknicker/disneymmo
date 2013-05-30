@@ -1,0 +1,73 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *    
+ *	Styles style-less PHPBB HTML.
+ *	
+ *	Xiris
+ */
+ 
+	@import "resources/assets";
+ 
+    /* *************************************** */
+    /* MESSAGE_BODY ************************** */
+    /* *************************************** */
+    
+    #confirm .panel { padding: 36px 0 24px 0; }
+    #message.panel { padding: 36px 0 80px 0; }
+    #report .panel { padding: 36px 0 24px 0; }
+    
+    // center content
+    #confirm .inner,
+    #message .inner,
+    #report .inner
+        { width: $page-width; margin: 0 auto; }
+    
+    // element styling
+    #confirm h2,
+    #message h2
+        { font-size: 22px; color: $font-color-contrast; padding-bottom: 16px; }
+    #report h2
+        { font-size: 22px; color: #bc0a0a; padding-bottom: 16px; }
+    
+    #confirm dl,
+    #report dl
+        { margin-top: 10px; }
+        
+    #confirm dt,
+    #report dt
+        { padding-bottom: 2px; }
+        
+    #confirm .submit-buttons,
+    #report .submit-buttons
+        { margin-top: 10px; }
+    
+    #report textarea { resize: none; }
+    
+    // new element styling (elements that weren't previously present)
+    #report hr { height: 0; border-top: 1px dashed #B4B4B4; margin: 20px 0; }
+    
+    #report .phpbb-column-left { float: left; }
+    #report .phpbb-column-right { float: left; margin-left: 20px; }
+    
+    // inputs
+    #confirm input[type='submit'],
+    #message input[type='submit'],
+    #report  input[type='submit']
+        { max-width: 400px; background-color: #F8F8F8; @include box-sizing(); }
+        
+    #confirm input[type='submit']:active,
+    #message input[type='submit']:active,
+    #report  input[type='submit']:active
+        { position: relative; top: 1px; }
+        
+    #confirm select,
+    #message select,
+    #report select
+        { max-width: 400px; @include box-sizing(); }
+        
+    #confirm textarea,
+    #message textarea,
+    #report textarea
+        { max-width: 400px; @include box-sizing(); }

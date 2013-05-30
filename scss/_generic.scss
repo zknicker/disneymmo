@@ -1,0 +1,57 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *                                                            
+ *	Generic constructs, styles, containers, etc. for reuse.
+ *	
+ *	Xiris
+ */
+ 
+    @import "resources/assets";
+ 
+    // Float Canceling
+    // --------------------------------------------------------------------------------
+    
+    /* clear floats on children */
+    .group  { }
+	.group:after { clear: both; }
+	.group:before, .group:after { content: ''; display: table; }
+ 
+    // Avatars
+    // --------------------------------------------------------------------------------
+ 
+    /* avatars */
+    .avatar { display: block; overflow: hidden; position: relative; }
+    
+    .avatar.avatar-tiny { height: 28px; width: 28px; background-color: #E6E6E6; }
+    .avatar.avatar-tiny img { height: 28px; width: auto; min-width: 28px; }
+    
+    .avatar.avatar-small { height: 34px; width: 34px; background-color: #E6E6E6; }
+    .avatar.avatar-small img { height: 34px; width: auto; min-width: 34px; }
+    
+    .avatar.avatar-medium { height: 50px; width: 50px; background-color: #E6E6E6;}
+    .avatar.avatar-medium img { height: 50px; width: auto; min-width: 50px; }
+    
+    .avatar.avatar-large { height: 84px; width: 84px; background-color: #E6E6E6; border: 4px solid #F8F8F8; @include box-shadow(0 0 2px #B5B5B5); }
+    .avatar.avatar-large img { height: auto; max-height: 84px; width: auto; max-width: 84px; position: absolute; top: 50%; left: 50%; }
+    
+    // Reusable UI Components (in progress: moving this to _global.scss)
+    // --------------------------------------------------------------------------------
+    
+    /* activity states */
+    .clickable:active { position: relative; top: 2px; }
+    
+    /* file selector button */
+    .button-file-selector { background: transparent url($path-icons + 'button-file-icon.png') no-repeat 101.5% -1px; display: inline-block; padding: 8px 40px 9px 14px; font-size: 13px; color: $font-color-contrast; @include rounded-border(2px, 3px, #DDDDDD); @include transition(all, .25s, ease); }
+    .button-file-selector:hover { background-position: 101.5% -35px; border-color: #A2A2A2; color: $font-color-contrast-hover; cursor: pointer; }
+    
+    /* button as anchor - converts a button into an anchor stylistically */
+    .button-as-anchor { background-color: transparent; margin: 0; padding: 0; border: 0; color: $font-color-contrast; font-family: $font-family-primary; }
+    .button-as-anchor:hover { color: $font-color-contrast-hover; cursor: pointer; }
+    
+    /* faux file viewer */
+    .faux-file-viewer { }
+    .faux-file-viewer a { position: relative; overflow: hidden; }
+    .faux-file-viewer a:hover { cursor: pointer; }
+    .faux-file-viewer input[type='file'] { height: 30px; margin: -10px 0px 0px -193px; position: absolute; @include opacity(0); }

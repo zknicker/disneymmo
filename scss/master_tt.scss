@@ -1,0 +1,25 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *    
+ *	Construct the pixie hollow master CSS file.
+ *	
+ *	Xiris
+ */    
+    
+    // Resources.
+    @import "resources/reset";
+
+    // Theme file.
+    @import "themes/_theme_tt";
+
+    // Templates.
+    @import "_global";
+    @import "_generic";
+    @import "_cms";
+    @import "_ui";
+    @import "_forum";
+    @import "_phpbb";
+    @import "_profile";
+    @import "_user_session_management";

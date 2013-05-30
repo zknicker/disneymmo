@@ -1,0 +1,316 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *                                                            
+ *	Global styles used throughout the website.
+ *	
+ *	Zach Knickerbocker
+ */
+
+	@import "resources/assets";
+
+	// Top Level Styles
+    // --------------------------------------------------------------------------------
+	html { background-color: $bg-global-color; overflow-y: scroll; overflow-x: hidden; }
+	body { margin: 0; padding: 0; position: relative; font-size: 12px; color: $font-color-primary; font-family: $font-family-primary; }
+    
+	.eos-container { margin: 12px auto 0 auto; position: relative; z-index: $z-index-page-contents; }
+    .eos-container-whitespace { margin: 30px auto 0 auto; position: relative; z-index: $z-index-page-contents; }
+    
+  	// Global Styles
+    // --------------------------------------------------------------------------------
+    * { box-sizing: border-box; }
+    
+	.preload * {
+		-webkit-transition: none !important;
+		-moz-transition: none !important;
+		-ms-transition: none !important;
+		-o-transition: none !important;
+	}
+    
+    /* header tags */
+    h1 { font-size: 22px; } /* logo */
+    h2 { font-size: 20px; }
+    h3 { font-size: 16px; }
+    
+    /* links */
+    a { color: $font-color-contrast; text-decoration: none; @include transition(color, .25s, ease); }
+    a:hover { color: $font-color-contrast-hover; }
+    
+    /* input */
+    textarea, input, select { outline: none; font-family: $font-family-primary; }
+    
+    input[type='text'],
+    input[type='email'],
+    input[type='password'],
+    textarea { background-color: #FBFBFB; margin: 0; padding: 9px 9px 10px 9px; border-width: 1px 3px 1px 1px; border-style: solid; border-color: #DDD #CCC #DDD #DDD; color: inherit; font-size: 13px; }
+    
+    input[type='text']:focus,
+    input[type='email']:focus,
+    input[type='password']:focus,
+    textarea:focus { border-right-color: $font-color-contrast; }
+    
+    input[type='text'][disabled] { border-color: #F1F1F1; }
+    input[type='checkbox'], .editor-step input[type='radio'] { position: relative; top: 2px; }
+    textarea { resize: vertical; font-family: $font-family-primary; }
+    
+    /* input buttons */
+    .button-generic { height: 38px; background-color: $font-color-contrast; display: inline-block; padding: 0 18px; color: #FFF; line-height: 38px; font-size: 13px; border-width: 0 3px 0 0; border-style: solid; border-color: darken($font-color-contrast, 20%); @include transition(all, .25s, ease); cursor: pointer; }
+    .button-generic:hover { background-color: darken($font-color-contrast, 20%); border-color: darken($font-color-contrast, 40%); color: #FFF; @include transition-duration(0s); }
+    .button-generic:active { background-color: $font-color-contrast; border-color: darken($font-color-contrast, 20%); }
+    
+    /* select */
+    select { background: #FBFBFB url($path-layout + 'select-drop-arrow.png') no-repeat 100% 50%; margin: 0; padding: 7px 39px 9px 6px; border-width: 1px 3px 1px 1px; border-style: solid; border-color: #DDD #CCC #DDD #DDD; color: #686868; @include appearance(none); cursor: pointer; }
+    select:focus { border-right-color: $font-color-contrast; }
+    
+    /* field row (an organized arrangement of form fields) */
+    .field-row { width: 602px; overflow: hidden; }
+    .field-row dl { margin: 0 14px 10px 0; float: left; overflow: hidden; }
+    .field-row label { font-size: 11px; line-height: 26px; text-transform: uppercase; cursor: pointer; }
+    .field-row label[data-tooltip]:after { background-color: #AAA; content: '?'; display: inline-block; margin-left: 5px; padding: 1px 5px; color: #FFF; line-height: 12px; text-align: center; font-size: 8px; @include rounded-border(0, 14px, $font-color-primary); }
+    .field-row dl input,
+    .field-row dl select,
+    .field-row dl .faux-file-input,
+    .field-row dl textarea { width: 287px; }
+    .field-row dl.long input,
+    .field-row dl.long select,
+    .field-row dl.long .faux-file-input,
+    .field-row dl.long textarea { width: 588px; }
+    .field-row dl.short { margin-right: 13px; }
+    .field-row dl.short input,
+    .field-row dl.short select,
+    .field-row dl.short .faux-file-input,
+    .field-row dl.short textarea { width: 137px; }
+    .field-row dl input[type='checkbox'] { width: auto; }
+    .field-row dl.alongside dt { float: left; }
+    .field-row dl.alongside dd { float: left; margin: 2px 0  0 10px; }
+    .field-row:last-child { margin-bottom: -10px; }
+    
+    /* checkbox toggle list */
+    .toggle-list li { width: 588px; padding: 0 10px 0 0; position: relative; overflow: hidden; border-top: 1px solid #F8F8F8; border-bottom: 1px solid #DDD; }
+    .toggle-list label { display: block; float: left; padding: 5px 0; font-size: 11px; line-height: 26px; text-transform: uppercase; cursor: pointer; }
+    .toggle-list input[type='checkbox'] { float: right; margin: 10px 0; }
+    .toggle-list li:first-child { border-top: 0; }
+    .toggle-list li:last-child { border-bottom: 0; }
+    .toggle-list li:last-child:before { height: 0; width: 588px; display: block; position: absolute; bottom: 0; left: 0; content: ''; border-top: 1px solid #DDD; border-bottom: 1px solid #F8F8F8; }
+    .toggle-list input { float: right; }
+    
+    /* faux file input - for use in a parent element - resembles a file input with style */
+    .faux-file-input { height: 38px; background-color: #E5E5E5; position: relative; cursor: pointer; border-width: 1px 3px 1px 1px; border-style: solid; border-color: #D5D5D5 #C6C6C6 #D5D5D5 #D5D5D5; }
+    .faux-file-input:hover { border-right-color: $font-color-contrast; }
+    .faux-file-input span { display: block; padding: 5px 11px; font-size: 13px; color: #767676; }
+    .faux-file-input input[type='file'] { height: 500px; position: absolute; right: 0; bottom: 0; font-size: 1000px; @include opacity(0); cursor: inherit; }
+    
+    /* faux text input - for use on a parent element with a text input child - resembles text input with style */
+    .faux-text-input { background-color: #FBFBFB; margin: 0; border-width: 1px 3px 1px 1px; border-style: solid; border-color: #DDD #CCC #DDD #DDD; font-size: 13px; cursor: text; }
+    .faux-text-input.focused { border-right-color: $font-color-contrast; }
+    .faux-text-input input[type='text'] { border: 0; }
+    
+    /* table */
+    table, tbody, thead, tr, td { @include box-sizing(content-box); }
+    
+	// Textual Fonts
+    // --------------------------------------------------------------------------------
+	@font-face {
+
+		font-family: 'BebasNeueRegular';
+		src: url($path-font + 'bebas-neue/BebasNeue-webfont.eot');
+		src: url($path-font + 'bebas-neue/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+			 url($path-font + 'bebas-neue/BebasNeue-webfont.woff') format('woff'),
+			 url($path-font + 'bebas-neue/BebasNeue-webfont.ttf') format('truetype'),
+			 url($path-font + 'bebas-neue/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	
+	// Icon Fonts
+    // --------------------------------------------------------------------------------
+    @font-face {
+        font-family: 'DisneyMMO-Icons';
+        src:url($path-font + 'dmmo-icons/DisneyMMO-Icons.eot');
+        src:url($path-font + 'dmmo-icons/DisneyMMO-Icons.eot?#iefix') format('embedded-opentype'),
+            url($path-font + 'dmmo-icons/DisneyMMO-Icons.svg#DisneyMMO-Icons') format('svg'),
+            url($path-font + 'dmmo-icons/DisneyMMO-Icons.woff') format('woff'),
+            url($path-font + 'dmmo-icons/DisneyMMO-Icons.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    [data-icon]:before { font-family: 'DisneyMMO-Icons'; content: attr(data-icon); speak: none; font-weight: normal; line-height: 1; -webkit-font-smoothing: antialiased; }
+	
+	// Font Tags
+    // --------------------------------------------------------------------------------
+	.tag-cp { color: $color-cp; }
+	.tag-ph { color: $color-ph; }
+	.tag-po { color: $color-po; }
+	.tag-tt { color: $color-tt; }
+	.tag-og { color: $color-og; }
+	.tag-dis { color: $color-dis; }
+	.tag-crt { color: $color-crt; }
+	.tag-ot { color: $color-ot; }
+	.tag-dmmo { color: $color-dmmo; }
+	.tag-staff { color: $color-staff; }
+    
+	// Header
+    // --------------------------------------------------------------------------------
+	header { height: 100px; width: 100%; background: url($path-layout + 'header-bg-' + $theme-abbr + '.png') repeat-x 50% 0; position: relative; z-index: $z-index-global-header; }
+	
+	header .inside { height: 100%; width: $page-width-fluid; margin: 0 auto; position: relative; }
+    html.fixed-width header .inside { width: $page-width; }
+    
+    header .logo { height: 74px; width: 284px; background: url($path-layout + 'header-logo-' + $theme-abbr + '.png') no-repeat 50% 50%; display: block; position: absolute; top: 7px; left: -12px; z-index: $z-index-global-header-logo; }	
+	header .logo-screen-reader-text { position: absolute; top: -9999px; left: -9999px; }
+	header .scene { height: 128px; width: 1351px; background: url($path-layout + 'header-fg-' + $theme-abbr + '.png') no-repeat 0 0; display: block; position: absolute; top: -18px; left: -500px; z-index: $z-index-global-header-scene; }
+    
+    // Breadcrumb
+    // --------------------------------------------------------------------------------
+    .breadcrumb { }
+    .breadcrumb li { float: left; }
+    .breadcrumb li:first-child .crumb { padding-left: 0; background-image: none; }
+    
+    .crumb { height: 20px; background: url($path-icons + 'forum-breadcrumb-aarow.png') no-repeat 0 50%; display: block; padding: 0 8px 0 12px; color: #A2A2A2; line-height: 20px; font-size: 13px; }
+    a.crumb:hover { color: $font-color-contrast; }
+    
+	// Navbar
+    // --------------------------------------------------------------------------------
+	header nav { position: absolute; top: 25px; left: 294px; z-index: $z-index-global-nav; }
+	nav	.global-nav { list-style-type: none; }
+		.global-nav .global-nav-item { height: 50px; margin-right: 2px; float: left; position: relative; }
+        .global-nav .global-nav-item .global-nav-button { height: 50px; width: 100%; background: url($path-layout + $ui-global-nav-bg) no-repeat; display: block; position: relative; bottom: 0px; text-decoration: none; @include transition(top, .20s, ease); }
+		.global-nav .global-nav-item:hover > .global-nav-button { top: -4px; }
+		
+		.global-nav .global-nav-item .global-nav-button span { width: 100%; position: absolute; bottom: 8px; text-align: center; font-family: $font-family-primary; font-size: 9px; color: $ui-global-nav; text-transform: uppercase; }
+		.global-nav .global-nav-item .global-nav-button:hover span { color: $ui-global-nav-hover; }
+		
+		.global-nav .global-nav-item.home { width: 48px; }
+		.global-nav .global-nav-item.home .global-nav-button { background-position: 2px $ui-global-nav-bg-source-y; }
+		.global-nav .global-nav-item.home .global-nav-button:hover { background-position: 2px $ui-global-nav-bg-source-y-hover; }
+		
+		.global-nav .global-nav-item.forums { width: 53px; margin-right: 10px; margin-left: 5px; }
+		.global-nav .global-nav-item.forums .global-nav-button { background-position: -50px $ui-global-nav-bg-source-y; }
+		.global-nav .global-nav-item.forums .global-nav-button:hover { background-position: -50px $ui-global-nav-bg-source-y-hover; }
+		
+		.global-nav .global-nav-item.shop { width: 43px; }
+		.global-nav .global-nav-item.shop .global-nav-button { background-position: -105px $ui-global-nav-bg-source-y; }
+		.global-nav .global-nav-item.shop .global-nav-button:hover { background-position: -105px $ui-global-nav-bg-source-y-hover; }
+		
+		.global-nav .global-nav-item.guides { width: 54px; }
+		.global-nav .global-nav-item.guides .global-nav-button { background-position: -150px $ui-global-nav-bg-source-y; }
+		.global-nav .global-nav-item.guides .global-nav-button:hover { background-position: -150px $ui-global-nav-bg-source-y-hover; }
+		
+		.global-nav .global-nav-item.database { width: 55px; }
+		.global-nav .global-nav-item.database .global-nav-button { background-position: -206px $ui-global-nav-bg-source-y; }
+		.global-nav .global-nav-item.database .global-nav-button:hover { background-position: -206px $ui-global-nav-bg-source-y-hover; }
+		
+		.global-nav .global-nav-item.blogs { width: 48px; }
+		.global-nav .global-nav-item.blogs .global-nav-button { background-position: -263px $ui-global-nav-bg-source-y; }
+		.global-nav .global-nav-item.blogs .global-nav-button:hover { background-position: -263px $ui-global-nav-bg-source-y-hover; }
+		
+		.global-nav .global-nav-item.more { width: 46px; }
+		.global-nav .global-nav-item.more .global-nav-button { background-position: -315px $ui-global-nav-bg-source-y; }
+		.global-nav .global-nav-item.more .global-nav-button:hover { background-position: -315px $ui-global-nav-bg-source-y-hover; }
+		
+    .forums-menu-cp { background: url($path-icons + 'navbar-forums.png') no-repeat 8px -2px; }
+    .forums-menu-cp:hover { background-position: 8px -402px; }
+    .forums-menu-ph { background: url($path-icons + 'navbar-forums.png') no-repeat 8px -42px; }
+    .forums-menu-ph:hover { background-position: 8px -442px; }
+    .forums-menu-po { background: url($path-icons + 'navbar-forums.png') no-repeat 8px -82px; }
+    .forums-menu-po:hover { background-position: 8px -482px; }
+    .forums-menu-tt { background: url($path-icons + 'navbar-forums.png') no-repeat 8px -122px; }
+    .forums-menu-tt:hover { background-position: 8px -522px; }
+    .forums-menu-og { background: url($path-icons + 'navbar-forums.png') no-repeat 8px -162px; }
+    .forums-menu-og:hover { background-position: 8px -562px; }
+    .forums-menu-dis { background: url($path-icons + 'navbar-forums.png') no-repeat 8px -202px; }
+    .forums-menu-dis:hover { background-position: 8px -602px; }
+    .forums-menu-crt { background: url($path-icons + 'navbar-forums.png') no-repeat 8px -242px; }
+    .forums-menu-crt:hover { background-position: 8px -642px; }
+    .forums-menu-ot { background: url($path-icons + 'navbar-forums.png') no-repeat 8px -282px; }
+    .forums-menu-ot:hover { background-position: 8px -682px; }
+    .forums-menu-dmmo { background: url($path-icons + 'navbar-forums.png') no-repeat 8px -322px; }
+    .forums-menu-dmmo:hover { background-position: 8px -722px; }
+    .forums-menu-staff { background: url($path-icons + 'navbar-forums.png') no-repeat 8px -362px; }
+    .forums-menu-staff:hover { background-position: 8px -762px; }
+	
+	// Profile
+    // --------------------------------------------------------------------------------
+	.global-profile { height: 40px; position: absolute; top: 24px; right: 1px; }
+    
+    /* Avatar */
+    .global-profile .user-avatar { height: 36px; width: 36px; display: block; float: right; margin-left: 14px; border: 2px solid #42667d; overflow: hidden; }
+    .global-profile .user-avatar img { height: 36px; width: auto; min-width: 36px; }
+    
+    /* Buttons (todo: refactor as non-generic buttons) */
+    .global-profile-button { height: 30px; width: 30px; background-position: 50% 3px; background-repeat: no-repeat; display: block; float: right; margin: 5px 1px 0 1px; }
+    .global-profile-button:hover { background-position: 50% -27px; }
+    .global-profile .user-settings { background-image: url($path-icons + 'header-profile-settings.png'); }
+    .global-profile .user-pms { background-image: url($path-icons + 'header-profile-pms.png'); position: relative; color: #E7E7E7; }
+    .global-profile .user-pms span { height: 18px; width: 18px; position: absolute; top: -7px; right: -7px; background: #DEE6EE; @include rounded-border(2px, 9px, #0B151E); text-align: center; line-height: 14px; color: black; font-size: 9px; }
+    .global-profile .user-logout { background-image: url($path-icons + 'header-profile-logout.png'); }
+    
+    /* Authentication Buttons */
+    .global-profile-auth-button { background: #00060C; padding: 10px 20px; margin: 0 0 0 12px; position: relative; top: 14px; border: 1px solid #112735; border-radius: 4px; box-shadow: rgba(21, 145, 197, 0.08) 0px 0px 30px; }
+    .global-profile-auth-button:hover { background-color: #FFF; }
+
+	// Notifications
+    // --------------------------------------------------------------------------------
+	#notifications-container { width: $page-width-fluid; position: fixed; bottom: 0; z-index: $z-index-global-notifications; }
+	.notification { float: right; position: relative; margin-right: 10px; }
+	
+		.notification.normal { height: 111px; width: 352px; background: url($path-layout + 'notification-normal.png') no-repeat 50% 50%; position: relative; top: 111px; @include opacity(0); }
+	
+	.notification .notification-content { padding: 30px 64px 30px 33px; font-family: $font-family-heading; font-size: 20px; color: $font-color-notification; line-height: 23px; }
+	.notification .notification-close { height: 19px; width: 19px; background-image: url($path-layout + 'notification-close-button.png'); position: absolute; top: 28px; right: 26px; }
+	.notification .notification-close:hover { background-position: 100% 0; }
+	
+	// ToolTips
+    // --------------------------------------------------------------------------------
+	.tooltip { max-width: 260px; background: #000000; position: absolute; padding: 14px 20px 14px 20px; font-family: $font-family-primary; color: #ffffff; z-index: $z-index-global-tooltips; @include rounded-border(0px, 4px, transparent); @include opacity(.85); line-height: 18px; }
+	.tooltip:before { width: 0; height: 0; content: ''; display: block; position: absolute; top: 5px; left: -7px; border-right: 8px solid #000000; border-top: 8px solid transparent; border-bottom: 8px solid transparent; z-index: $z-index-global-tooltips; }
+	
+	// Dropdown Menus
+    // --------------------------------------------------------------------------------
+	.menu-dropper { position: relative; }
+    .menu-dropper:hover > .menu { visibility: visible; top: 100%; @include opacity(1); }
+    .menu-dropper.menu-drop-overlap:hover > .menu { top: 90%; }
+    
+    .menu { background-color: #F8F8F8; position: absolute; top: 75%; left: -10px; @include rounded-border(1px, 4px, #D9D9D9); @include opacity(0); @include transition(all, .2s, ease); visibility: hidden; z-index: $z-index-global-on-top; }
+    .menu-2-Y { width: 342px; }
+    .menu-3-Y { width: 512px; }
+    .menu-4-Y { width: 682px; }
+    .menu.reversed { left: auto; right: 10px; }
+    
+    .menu-group { width: 170px; padding: 10px 0; float: left; }
+    .menu-group-wide { width: 240px; padding: 10px 0; float: left; }
+    .menu-group .menu-error { padding: 0 20px; color: #6E0000; font-size: 12px; }
+    .menu-group .menu-subtitle { padding: 4px 0 4px 20px; font-size: 14px; }
+    .menu-group .menu-subtitle-icon { padding-left: 30px; }
+    
+    .menu-list { width: 100%; }
+    .menu-list li a { height: 24px; width: 100%; display: block; padding-left: 20px; line-height: 24px; @include transition-property(background-color); text-align: left; @include transition-duration(0s); }
+    .menu-list li a:hover { background-color: #E8E8E8; color: $font-color-primary; }
+    
+    .menu-list-iconified { width: 100%; }
+    .menu-list-iconified li a { height: 36px; padding-left: 44px; line-height: 36px; }
+    
+    .complex-menu { }
+    
+    // Generic Content
+    // --------------------------------------------------------------------------------
+    .generic-content-container { width: 100%; padding: 0 5%; margin-bottom: 30px; }
+    .generic-content-container .title { font-weight: bold; font-size: 24px; }
+    .generic-content-container .body { margin-top: 14px; font-size: 13px; line-height: 180%; }
+    
+	// Footer
+    // --------------------------------------------------------------------------------
+	footer { width: 100%; margin-top: 50px; position: relative; }
+	footer section { margin: 0 auto; text-align: center; }
+    footer section#footer-content { height: 170px; background: url($path-layout + 'footer-characters.png') no-repeat 50% 100%; z-index: $z-index-global-footer; }
+	footer section#footer-extra { display: none; height: 188px; width: 510px; background: url($path-layout + 'footer-extra.png') no-repeat 50% 0; position: relative; bottom: -35px; z-index: $z-index-global-footer-extra; }
+    
+	footer #footer-links { padding-top: 105px; position: relative; }
+	footer #footer-links a { display: inline; font-family: $font-family-fancy; font-size: 11px; color: #656565; text-decoration: none; text-transform: uppercase; }
+	footer #footer-links a:hover { color: $font-color-primary-hover; }
+	footer #footer-links a:first-child:before { display: none; }
+	footer #footer-links a:before { content: '\00b7  '; display: inline; text-align: center; }
+	footer #footer-rights { padding-top: 11px; font-family: $font-family-fancy; font-size: 10px; color: #5A5A5A; }

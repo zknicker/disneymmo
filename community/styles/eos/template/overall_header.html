@@ -106,17 +106,17 @@
 				</ul>
 			</nav>
             <!-- IF S_USER_LOGGED_IN -->
-			<div id="global-profile">
-				<a id="user-avatar" href="{DMMO_U_USER_PROFILE}">{DMMO_AVATAR}</a>
-				<a id="user-pms" class="global-profile-button" href="{U_PRIVATEMSGS}">
+			<div class="global-profile">
+				<a class="user-avatar" href="{DMMO_U_USER_PROFILE}">{DMMO_AVATAR}</a>
+				<a class="user-pms global-profile-button" href="{U_PRIVATEMSGS}">
                     <!-- IF S_USER_NEW_PRIVMSG --><span>{S_USER_NEW_PRIVMSG}</span>
                     <!-- ELSE --><!-- IF S_USER_UNREAD_PRIVMSG --><span>{S_USER_UNREAD_PRIVMSG}</span><!-- ENDIF --><!-- ENDIF -->
                 </a>
-                <a id="user-settings" class="global-profile-button" href="{DMMO_U_USERCP}"></a>
-                <a id="user-logout" class="global-profile-button" href="{U_LOGIN_LOGOUT}"></a>
-				<div id="user-menu" style="display: none;">
-					<div id="user-logout"><a href="{U_LOGIN_LOGOUT}">Logout</a></div>
-					<div id="user-nav">
+                <a class="user-settings global-profile-button" href="{DMMO_U_USERCP}"></a>
+                <a class="user-logout global-profile-button" href="{U_LOGIN_LOGOUT}"></a>
+				<div class="user-menu" style="display: none;">
+					<div class="user-logout"><a href="{U_LOGIN_LOGOUT}">Logout</a></div>
+					<div class="user-nav">
 						<ul class="group">
 							<li class="user-view-messages">
 								<a href="{U_PRIVATEMSGS}"><span>View All<br>Messages</span></a>
@@ -146,10 +146,13 @@
                             <!-- ENDIF -->
 						</ul>
 					</div>
-					<div id="user-cp"><a href="#">View Your Control Panel</a></div>
+					<div class="user-cp"><a href="#">View Your Control Panel</a></div>
 				</div>
                 <!-- ELSE -->
-                Not logged in!
+                <div class="global-profile">
+                    <!-- IF S_REGISTER_ENABLED --><a href="{U_REGISTER}" class="global-profile-register global-profile-auth-button">Sign Up</a><!-- ENDIF -->
+                    <a href="{U_LOGIN_LOGOUT}" class="global-profile-login global-profile-auth-button">Login</a>
+                </div>
                 <!-- ENDIF -->
 			</div>
         </div>

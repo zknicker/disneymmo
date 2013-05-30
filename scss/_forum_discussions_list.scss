@@ -1,0 +1,104 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *    
+ *	Styles for the forums discussions list.
+ *	
+ *	Xiris
+ */
+ 
+    @import "resources/assets";
+ 
+    // Discussion Filters
+    // --------------------------------------------------------------------------------
+	.discussions-filter-menu { padding: 3px; border: 1px solid #E4E4E4; position: relative; bottom: -3px; }
+    .discussions-filter-menu ul { float: left; }
+    .discussions-filter-menu li { background-repeat: no-repeat; position: relative; float: left; margin-left: 1px; }
+ 
+    .discussions-filter-block { height: 47px; width: 47px; background-color: #E4E4E4; background-position: 0 100%; }
+    .discussions-filter-block:hover { @include opacity(.6); cursor: pointer; }
+    .discussions-filter-block:after { content: ''; height: 7px; width: 47px; background: url($path-layout + 'filters/aarow-sprite.png') repeat-x 50% 0; display: block; position: absolute; top: 0; left: 50%; margin-left: -50%; }
+    .discussions-filter-block.filtered { background-position: 0 -47px; }
+    .discussions-filter-block.filtered:after { background-position: 50% -47px; }
+ 
+    .discussions-filter-menu-label { width: 20px; height: 47px; background-color: #D8D8D8; position: relative; float: left; }
+    .discussions-filter-menu-label span { display: block; position: absolute; bottom: 19px; left: -7px; text-transform: uppercase; font-size: 9px; color: #5C5C5C; @include rotate(-90deg); }
+ 
+    .discussions-filter-menu .discussions-filter-menu-control { height: 47px; width: 0; margin-left: 0; overflow: hidden; @include opacity(0); @include transition(width, .25s, ease); }
+    .discussions-filter-menu:hover .discussions-filter-menu-control { width: 47px; margin-left: 1px; @include opacity(1); }
+    .discussions-filter-menu-control button { height: 47px; width: 47px; background-color: lighten($font-color-contrast, 10); }
+    .discussions-filter-menu-control button:hover { background-color: $font-color-contrast; }
+    .discussions-filter-menu-control button:active { background-color: lighten($font-color-contrast, 13); }
+    .discussions-filter-menu-control button[data-icon]:before { font-size: 24px; text-shadow: 0px 1px 1px darken($font-color-contrast, 15); font-size: 17px; color: #FAFAFA; }
+ 
+    // Discussions List
+    // --------------------------------------------------------------------------------
+	.discussions-list table { width: 100%; color: #616161; border: 1px solid #E0E0E0; }
+    .discussions-list .no-top-border { border-top: 0px; }
+	
+        /* Normal row */
+		.discussions-list-row { background-color: #F0F0F0; @include transition(background-color, .06s, ease); }
+		.discussions-list-row:hover { background-color: #FBFBFB; @include transition(background-color, 0, ease); }
+		.discussions-list-row:last-child td { border-bottom: 0; }
+		.discussions-list-row td { height: 46px; border-bottom: 1px solid #E0E0E0; padding-top: 0; padding-bottom: 0; vertical-align: middle; }
+	
+        /* Guide (top) row */
+        .discussions-list-row.discussions-list-guide { background-color: #F8F8F8; }
+        .discussions-list-row.discussions-list-guide td { height: 28px; }
+        .discussions-list-guide td span { padding-left: 5px; font-size: 10px; color: #AEAEAE; text-transform: uppercase; }
+        .discussions-list-guide .discussion-last span { padding-left: 10px; }
+    
+	/* Icon */
+	.discussion-icon { width: 52px; }
+	.discussion-icon div { height: 46px; width: 46px; background-repeat: no-repeat; }
+    
+    .pm-unread-icon { background-image: url($path-filters + 'pm-unread.png'); }
+    .pm-read-icon { background-image: url($path-filters + 'pm-read.png'); }
+	
+	/* Subject */
+	.discussion-subject { /* expands to 100% via table width */ }
+	.discussion-subject .topic-title { height: 46px; max-width: 380px;  margin-left: 6px; display: block; float: left; overflow: hidden; color: $font-color-primary; line-height: 46px; font-size: 13px; }
+    .discussion-subject .topic-title:hover { color: $font-color-primary-hover; }
+	
+    .discussion-subject .topic-latest-reply { background-color: $ui-forum-discussions-list-button; padding: 4px; margin: 13px 9px 0 13px; float: left; font-size: 9px; color: #FFF; visibility: hidden; text-transform: uppercase; @include rounded-border(1px, 4px, $ui-forum-discussions-list-button); @include transition-property(background-color, border-color); }
+    .discussion-subject .topic-latest-reply:hover { background-color: $ui-forum-discussions-list-button-hover; border-color: $ui-forum-discussions-list-button-hover; }
+    .discussion-subject:hover .topic-latest-reply { visibility: visible; }
+    
+    .discussion-subject .per-pagination { visibility: hidden; float: left; margin-left: 2px; }
+    .discussion-subject:hover .per-pagination { visibility: visible; }
+    
+    .sticky .discussion-subject .topic-title:before { content: '[Sticky] '; color: $font-color-contrast; }
+    .global .discussion-subject .topic-title:before { content: '[Global] '; color: $font-color-contrast; }
+    
+    /* Pagination */
+    .per-pagination { height: 46px; background: url($path-icons + 'per-topic-pagination.png') no-repeat 0 50%; display: block; padding-left: 16px; font-size: 11px; }
+    .per-pagination span { cursor: default; line-height: 48px; }
+    .per-pagination a { height: 100%; display: inline-block; color: $font-color-primary; line-height: 18px; @include transition(top, .15s, ease); }
+    .per-pagination a:hover { position: relative; top: 2px; font-size: 18px; color: $font-color-primary-hover; }
+    
+	/* Topic Type */
+	.discussion-type, .discussion-topic { width: 125px; text-align: right; }
+	.discussion-topic a { height: 24px; display: inline; padding: 6px; margin-right: 14px; position: relative; left: -6px; line-height: 20px; }
+	
+	/* Stats */
+	.discussion-stats { width: 100px; padding: 0 20px 0 20px; font-family: $font-family-secondary; @include transition(background-color, .06s, ease); }
+    .discussion-stats dl { font-size: 11px; line-height: 16px; text-align: center; color: #9C9B9B; }
+    .discussion-stats dl.stat-views { float: right; }
+    .discussion-stats dl.stat-replies { float: left; }
+    .discussion-stats dt { font-size: 9px; text-transform: uppercase; }
+    .discussions-list-row:hover dt { color: #898989; }
+    .discussion-stats dd { font-size: 11px; }
+    
+	/* Last Reply */
+	.discussion-last { width: 180px; font-family: $font-family-secondary; }
+    .discussion-last .discussion-last-user { padding-top: 2px; font-size: 11px; color: #7b7b7b; }
+    .discussion-last .discussion-last-user a:hover { color: $font-color-contrast-hover !important; }
+    .discussion-last .discussion-last-time { padding-top: 4px; font-size: 10px; color: #9c9b9b; }
+	.discussion-last-avatar { height: 28px; width: 28px; display: block; float: left; margin: 0 7px 0 10px; border: 1px solid #F1F1F1; overflow: hidden; }
+    .discussion-last-avatar img { height: 28px; min-width: 28px; }
+    .discussion-last-avatar:hover { border-color: $font-color-primary-hover; }
+    
+    /* Mark */
+    .discussion-mark { width: 50px; text-align: center; }
+    .discussion-mark label { padding: 10px; }

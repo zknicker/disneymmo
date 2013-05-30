@@ -4934,7 +4934,8 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 
         // CSS, JS, etc. includes
         'DMMO_CSS_DIR'						=> $phpbb_root_path . "../css",
-        'DMMO_JS_DIR'						=> $phpbb_root_path . "../js"
+        'DMMO_JS_DIR'						=> $phpbb_root_path . "../js",
+        'DMMO_IMG_LAYOUT_DIR'				=> $phpbb_root_path . "../images/layout"
 	));
 
 

@@ -1,0 +1,163 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *    
+ *	Styles for forum elements.
+ *	
+ *	Xiris
+ */
+
+    @import "resources/assets";
+ 
+    /* --------------------------------------------------
+     * Defines a list of posts...
+     * -------------------------------------------------- */
+    .posts-list.compact .signature { display: none; }
+    .posts-list.detailed .signature { display: block; }
+    
+    .post-blocks { }
+
+    /* --------------------------------------------------
+     * Defines an individual post...
+     * -------------------------------------------------- */
+    .post-block { background-color: #F0F0F0; position: relative; margin-top: $modulized-content-separation; border: 1px solid #E0E0E0; }
+    .post-block:first-child { margin-top: 0; }
+    .post-block.staff:before { content: ''; height: 187px; width: 280px; background: url($path-layout + 'forum-post-staff-logo.png') no-repeat 0 0; position: absolute; }
+    .post-block.deleted { background: #E8E8E8; }
+    
+    .post-block table { width: 100%; }
+    .post-block td { vertical-align: top; }
+        
+        /* --------------------------------------------------
+         * Post Profile
+         * -------------------------------------------------- */
+        .post-profile { width: 260px; font-size: 11px; }
+        .post-profile .post-profile-wrapper { height: 130px; width: 240px; position: relative; }
+        .post-profile .avatar { position: absolute; top: 20px; left: 20px; }
+        .post-profile .user-info { top: 22px; left: 117px; position: absolute; }
+        
+        .post-block.anonymous .post-profile { width: 22px; }
+        .post-block.anonymous .post-profile .post-profile-wrapper { display: none; }
+        .post-block.deleted .post-profile .post-profile-wrapper { height: auto; }
+        .post-block.deleted .user-info { left: 24px; }
+        
+            /* username */
+            .user-info .username > a { display: block; font-size: 14px; color: $font-color-contrast; }
+            .post-block.deleted .username a { color: #7A7A7A !important; }
+            .user-info .username > a:hover { color: $font-color-contrast-hover !important; }
+            
+            /* user menu */
+            .user-info .user-menu { visibility: hidden; position: absolute; top: 15px; left: -4px; }
+            .user-info .username:hover .user-menu, .user-info .user-menu:hover { visibility: visible; }
+            
+            /* miscellaneous */
+            .user-info .status { margin-top: 3px; font-size: 11px; color: #5d5d5d; }
+            .user-info .post-count { height: 16px; background: url($path-icons + 'post-stats-posts.png') no-repeat 0 50%; margin-top: 12px; padding-left: 23px; color: #949496; line-height: 16px; font-size: 11px; }
+            .user-info .credits-count { height: 16px; background: url($path-icons + 'post-stats-credits.png') no-repeat 0 50%; margin-top: 3px; padding-left: 23px; color: #949496; line-height: 16px; font-size: 11px; }
+            .user-info .post-count:hover, .user-info .credits-count:hover { color: $font-color-primary-hover; cursor: help; }
+
+        
+        /* --------------------------------------------------
+         * Post Content
+         * -------------------------------------------------- */
+        .post-content { font-size: 13px; }
+        .post-content .post-interior-padding { padding: 16px 20px 20px 0; position: relative; z-index: $z-index-forum-post-content; line-height: 200%; }
+        .post-block.deleted .post-content { color: #7A7A7A; }
+        .post-block.deleted .deleted-post-content { margin-top: 12px; }
+        
+            /* ul bbcode */
+            .post-content ul { list-style-type: disc; padding: 0 0 0 40px; }
+            .post-content ol { list-style-type: decimal; padding: 0 0 0 40px; }
+        
+            /* quote bbcode */
+            blockquote { border-left: 1px solid #b7b7b7; padding: 10px 14px 10px 10px; margin-left: 12px; color: #9b9a9a; }
+            blockquote:hover { border-left-color: $font-color-contrast; }
+            blockquote cite { display: block; }
+        
+            /* align bbcode - only applicable to privileged posts */
+            .post-block.privileged .bbcode-left { text-align: left; }
+            .post-block.privileged .bbcode-center { text-align: center; }
+            .post-block.privileged .bbcode-right { text-align: right; }
+            .post-content .bbcode-left,
+            .post-content .bbcode-center,
+            .post-content .bbcode-right { text-align: left; }
+            
+            /* quick reply */
+            .post-block.reply { background-image: url($path-layout + 'discussions-quickreply-bg.png'); }
+            .post-block.reply .post-content textarea { height: 170px; width: 100%; background-color: #F5F5F5; }
+            .post-block.reply .post-content textarea:focus { }
+            .post-block.reply .post-controls { padding-left: 241px; padding-bottom: 16px; } /* due to below, extra padding is applied for aesthetic purposes */
+            .post-block.reply .post-controls .post-control { top: 0px; float: left; } /* float post controls leftward, remove top so they always appear */
+            .post-block.reply .post-content .post-interior-padding { padding-bottom: 4px; }
+        
+            .login-to-post { height: 225px; width: 100%; background: url($path-layout + 'discussions-quickreply-loggedout.png') no-repeat 50% 50%; padding-top: 70px; text-align: center; }
+            .login-to-post .call-to-action { color: #AEAEAE; font-size: 16px; font-family: $font-family-component; text-transform: uppercase; }
+            .login-to-post .action-reward { margin-top: 5px; font-size: 34px; font-weight: bold; font-family: $font-family-component; text-transform: uppercase; }
+        
+        /* --------------------------------------------------
+         * Post Stamp
+         * -------------------------------------------------- */
+        .post-stamp { width: 140px; color: #b2b2b2; text-align: right; }
+        .post-block.staff .post-stamp { color: #a3a3a3; }
+        .post-block.deleted .post-stamp { width: 300px; font-size: 10px; text-transform: uppercase; }
+        .post-stamp .post-interior-padding { padding: 24px 20px 24px 0; position: relative; z-index: $z-index-forum-post-content; }
+        
+            /* post count */
+            .post-stamp a.post-count { font-size: 11px; }
+            
+            /* post date */
+            .post-stamp .post-date { padding-top: 5px; font-size: 10px; text-transform: uppercase; }
+            .post-stamp .post-date:hover { cursor: help; }
+            
+            /* why deleted? */
+            .post-stamp .why-deleted { padding-top: 5px; }
+            .post-stamp .why-deleted:hover { cursor: help; }
+            
+            /* staff label */
+            .post-stamp .post-staff-label { padding-top: 5px; font-size: 10px; text-transform: uppercase; }
+            .post-stamp .post-staff-label:hover { cursor: help; }
+    
+        /* --------------------------------------------------
+         * Post Controls
+         * -------------------------------------------------- */
+        .post-controls { padding: 0 20px 20px 20px; position: relative; z-index: $z-index-forum-post-content; overflow: hidden; }
+        .post-controls .login-to-reply { padding: 13px 0 9px 0; float: right; line-height: 18px; color: #9b9a9a; font-size: 11px; text-transform: uppercase; visibility: hidden; }
+        
+        /* events */
+        .post-block:hover .post-control { top: 8px; }
+        .post-block:hover .login-to-reply { visibility: visible; }
+        
+        /* post controls - buttons, expanders */
+        .post-control { height: 38px; background: url($path-icons + 'forum-post-controls-icons.png') no-repeat; float: right; display: block; position: relative; top: 52px; padding: 0 6px 0 40px; margin-left: 8px; font-size: 14px; line-height: 35px; @include transition(top, .25s, ease); @include transition-property(top, color); }
+        
+        .post-control-button, .post-control-button a { color: $font-color-primary; }
+        .post-control-button:hover, .post-control-button:hover a { color: $font-color-contrast; }
+        
+        .post-control-expander:hover { background-color: #F8F8F8; @include rounded-border(0, 4px, #FFF); }
+        .post-control-expander:hover .post-control-expansion { display: block; }
+        .post-control-expander:hover .post-control-expander-label { display: none; }
+        .post-control-expansion a { color: $font-color-primary; }
+        .post-control-expansion a:hover { color: $font-color-contrast; }
+        .post-control-expansion { display: none; }
+        .post-control-expansion a:after { content: '\2022'; padding: 0 4px; }
+        .post-control-expansion a:last-child:after { content: ''; padding: 0; }
+        .post-control-expander-label { display: block; }
+        
+        .post-control-button.edit { background-position: 5px -3px; @include transition-delay(0s); }
+        .post-control-button.edit:hover { background-position: 5px -43px; }
+        .post-control-button.quote { background-position: 3px -83px; @include transition-delay(.03s); }
+        .post-control-button.quote:hover { background-position: 3px -123px; }
+        .post-control-button.report { background-position: 4px -163px; @include transition-delay(.06s); }
+        .post-control-button.report:hover { background-position: 4px -203px; }
+        .post-control-expander.mod { background-position: 5px -242px; @include transition-delay(.09s); }
+        .post-control-expander.mod:hover { background-position: 5px -285px; }
+        .post-control-button.post { background-position: 4px -323px; @include transition-delay(0s); }
+        .post-control-button.post:hover { background-position: 4px -363px; }
+        .post-control-button.advanced { background-position: 4px -403px; @include transition-delay(.03s); }
+        .post-control-button.advanced:hover { background-position: 4px -443px; }
+    
+    /* --------------------------------------------------
+     * Post Signature
+     * -------------------------------------------------- */
+    .signature { max-height: 250px; width: 100%; padding-top: 6px; margin-top: 18px; border-top: 1px solid #c8c8c8; overflow: hidden; }

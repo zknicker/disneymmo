@@ -1,0 +1,36 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *    
+ *	Defines highly reusable UI components.
+ * 
+ *	Zach Knickerbocker
+ */
+ 
+	@import "resources/assets";
+    @import "_ui_utility_bar";
+        
+    // Content Structure
+    // --------------------------------------------------------------------------------
+    .ui-content-section { width: $page-width-fluid; min-width: $page-width; margin: 10px auto 15px auto; }
+    html.fixed-width .forum-section { width: $page-width; } /* adjust width for fixed layouts */
+    
+    .ui-content-section .ui-content-top { min-height: 40px; width: 100%; position: relative; }
+    
+        .ui-content-top .content-info { position: absolute; bottom: 0; left: 0; }
+        .ui-content-top .content-info h2 { padding-bottom: 11px; float: left; }
+        .ui-content-top .content-info p { padding: 6px 0 0 14px; float: left; color: #A2A2A2; font-size: 13px; } 
+    
+    .ui-content-section .ui-content-core { width: 100%; margin: 0 auto; }
+    .ui-content-section .ui-content-bottom { width: 100%; position: relative; }
+    
+    // Sidebar Layout
+    // --------------------------------------------------------------------------------
+    .full-sidebar {  }
+    .full-sidebar > aside { height: 100%; width: 420px; position: fixed; top: 0; left: 0; padding: 122px 30px 22px 5%; float: left; border-right: 1px solid #E4E4E4; @include box-shadow(8px 0 80px #FFF) }
+    .full-sidebar > section { margin-left: 420px; padding: 0 5% 22px 34px; }
+    .sidebar-item { padding-bottom: 25px; }
+    .sidebar-item .sidebar-title { padding-bottom: 10px; font-weight: bold; font-size: 24px; }
+    .sidebar-item .sidebar-subtext { color: #9E9E9E; line-height: 180%; }
+    

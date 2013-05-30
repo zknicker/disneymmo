@@ -1,0 +1,165 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *    
+ *	Styles for forum elements.
+ *	
+ *	Xiris
+ */
+ 
+    @import "resources/assets";
+ 
+    .forum-editor { padding: 14px 20px 20px 0; }
+ 
+    .edit-block { margin-bottom: 50px; }
+    .edit-block.no-space { margin-bottom: 0; }
+    .edit-title { padding-bottom: 9px; }
+    .edit-content { }
+ 
+    /* Editor */
+    .editor-ckeditor { padding-top: 7px; }
+    .cke_skin_eos .cke_contents.focused { border-right-color: $theme-secondary; }
+    
+    /* Attachments */
+    .edit-block-attachments { padding: 20px 0 30px 0; }
+    .edit-block-attachments .step-attachments-label { display: block; padding-bottom: 4px; }
+    .edit-block-attachments .step-attachments-new { width: 216px; float: left; }
+        
+        .step-attachments-new .faux-file-viewer { height: 80px; width: 214px; background: #f8f8f8 url($path-icons + 'editor-attachment-new.png') no-repeat 50% 0; display: block; margin-bottom: 4px; border: 1px dashed #BABABA; }
+        .step-attachments-new .faux-file-viewer:hover, .step-attachments-new #faux-file-viewer.file-selected:hover { background-position: 50% -80px; border-color: $font-color-contrast; }
+        .step-attachments-new .faux-file-viewer.file-selected { background-position: 50% -160px; border-color: #629b12; }
+        .step-attachments-new .file-comment { width: 214px; }
+        
+    .edit-block-attachments .step-attachments-view { width: 454px; padding-left: 30px; float: left; }
+    
+        .step-attachments-view .attachment-button { height: 15px; width: 20px; background-repeat: no-repeat; background-position: 50% 0; display: block; margin: 8px 8px 8px 0; float: left; }
+        .step-attachments-view .attachment-button:hover { background-position: 50% -15px; }
+        .step-attachments-view .attachment-button:active { margin-top: 9px; }
+        .step-attachments-view .attachment-delete { background-image: url($path-icons + 'editor-attachment-delete.png'); }
+        .step-attachments-view .attachment-inline { background-image: url($path-icons + 'editor-attachment-inline.png'); }
+        .step-attachments-view textarea { width: 204px; float: left; }
+        .step-attachments-view .attachment-link { height: 12px; max-width: 170px; display: block; padding: 8px 0 8px 8px; float: left; line-height: 16px; overflow: hidden; }
+    
+    /* Filter Grid */
+    .edit-filter-grid { position: relative; left: -20px; }
+    .edit-filter-grid li { width: 89px; margin: 0 1px 17px 0; float: left; text-align: center; color: #B2B2B2; line-height: 16px; }
+    .edit-filter-grid li:hover { cursor: pointer; }
+    .edit-filter-grid li div { height: 47px; width: 47px; background-color: #EAEAEA; background-repeat: no-repeat; background-position: 50% -94px; border: 1px solid #DBDBDB; margin: 0 auto 3px auto; }
+    .edit-filter-grid li:hover, .edit-filter-grid li.selected { color: $font-color-primary; }
+    .edit-filter-grid li:hover div, .edit-filter-grid li.selected div { background-position: 50% -47px; }
+    .edit-filter-grid li:active { @include user-select(none); }
+    
+    .edit-articles-only { display: none; }
+    .edit-articles-only.visible { display: block; }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    .editor-step { margin-bottom: $modulized-content-separation; border-color: #D8D8D8; border-width: 1px; border-style: solid; }
+    .editor-step:first-child { border-top-width: 0; }
+    
+    .editor-controls { float: right; }
+    .editor-controls button, .editor-controls a { float: right; }
+    
+    /* Editor Step Generic */
+    .editor-step { background-color: #F0F0F0; }
+    .editor-step:hover { border-left-color: $font-color-contrast; border-right-color: $font-color-contrast; }
+    .editor-step .step-instruction { width: 260px; padding-left: 20px; float: left; } /* same width as the post user information table cell */
+    .editor-step .step-instruction span { color: $font-color-contrast; font-family: $font-family-component; font-size: 20px; font-weight: bold; text-transform: uppercase; }
+    .editor-step .step-instruction p { width: 85%; padding-top: 8px; color: #8D8D8D; line-height: 19px; }
+    .editor-step .step-interaction { padding-right: 140px; overflow: hidden; } /* overflow: hidden; is in place of a float: left; to preserve the 100% width div, table-like flexibility. */
+    
+    .editor-step dl { padding-bottom: 30px; }
+    .editor-step dl:last-child { padding-bottom: 0; }
+    .editor-step dt { padding-bottom: 2px; }
+    .editor-step dd label { color: #A8A8A8; }
+    .editor-step dd label:hover { color: $font-color-contrast; }
+    .editor-step .option-desc { width: 258px; float: left; color: #989898; line-height: 19px; }
+    .editor-step .option-input { float: right; }
+    
+    /* Category */
+    .editor-step.step-category { padding: 20px 0 4px 0; border-bottom: 0; }
+    .step-category ul { margin-left: -22px; }
+    .step-category ul li { width: 89px; margin: 12px 1px 0; float: left; text-align: center; color: #B2B2B2; line-height: 16px; }
+    .step-category ul li:hover { cursor: pointer; }
+    .step-category ul li div { height: 47px; width: 47px; background-color: #EAEAEA; background-repeat: no-repeat; background-position: 50% -94px; border: 1px solid #DBDBDB; margin: 0 auto 3px auto; }
+    .step-category ul li:hover, .step-category ul li.selected { color: $font-color-primary; }
+    .step-category ul li:hover div, .step-category ul li.selected div { background-position: 50% -47px; }
+    
+    /* New Discussion Title */
+    .step-new-discussion-title { padding: 20px 0 20px 0; }
+    .step-new-discussion-title input { width: 100%; padding: 15px; }
+    
+    /* Reply Title */
+    .step-reply-title { padding: 22px 0 20px 0; }
+
+    /* Poll */
+    .step-poll { padding: 30px 0 30px 0; }
+    .step-poll .step-poll-main { width: 310px; float: left; }
+    
+        .step-poll-main input, .step-poll-main textarea { width: 100%; @include box-sizing(); }
+        .step-poll-main .poll_option_text { height: 140px; }
+        
+    .step-poll .step-poll-aux { width: 374px; padding-left: 30px; float: left; }
+    
+    /* Attachments */
+    .step-attachments { padding: 20px 0 30px 0; }
+    .step-attachments .step-attachments-label { display: block; padding-bottom: 4px; }
+    .step-attachments .step-attachments-new { width: 216px; float: left; }
+        
+        .step-attachments-new .faux-file-viewer { height: 80px; width: 214px; background: #f8f8f8 url($path-icons + 'editor-attachment-new.png') no-repeat 50% 0; display: block; margin-bottom: 4px; border: 1px dashed #BABABA; }
+        .step-attachments-new .faux-file-viewer:hover, .step-attachments-new #faux-file-viewer.file-selected:hover { background-position: 50% -80px; border-color: $font-color-contrast; }
+        .step-attachments-new .faux-file-viewer.file-selected { background-position: 50% -160px; border-color: #629b12; }
+        .step-attachments-new .file-comment { width: 214px; }
+        
+    .step-attachments .step-attachments-view { width: 454px; padding-left: 30px; float: left; }
+    
+        .step-attachments-view .attachment-button { height: 15px; width: 20px; background-repeat: no-repeat; background-position: 50% 0; display: block; margin: 8px 8px 8px 0; float: left; }
+        .step-attachments-view .attachment-button:hover { background-position: 50% -15px; }
+        .step-attachments-view .attachment-button:active { margin-top: 9px; }
+        .step-attachments-view .attachment-delete { background-image: url($path-icons + 'editor-attachment-delete.png'); }
+        .step-attachments-view .attachment-inline { background-image: url($path-icons + 'editor-attachment-inline.png'); }
+        .step-attachments-view textarea { width: 204px; float: left; }
+        .step-attachments-view .attachment-link { height: 12px; max-width: 170px; display: block; padding: 8px 0 8px 8px; float: left; line-height: 16px; overflow: hidden; }
+    
+    /* Drafts */
+    .step-drafts { padding: 20px 0 30px 0; }
+    
+    /* Extra Options */
+    .step-options { padding: 30px 0 30px 0; }
+    .step-options .step-options-users { width: 310px; float: left; }
+    .step-options .step-options-users label:hover { color: $font-color-contrast; }
+    .step-options .step-options-mods { width: 374px; padding-left: 30px; float: left; }
+    
+    /* Discussion Review */
+    .step-discussion-review { padding: 30px 0 20px 0; }
+    .discussion-review-list { }
+    .discussion-review-block { background-color: #F8F8F8; padding: 16px; margin-bottom: 5px; border: 1px solid #DFDFDF; }
+    .discussion-review-user { width: 172px; position: relative; float: left; }
+    .discussion-review-username { position: absolute; top: 2px; left: 50px; color: $font-color-contrast; }
+    .discussion-review-date { position: absolute; left: 50px; top: 17px; font-size: 11px; color: #c0c0c0; cursor: help; }
+    .discussion-review-body { overflow: hidden; padding: 0 0 0 10px; position: relative; top: -3px; line-height: 180%; } /* overflow: hidden; trick again */
+    
+    /* Message (.reply) & Preview */
+    .editor-step .post-block { border: 0; }
+    .editor-step .post-block.reply .post-profile { padding-top: 30px; }
+    .editor-step .post-block.reply .post-content { padding-bottom: 6px; }
+    
+    /* Error */
+    .editor-step.editor-error { border-color: #470000; }
+    .editor-error { background-color: #810808; }
+    .editor-error p { padding: 16px 0; line-height: 200%; color: #FFF; text-align: center; }
+    
+    /* Notice */
+    .editor-step.editor-notice { border-color: darken($font-color-contrast, 20%); }
+    .editor-notice { background-color: $font-color-contrast; }
+    .editor-notice p { padding: 16px 0; line-height: 200%; color: #FFF; text-align: center; }

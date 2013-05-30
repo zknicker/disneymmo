@@ -1,0 +1,221 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *    
+ *	Styles for the user cp.
+ *	
+ *	Xiris
+ */
+ 
+    @import "resources/assets";
+ 
+    // UserCP Core
+    // --------------------------------------------------------------------------------
+    .usercp-container { width: $page-width-fluid; min-width: $page-width; margin: 16px auto 0 auto; position: relative; z-index: $z-index-page-contents; }
+    html.fixed-width  .usercp-container { width: $page-width; }
+    
+    /* generic */
+    .usercp-container .panel .inner p { margin-bottom: 10px; }
+    .usercp-container strong { padding: 25px 0 10px 0px; display: block; font-size: 60px; color: #DDD; text-transform: uppercase; font-weight: bold; } /* usually a status message */
+
+    /* header */
+    .usercp-header { position: relative; border-bottom: 5px solid #D8D8D8; }
+    .usercp-header h2 { float: left; padding-bottom: 11px; }
+    .usercp-header .usercp-primary-nav { float: right; position: absolute; bottom: -5px; right: 10px; }
+    
+    /* header nav - primary */
+    .usercp-primary-nav { position: relative; font-size: 13px; }
+    .usercp-primary-nav li { float: left; margin-left: 3px; } /* do not apply a position: relative to this item, see usercp.js */
+    .usercp-primary-nav li a { height: 40px; display: block; padding: 0 16px; border-bottom: 5px solid transparent; line-height: 40px; color: $font-color-primary; @include transition-property(border-color); }
+    .usercp-primary-nav li a:hover { color: $font-color-primary-hover; border-bottom-color: darken($theme-secondary, 10); }
+    .usercp-primary-nav li a:active { background-color: #ECECEC; border-bottom-color: darken($theme-secondary, 10); }
+    .usercp-primary-nav li.selected a { color: $font-color-contrast; border-bottom-color: #0B151E; font-size: 17px; }
+    .usercp-primary-nav li.selected a:hover { color: $font-color-contrast-hover; }
+    .usercp-primary-nav li.selected a:active { background-color: transparent; color: $font-color-contrast-hover; }
+    
+    /* standalone nav - secondary */
+    .usercp-secondary-nav-container { height: 38px; width: 100%; background-color: #0B151E; border-width: 0 1px 0 1px; border-style: solid; border-color: darken($theme-secondary, 10); @include box-sizing(border-box); }
+    .usercp-secondary-nav { float: right; }
+    .usercp-secondary-nav li { float: left; margin-right: 3px; position: relative; }
+    .usercp-secondary-nav li.selected:before { height: 10px; width: 19px; background: url($path-layout + 'usercp-secondary-nav-arrow.png'); content: ''; display: block; margin-left: -10px; position: absolute; bottom: -10px; left: 50%; }
+    .usercp-secondary-nav li a { height: 38px; display: block; padding: 0 10px; line-height: 38px; color: #7D8A95; @include transition-property(background-color); }
+    .usercp-secondary-nav li a:hover { background-color: #234461; color: #FFF; }
+    .usercp-secondary-nav li a:active { background-color: #1596CC; }
+    .usercp-secondary-nav li.selected a { color: #FFF; }
+    .usercp-secondary-nav li.selected a:hover { background-color: transparent; color: #FFF; }
+    .usercp-secondary-nav li.selected a:active { background-color: transparent; }
+    
+    // Reusable Components
+    // --------------------------------------------------------------------------------
+    .usercp-component { width: 100%; background-color: #F0F0F0; padding: 20px; margin-bottom: $modulized-content-separation; border: 1px solid #E0E0E0; font-size: 13px; line-height: 200%; }
+    .usercp-component:first-child { border-top: 0; }
+    .usercp-component-plain { width: 100%; background-color: #F0F0F0; }
+    .usercp-component .gutter { float: left; }
+    .usercp-component .core { overflow: hidden; }
+    
+    $input-width: 280;
+    $input-spacing: 14;
+    $inputs-per-row: 2;
+    
+    /* gutter */
+    .usercp-component aside { min-height: 1px; width: 240px; padding: 0 0 0 6px; }
+    .usercp-component aside span { color: $font-color-contrast; font-family: $font-family-component; font-size: 20px; font-weight: bold; text-transform: uppercase; }
+    .usercp-component aside p { width: 85%; padding: 8px 40px 0 0; color: #8D8D8D; line-height: 200%; }
+    
+    /* core */
+    .usercp-component section + section,
+    .usercp-component fieldset + section { margin-top: 50px; }
+    .usercp-component section dl { margin-bottom: 10px; }
+    .usercp-component section.columns { max-width: $input-width * $inputs-per-row + $input-spacing * $inputs-per-row + px; margin-bottom: -10px; overflow: hidden; }
+    .usercp-component section.columns dl { float: left; margin-right: $input-spacing + px; }
+    
+    /* generics */
+    .usercp-component b { color: $font-color-contrast; font-weight: normal; cursor: help; }
+    .usercp-component label { font-size: 11px; text-transform: uppercase; cursor: pointer; }
+    .usercp-component .find-member { padding-left: 8px; font-size: 11px; text-transform: uppercase; }
+    .usercp-component dt label + label { margin-left: 20px; }
+    .usercp-component label[data-tooltip]:after { background-color: #AAA; content: '?'; display: inline-block; margin-left: 5px; padding: 1px 5px; color: #FFF; line-height: 12px; text-align: center; font-size: 8px; @include rounded-border(0, 14px, $font-color-primary); }
+    .usercp-component input[type='text'],
+    .usercp-component input[type='url'],
+    .usercp-component input[type='email'],
+    .usercp-component input[type='password'],
+    .usercp-component .faux-file-input,
+    .usercp-component select,
+    .usercp-component textarea { width: $input-width + px; }
+    .usercp-component dl.short input[type='text'],
+    .usercp-component dl.short input[type='url'],
+    .usercp-component dl.short input[type='email'],
+    .usercp-component dl.short input[type='password'],
+    .usercp-component dl.short select,
+    .usercp-component dl.short .faux-file-input,
+    .usercp-component dl.short textarea { width: $input-width / 2.5 + px; }
+    .usercp-component dl.auto input[type='text'],
+    .usercp-component dl.auto input[type='url'],
+    .usercp-component dl.auto input[type='email'],
+    .usercp-component dl.auto input[type='password'],
+    .usercp-component dl.auto select,
+    .usercp-component dl.auto .faux-file-input,
+    .usercp-component dl.auto textarea { width: auto; }
+    .usercp-component strong.huge { padding: 30px 0 10px 0px; display: block; font-size: 60px; color: #DDD; text-transform: uppercase; font-weight: bold; }
+    
+    /* toggle list */
+    .usercp-toggle-list li { width: $input-width * $inputs-per-row + $input-spacing * $inputs-per-row + px; padding: 0 10px 0 0; position: relative; overflow: hidden; border-top: 1px solid #F8F8F8; border-bottom: 1px solid #DDD; }
+    .usercp-toggle-list label { display: block; float: left; padding: 5px 0; }
+    .usercp-toggle-list input[type='checkbox'] { float: right; margin: 10px 0; }
+    .usercp-toggle-list li:first-child { border-top: 0; }
+    .usercp-toggle-list li:last-child { border-bottom: 0; }
+    .usercp-toggle-list li:last-child:before { height: 0; width: $input-width * $inputs-per-row + $input-spacing * $inputs-per-row + px; display: block; position: absolute; bottom: 0; left: 0; content: ''; border-top: 1px solid #DDD; border-bottom: 1px solid #F8F8F8; }
+    .usercp-toggle-list input { float: right; }
+    .usercp-toggle-list.bottom-spacing { margin-bottom: 10px; }
+    
+    /* editor */
+    .usercp-component.editor { padding: 0; line-height: 100%; }
+    .usercp-component.editor .post-block { margin-top: 0; padding-bottom: 20px; border: 0; }
+    .usercp-component.editor .post-profile { padding-top: 30px; }
+    .usercp-component.editor .post-content { padding-bottom: 6px; }
+
+    /* error */
+    .usercp-component.usercp-error { border-left-color: #470000; border-right-color: #470000; }
+    .usercp-error { background-color: #810808; margin: 0 auto; margin-bottom: 1px; }
+    .usercp-error p { padding: 10px 0; line-height: 200%; color: #FFF; }
+    
+    /* notice */
+    .usercp-component.usercp-notice { border-left-color: darken($theme-secondary, 20%); border-right-color: darken($theme-secondary, 20%); }
+    .usercp-notice { background-color: $theme-secondary; margin: 0 auto; margin-bottom: 1px; }
+    .usercp-notice p { padding: 10px 0; line-height: 200%; color: #FFF; }
+    
+    // Overview
+    // --------------------------------------------------------------------------------
+    .profile-overview { background-color: #F6F6F6; padding: 20px; }
+    .profile-overview .overview-segment { max-width: 420px; float: left; padding: 0 28px; border-right: 1px solid #E4E4E4; }
+    .profile-overview .overview-segment:first-child { padding-left: 0; }
+    .profile-overview .overview-segment:last-child { padding-right: 0; border-right: 0; }
+    .profile-overview .overview-avatar { float: left; }
+    .profile-overview .overview-username { float: left; padding: 3px 0 0 13px; color: $font-color-contrast; }
+    .profile-overview dl { width: 340px; }
+    .profile-overview dt { float: left; clear: left; font-weight: bold; }
+    .profile-overview dd { float: right; }
+    
+    .usercp-friends-list { padding-top: 20px; }
+    .usercp-friends-list li { width: 165px; background: #FAFAFA; padding: 5px; margin: 0 20px 5px 0; position: relative; float: left; @include rounded-border(1px, 4px, #DDD); }
+    .usercp-friends-list li .username-coloured { padding-left: 8px; }
+    .usercp-friends-list li .avatar { float: left; }
+    .usercp-friends-list li .message-button { height: 40px; width: 100%; display: none; position: absolute; top: 0; left: 0; text-align: center; line-height: 40px; font-size: 12px; text-transform: uppercase; color: #FFF; }
+    .usercp-friends-list li:hover .message-button { display: block; }
+    .usercp-friends-list li:hover { background: $theme-secondary; }
+    .usercp-friends-list li:hover .username-coloured,
+    .usercp-friends-list li:hover .avatar { visibility: hidden; }
+    .usercp-friends-list li:active { background: lighten($theme-secondary, 20); }
+    
+    // DD/DL/DT
+    // --------------------------------------------------------------------------------
+    .cplist li { background-color: #FBFBFB; padding: 5px 12px; border-left: 1px solid #DDD; border-right: 1px solid #DDD; }
+    .cplist li:hover { background-color: #F8F8F8; }
+    
+    .cplist + .topiclist { margin-top: 14px; }
+    
+    .topiclist li { padding: 5px 12px; line-height: 170%; border-bottom: 1px solid #E8E8E8; }
+    .topiclist li.header { background-color: #F3F3F3; border: 1px solid #DFDFDF; }
+    .topiclist li.header dl { text-transform: uppercase; font-size: 10px; }
+    .topiclist dl { height: 1%; overflow: hidden; font-size: 11px; } /* phpbb clearfix */
+    .topiclist dt { width: 50%; display: block; float: left; }
+    .topiclist dd { display: block; float: left; }
+    .topiclist dd.info { width: 30%; }
+    .topiclist dd.mark { width: 20%; text-align: right; }
+    .topiclist .topictitle { font-size: 13px; }
+    .topiclist input { vertical-align: middle; cursor: pointer; }
+    .topiclist .option { margin-right: 10px; }
+    
+    // Actions
+    // --------------------------------------------------------------------------------
+    .display-actions { margin-top: 20px; text-align: right; }
+    .submit-buttons { }
+    
+    // Private Messaging
+    // --------------------------------------------------------------------------------
+    .usercp-component.mailbox-icon { background-image: url($path-layout + 'pm-compose-bg.png'); background-position: 100% 0; background-repeat: no-repeat; }
+    
+    /* special composition field styling */
+    .pm-composition-field input[type='text'],
+    .pm-composition-field input[type='url'],
+    .pm-composition-field input[type='email'],
+    .pm-composition-field input[type='password'],
+    .pm-composition-field .faux-file-input,
+    .pm-composition-field select,
+    .pm-composition-field textarea { width: 600px; }
+    
+    /* recipients list */
+    .recipients-container { width: 600px; position: relative; padding-right: 38px; }
+    .recipients-list { float: left; }
+    .recipients-list li { float: left; display: block; position: relative; padding: 5px 32px 5px 12px; border-right: 1px solid #EEE; }
+    .recipients-list li.group { color: #B60404; }
+    .recipients-list li a { display: block; margin-top: -17px; padding: 10px; position: absolute; top: 50%; right: 0; }
+    .recipients-list li a span { height: 14px; width: 14px; background-color: $font-color-contrast; display: block; text-align: center; line-height: 14px; color: #FFF; font-size: 8px; @include rounded-border(0, 7px, #FFF); }
+    .recipients-list li a:hover span { background-color: $font-color-contrast-hover; }
+    
+    /* hide the input field in the recipient list */
+    .recipients-container input[type='text'],
+    .recipients-container input[type='url'],
+    .recipients-container input[type='email'],
+    .recipients-container input[type='password'],
+    .recipients-container .faux-file-input,
+    .recipients-container select,
+    .recipients-container textarea { width: auto; min-width: 100px; max-width: 280px; }
+    
+    /* recipient groups floater */
+    .recipients-groups { height: 36px; width: 38px; position: absolute; top: 0; right: 0; text-align: center; line-height: 38px; color: #CCCCCC; }
+    .recipients-groups:hover { background-color: #F0F0F0; color: $font-color-contrast; cursor: pointer; }
+    
+    // Friends
+    // --------------------------------------------------------------------------------
+    .friend-blocks { position: relative; left: -8px; }
+    .friend-block { width: 100px; float: left; margin: 0 10px 10px 0; position: relative; }
+    .friend-block .avatar { margin: 0 8px; position: relative; }
+    .friend-block .avatar .friend-message { height: 100%; width: 100%; background: rgba(255, 255, 255, .4) url($path-layout + 'usercp-friend-message.png') no-repeat 50% 100%; display: block; position: absolute; top: 0; left: 0; z-index: 1; @include opacity(0); @include transition-property(opacity); }
+    .friend-block .avatar .friend-message span { width: 100%; position: absolute; bottom: 0; color: #99E1FE; font-size: 10px; text-align: center; text-transform: uppercase; }
+    .friend-block:hover .avatar .friend-message { @include opacity(1); }
+    .friend-remove { height: 40px; width: 40px; padding: 10px; position: absolute; top: 2px; right: 10px; cursor: pointer; }
+    .friend-remove span { height: 20px; width: 20px; background-color: rgba(0, 0, 0, .7); display: block; text-align: center; line-height: 16px; color: #FFF; font-size: 10px; @include rounded-border(2px, 10px, #C2C2C2); }
+    .friend-remove:hover span { background-color: $theme-secondary; border-color: lighten($theme-secondary, 30); }
+    .friend-username { font-size: 11px; text-align: center; }

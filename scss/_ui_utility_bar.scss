@@ -1,0 +1,76 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *    
+ *	Defines styles for the utility bar UI element.
+ *	
+ *	Zach Knickerbocker
+ */
+ 
+	@import "resources/assets";
+	    
+	// The Bar
+    // --------------------------------------------------------------------------------
+    $utility-height: 38px;
+    $utility-bar-height: 38px;
+
+    .ui-utilitybar-container { width: 100%; position: relative; }
+
+    // Navigation
+    // --------------------------------------------------------------------------------
+    .ui-utilitybar-nav { width: 100%; min-height: $utility-bar-height; background-color: $theme-secondary; margin: 0 auto; font-size: 13px; border-bottom: 1px solid #18242A; border-top: 5px solid #D8D8D8; }
+    
+    .nav-section { float: left; margin-top: -5px; padding: 20px 0 20px 0; border-top: 5px solid #D8D8D8; @include transition(border-color, .25s, ease); @include transition-property(background-color); }
+    .nav-section:hover { background-color: lighten($theme-secondary, 3); border-top-color: darken($theme-secondary, 18); }
+    .nav-section-title { padding: 0 0 15px 20px; color: #D8F3FF; font-size: 11px; text-transform: uppercase; border-right: 1px solid darken($theme-secondary, 4); }
+    .nav-section-items { overflow: hidden; border-right: 1px solid darken($theme-secondary, 4); }
+    .nav-section-items ul { height: 120px; width: 208px; float: left; }
+    
+        ul.shorter { height: 90px; }
+        
+    .nav-section-items li a { width: 208px; height: 30px; display: block; padding: 0 24px; line-height: 30px; color: #ADD8EA; @include transition-duration(0s); }
+    .nav-section:hover .nav-section-items li a { color: lighten(#ADD8EA, 6); }
+    .nav-section-items li a:hover { background-color: darken($theme-secondary, 12); color: #FFF; }
+    .nav-section-items li a:active { background-color: darken($theme-secondary, 6); }
+    .nav-section-items li a[data-icon]::before { padding-right: 10px; position: relative; top: 2px; font-size: 16px; color: #64BFE5; }
+    
+    // Utilities
+    // --------------------------------------------------------------------------------
+    .ui-utilitybar-actions-container { width: 100%; z-index: $z-index-ui-utilitybar; @include transition(background-color, .25s, ease); }
+    .ui-utilitybar-actions { width: 100%; height: $utility-bar-height; margin: 0 auto; font-size: 13px; }
+    .ui-utilitybar-actions.hidden { height: $modulized-content-separation; }
+    
+    /* Floating state */
+    .ui-utilitybar-actions-container.floating { background-color: $bg-global-color; left: 0; top: 0; border-bottom: 6px solid $theme-secondary; }
+    .ui-utilitybar-actions-container.floating .ui-utilitybar-actions { width: $page-width-fluid; min-width: $page-width; }
+    html.fixed-width .ui-utilitybar-actions-container.floating .ui-utilitybar-actions { width: $page-width; }
+    
+    /* The stuff */
+    .ui-utilitybar-actions .utility-navigation { float: left; }
+    .ui-utilitybar-actions .utility-action-button { float: left; }
+    .ui-utilitybar-actions .utility-search-field { float: left; }
+    .ui-utilitybar-actions .utility-pagination { float: right; }
+
+        /* Search field */
+        .utility-search-field { width: 214px; margin-right: 1px; }
+        .utility-search-field input { height: $utility-height; width: 214px; background: url($path-icons + 'ui-utilitybar-search.png') no-repeat 10px 0; padding-left: 38px; @include rounded-border-reset(); color: #AAAFB2; border-right: 1px solid #334148 !important; }
+        .utility-search-field input:hover { background-color: #283338; }
+        .utility-search-field input:focus { background-color: #35434a; background-position: 10px -40px; }
+       
+        /* Pagination */
+        .utility-pagination { }
+        .utility-pagination .pagination-jump { height: $utility-height; background-color: #3D474C; display: block; float: left; margin-left: 1px; padding: 0 8px; line-height: $utility-height; color: #C1C6C9; font-size: 11px; }
+        .utility-pagination .pagination-jump:hover { background-color: $theme-secondary; color: #F2F2F2; }
+        .utility-pagination .pagination-jump:active { background-color: $theme-secondary; }Ï
+        .utility-pagination ul { overflow: hidden; float: left; }
+        .utility-pagination li { margin-left: 1px; float: left; }
+        .utility-pagination li a { height: $utility-height; display: block; padding: 0 13px; line-height: $utility-height; @include transition-duration(0s); }
+        .utility-pagination li a:hover { background-color: $theme-secondary; color: #FFF; }
+        .utility-pagination li.current-page a { background-color: $theme-secondary; color: #FFF; }
+        .utility-pagination li.page-dots { padding: 0 10px; position: relative; top: -3px; line-height: $utility-height; color: #5F5F5F; }
+        
+        /* Navigation - DEPRECATED */
+        .utility-navigation { height: $utility-height; width: $ui-utilitybar-navigation-width; background: #35434A url($path-icons + 'ui-utilitybar-nav.png') no-repeat 100% 50%; display: block; margin-right: 1px; padding: 0 18px; }
+        .utility-navigation span { line-height: 38px; color: #C1C6C9; }
+        .utility-navigation span[data-icon]:before { padding-right: 10px; font-size: 16px; position: relative; top: 2px; color: #C1C6C9; }

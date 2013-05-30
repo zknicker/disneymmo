@@ -1,0 +1,71 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *    
+ *	Top level styles for forum elements.
+ *	
+ *	Zach Knickerbocker
+ */
+ 
+	@import "resources/assets";
+    @import "_forum_selector";
+    @import "_forum_discussions_list";
+    @import "_forum_discussion";
+    @import "_forum_editor";
+	    
+	// Forum Page Container
+    // --------------------------------------------------------------------------------
+	.forum-page-container { margin-top: 16px; position: relative; z-index: $z-index-page-contents; }
+    .forum-page-container.view-forum { margin-top: 2px; }
+    
+	// Generic Modules
+    // --------------------------------------------------------------------------------
+    // Utilize the .section-content in a given
+    // forum module to describe the behavior  
+    // for the content of that module.       
+    // --------------------------------------------------------------------------------
+    .forum-section { width: $page-width-fluid; min-width: $page-width; margin: 10px auto 15px auto; }
+    html.fixed-width .forum-section { width: $page-width; }
+    .forum-section-content { width: 100%; margin: 6px auto 0 auto; }
+    
+    // Forum Section Pre
+    // --------------------------------------------------------------------------------
+    .forum-section-pre { width: 100%; margin: 0 auto 16px auto; position: relative; }
+    
+    /* Discussion */
+    .forum-section-pre .discussion-info { position: absolute; bottom: 0; left: 0; }
+    .forum-section-pre .discussion-info h3 { font-size: 22px; }
+    .forum-section-pre .breadcrumb { margin-top: 1px; position: relative; bottom: -4px; }
+    .forum-section-pre .discussions-mode-toggle { float: right; }
+    .forum-section-pre .discussions-filter-menu { float: right; }
+     
+    // Forum Section Post
+    // --------------------------------------------------------------------------------
+    .forum-section-post { width: 100%; margin: 16px auto 0 auto; position: relative; }
+    
+    /* Discussions */
+    .forum-section-post .create-discussion { position: absolute; top: 4px; left: 0; }
+    .forum-section-post .discussions-pagination { position: absolute; top: 4px; right: 0; }
+    .forum-section-post .phpbb-quickmod-container { position: absolute; top: 4px; left: 0; }
+        
+    // Reusable Components
+    // --------------------------------------------------------------------------------      
+    .editor-button { height: 16px; background-color: #f8f8f8; background-repeat: no-repeat; background-position: 12px 50%; display: block; padding: 13px 22px 9px 40px; @include rounded-border(1px, 4px, #d5d5d5); font-size: 16px; color: #686868; text-decoration: none; }
+    .editor-button:hover { background-color: #c7d9e1; border-color: #b7ccd6;color: #686868; }
+    .editor-button.manage-poll { background-image: url($path-layout + 'editor-manage-poll.png'); }
+    .editor-button.manage-attachments { background-image: url($path-layout + 'editor-manage-attachments.png'); }
+
+    /* discussions mode toggle */
+    .discussions-mode-toggle { padding-top: 22px; position: relative; }
+    .discussions-mode-toggle li { height: 19px; background-repeat: no-repeat; background-position: 0 0; display: block; float: left; margin-left: 15px; padding-left: 30px; color: #B3B3B3; line-height: 19px; }
+    .discussions-mode-toggle li:hover { background-position: 0 100%; color: $font-color-primary-hover; cursor: pointer; }
+	.discussions-mode-toggle .compact-mode { background-image: url($path-layout + 'discussions-mode-compact.png'); }
+	.discussions-mode-toggle .detailed-mode { background-image: url($path-layout + 'discussions-mode-detailed.png'); }
+    
+    /* generic menu */
+    .menu-1 { min-width: 180px; background-color: #f8f8f8; @include rounded-border(1px, 4px, #cecece); color: #686868; z-index: $z-index-forum-user-menu; }
+    .menu-1 ul { padding: 7px 0 7px 0; }
+    .menu-1 li { height: 26px; padding: 0 14px 0 14px; line-height: 26px; }
+    .menu-1 li a { height: 100%; width: 100%; display: block; }
+    .menu-1 li:hover { background-color: #c7d9e1; }

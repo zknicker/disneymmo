@@ -1,0 +1,181 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *    
+ *	Shared variables, mixins, etc.
+ *	
+ *	Xiris
+ */
+
+    $page-width: 1090px;
+    $page-width-fluid: 96%;
+ 
+	/* Assets Paths */
+	$path-font: "../fonts/";
+	$path-layout: "../images/layout/";
+	$path-icons: "../images/layout/icons/";
+	$path-filters: "../images/layout/filters/";
+	$path-default: "../images/layout/default/";
+	
+	/* Game Colors */
+	$color-cp: #1596CC;
+	$color-ph: #519614; 
+	$color-po: #663B2C;
+	$color-tt: #B28926;
+	$color-og: #A92929;
+	$color-dis: #106C9E;
+	$color-crt: #A72CAB;
+	$color-ot:	#70A70F;
+	$color-dmmo: #1596CC;
+	$color-staff: #D3AC0E;
+	
+	/* Z Indexing */
+    $z-index-global-on-top: 100000;
+	$z-index-overlay: 99999;
+	$z-index-global-notifications: 99899;
+	$z-index-global-tooltips: 99799;
+	
+	$z-index-global-header: 7000;
+    $z-index-global-header-scene: 7250;
+	$z-index-global-nav: 7500;
+    $z-index-page-heading: 7500;
+	$z-index-global-search: 7500;
+    $z-index-global-breadcrumb: 7500;
+	$z-index-global-user-menu: 8000;
+	$z-index-global-user-display: 9000;
+	$z-index-global-header-logo: 10000;
+    $z-index-global-footer: 7000;
+    $z-index-global-footer-extra: -1;
+	
+	$z-index-page-contents: 5000;
+	
+	$z-index-cms-showcase-background: 100;
+	$z-index-cms-showcase-overlay: 105;
+	$z-index-cms-showcase-content: 110;
+	
+	$z-index-cms-news-first: 92;
+	$z-index-cms-news-light1: 91;
+	$z-index-cms-news-dark1: 90;
+	$z-index-cms-news-content: 110;
+	$z-index-cms-news-icon: 105;
+	$z-index-cms-news-background: 100;
+	
+	$z-index-ui-utilitybar: 10000;
+    
+    $z-index-forum-user-menu: 110;
+    $z-index-forum-post-content: 100;
+    $z-index-forum-post-staff-bg: 90;
+
+    $z-index-login-bg: 100;
+    $z-index-login-content: 1000;
+	
+	/* Mixins */
+	@mixin box-shadow ($shadow1: 0 0 5px #000, $shadow2:false) {
+    
+        $params: $shadow1;
+        @if $shadow2 { $params: $shadow1, $shadow2; }
+    
+		-webkit-box-shadow: $params;
+           -moz-box-shadow: $params;
+                box-shadow: $params;
+	}
+    
+	@mixin box-sizing ($sizing: border-box) {
+
+		-webkit-box-sizing: $sizing;
+           -moz-box-sizing: $sizing;
+                box-sizing: $sizing;
+	}
+    
+	@mixin rounded-border ($thickness: 1px, $radius: 4px, $color: #FFFFFF) {
+
+		-webkit-border-radius:	$radius;
+		-moz-border-radius: $radius;
+		border-radius: $radius;
+		
+		border: $thickness solid $color;
+	}
+    
+    @mixin rounded-border-reset () {
+    
+        -webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+        
+        border: 0;
+    }
+	
+	@mixin background-gradient ($begin-color, $end-color, $direction) {
+    
+        background-color: $begin-color;
+        background-image: -webkit-linear-gradient($direction, $begin-color, $end-color); /* Chrome 10+, iOS 5+, Safari 5.1+ */
+        background-image:    -moz-linear-gradient($direction, $begin-color, $end-color); /* Firefox 3.6-15 */
+        background-image:      -o-linear-gradient($direction, $begin-color, $end-color); /* Opera 11.10-12.00 */
+        background-image:         linear-gradient($direction, $begin-color, $end-color); /* Firefox 16+, IE 10+, Opera 12.50+ */
+	}
+	
+	@mixin opacity ($opacity) {
+	
+		opacity: $opacity;
+		filter: alpha(opacity = $opacity * 100);
+	}
+	
+	@mixin transition ($element, $speed, $type) {
+	
+		-webkit-transition: $element $speed $type;  /* Saf3.2+, Chrome */
+		   -moz-transition: $element $speed $type;  /* FF4+ */
+		    -ms-transition: $element $speed $type;  /* IE10 */
+		     -o-transition: $element $speed $type;  /* Opera 10.5+ */
+		        transition: $element $speed $type;
+	}
+	
+	@mixin transition-property ($property...) {
+	
+		-webkit-transition-property: $property;  /* Saf3.2+, Chrome */
+		   -moz-transition-property: $property;  /* FF4+ */
+		    -ms-transition-property: $property;  /* IE10 */
+		     -o-transition-property: $property;  /* Opera 10.5+ */
+		        transition-property: $property;
+	}
+    
+	@mixin transition-duration ($duration) {
+	
+        -webkit-transition-duration: $duration; /* Safari and Chrome */
+           -moz-transition-duration: $duration; /* Firefox 4 */
+             -o-transition-duration: $duration; /* Opera */
+                transition-duration: $duration;
+	}
+    
+	@mixin transition-delay ($delay) {
+	
+        -webkit-transition-delay: $delay; /* Safari and Chrome */
+           -moz-transition-delay: $delay; /* Firefox 4 */
+             -o-transition-delay: $delay; /* Opera */
+                transition-delay: $delay;
+	}
+    
+    @mixin rotate($degrees) {
+    
+        -webkit-transform: rotate($degrees); 
+         -moz-transform: rotate($degrees); 
+          -ms-transform: rotate($degrees); 
+           -o-transform: rotate($degrees); 
+              transform: rotate($degrees);
+    }
+    
+    @mixin appearance($appearance) {
+    
+        -webkit-appearance: $appearance;
+           -moz-appearance: $appearance;
+            -ms-appearance: $appearance;
+    }
+    
+    @mixin user-select($val) {
+    
+        -webkit-user-select: $val; /* Chrome all / Safari all */
+           -moz-user-select: $val; /* Firefox all */
+            -ms-user-select: $val; /* IE 10+ */
+             -o-user-select: $val; /* Opera (no support) */
+                user-select: $val; /* CSS3 (no support) */
+    }

@@ -1,0 +1,24 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *    
+ *	Pirates Online DisneyMMO EOS theme definitions.
+ *	
+ *	Xiris
+ */    
+ 
+    // Theme Basics
+    // --------------------------------------------------------------------------------
+    $theme-abbr: 'po';
+    $theme-secondary: #663B2C;
+    
+    // Global Navigation
+    // --------------------------------------------------------------------------------
+    $ui-global-nav-bg-source-y: -236px;
+    $ui-global-nav-bg-source-y-hover: -290px;
+    $ui-global-nav-hover: #C47155;
+    
+    // Import defaults to finish themeing.
+    // --------------------------------------------------------------------------------
+    @import "_theme_default";

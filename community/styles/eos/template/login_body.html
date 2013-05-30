@@ -22,13 +22,14 @@
             </div>
             <div class="usm-login-controls">
                 {S_LOGIN_REDIRECT}
-                <input id="{USERNAME_CREDENTIAL}-login" type="submit" name="login" tabindex="6" value="Login" />
+                <input class="button-generic" id="{USERNAME_CREDENTIAL}-login" type="submit" name="login" tabindex="6" value="Login" />
                 <!-- IF not S_ADMIN_AUTH and S_REGISTER_ENABLED -->
-                <a class="button-generic" href="{U_REGISTER}" class="button2">Create An Account</a>
+                <a class="button-generic" href="{U_REGISTER}">Create An Account</a>
                 <!-- ENDIF -->
             </div>
         </form>
         </div>
+        <canvas id="usm-login-bg" class="usm-login-bg"></canvas>
     </div>
     <script type="text/javascript">
         // Update the login button with the user's username input.
@@ -44,5 +45,28 @@
                 $('#{USERNAME_CREDENTIAL}-login').val('Login');
             }
         });
+
+        // Mask a background image for the login page using a canvas.
+        var usm_bg = document.getElementById("usm-login-bg");
+        var usm_bg_ctx = usm_bg.getContext("2d");
+
+        var mask = new Image();
+        mask.onload = function () {
+            usm_bg.width = mask.width;
+            usm_bg.height = mask.height;
+
+            var bg = new Image();
+            bg.onload = function () {
+                usm_bg_ctx.drawImage(mask, 0, 0);
+                usm_bg_ctx.save();
+                usm_bg_ctx.globalCompositeOperation = 'source-in';
+                usm_bg_ctx.drawImage(bg, 0, 0);
+                usm_bg_ctx.restore();
+
+                usm_bg.className += " visible";
+            }
+            bg.src = "{DMMO_IMG_LAYOUT_DIR}/login-bg-{DMMO_RANDOM_GAME_PREF}.jpg";
+        }
+        mask.src = "{DMMO_IMG_LAYOUT_DIR}/login-bg-mask.png";
     </script>
 <!-- INCLUDE overall_footer_core.html -->

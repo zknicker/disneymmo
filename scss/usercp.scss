@@ -1,0 +1,16 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *    
+ *	Construct the usercp stylesheet. This should be used alongside
+ *  the master stylesheet.
+ *	
+ *	Xiris
+ */ 
+ 
+    // Theme file.
+    @import "themes/_theme_default";
+
+    // Templates.
+    @import "_forum_usercp.scss";

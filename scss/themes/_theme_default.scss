@@ -1,0 +1,80 @@
+/*
+ *	___  _ ____ _  _ ____ _   _ _  _ _  _ ____    ____ ____ ____ 
+ *	|  \ | [__  |\ | |___  \_/  |\/| |\/| |  |    |___ |  | [__  
+ *	|__/ | ___] | \| |___   |   |  | |  | |__|    |___ |__| ___] 
+ *    
+ *	Default DisneyMMO EOS Theme definitions. Future custom
+ *  themes should import these defaults after overwriting any
+ *  desired variables, thus preserving any cascading variable
+ *  definitions. Hede the warnings below.
+ *	
+ *	Zach Knickerbocker
+ */    
+ 
+// ------------------------------------------------------------------------------------------
+// THE STUFF BELOW THIS LINE IS WHAT YOU'RE GOING TO WANT TO CUSTOMIZE.
+// ------------------------------------------------------------------------------------------
+ 
+    // Theme Abbreviation
+    // --------------------------------------------------------------------------------
+    $theme-abbr: 'dmmo' !default;
+    
+    // Background Color
+    // --------------------------------------------------------------------------------
+	$bg-global-color: #F6F6F6 !default;
+
+	// Font Families
+    // --------------------------------------------------------------------------------
+	$font-family-primary: 'Open Sans', Arial, Verdana, sans-serif !default;
+	$font-family-secondary: Tahoma, Arial, Verdana, sans-serif !default;
+	$font-family-heading: BebasNeueRegular, Arial, Tahoma, sans-serif !default;
+    $font-family-component: 'Roboto Condensed', Arial, Verdana, sans-serif !default;
+	$font-family-fancy: 'Segoe UI', Tahoma, Arial, sans-serif !default;
+	
+    // Core Theme Colors
+    // ---
+    // These are generally sufficient for creating a theme. Though, further options
+    // are available for overwriting.
+    // --------------------------------------------------------------------------------
+    $theme-primary: #4F4F4F !default;
+    $theme-secondary: #1596CC !default;
+    
+// ------------------------------------------------------------------------------------------
+// EVERYTHING BELOW THIS LINE DOES NOT NECESSARILY NEED TO BE CUSTOMIZED. THE ABOVE SHOULD
+// GENERALLY BE SUFFICIENT. BEST OF LUCK TO YE CAPTAIN.
+// ------------------------------------------------------------------------------------------
+    
+	// Font Colors
+    // --------------------------------------------------------------------------------
+	$font-color-primary: $theme-primary !default;
+	$font-color-primary-hover: $theme-secondary !default;
+    
+	$font-color-contrast: $theme-secondary !default;
+	$font-color-contrast-hover: #000 !default;
+	
+    $font-color-heading: $theme-primary !default;
+	$font-color-heading-hover: $theme-secondary !default;
+    
+    $font-color-notification: #ffffff !default;
+	$font-color-ad-blocked: #7f7f7f !default;
+    
+	// Module Organization
+    // --------------------------------------------------------------------------------
+    $modulized-content-separation: 6px;
+    
+    // Global Navigation
+    // --------------------------------------------------------------------------------
+    $ui-global-nav-bg: 'navbar-sprite.png' !default;
+    $ui-global-nav-bg-source-y: -12px !default;
+    $ui-global-nav-bg-source-y-hover: -66px !default;
+    $ui-global-nav: #8B9EAE !default;
+    $ui-global-nav-hover: #35B3E7 !default;
+    
+    // Forum Discussions List
+    // --------------------------------------------------------------------------------
+    $ui-forum-discussions-list-button: $theme-secondary !default;
+    $ui-forum-discussions-list-button-hover: #000 !default;
+    
+	// UI Utility Bar
+    // --------------------------------------------------------------------------------
+    $ui-utilitybar-navigation-width: 260px;
