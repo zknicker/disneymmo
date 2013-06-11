@@ -55,3 +55,8 @@ n();return d?d.promise(g):g}})(jQuery);
 /* Autogrowing text areas | http://github.com/jaz303/jquery-grab-bag/tree/master/javascripts/jquery.autogrow-textarea.js */
 (function(c){c.fn.autogrow=function(){return this.filter("textarea").each(function(){var e=this,a=c(e),f=a.height();a.hasClass("autogrow-short")||parseInt(a.css("lineHeight"));var d=c("<div></div>").css({position:"absolute",top:-1E4,left:-1E4,width:a.width(),fontSize:a.css("fontSize"),fontFamily:a.css("fontFamily"),fontWeight:a.css("fontWeight"),lineHeight:a.css("lineHeight"),resize:"none"}).appendTo(document.body),b=function(){var b=e.value.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/&/g,
 "&amp;").replace(/\n$/,"<br/>&nbsp;").replace(/\n/g,"<br/>").replace(/ {2,}/g,function(a){for(var b=0,c="";b<a.length-1;b++)c+="&nbsp;";return c+" "});d.css("width",a.width());d.html(b);a.css("height",Math.max(d.height(),f))};a.change(b).keyup(b).keydown(b);c(window).resize(b);b()})}})(jQuery);
+
+/* -------------------------------------------------------------------------------- */
+
+/*! jQuery visible 1.0.0 teamdf.com/jquery-plugins | teamdf.com/jquery-plugins/license */
+(function(d){d.fn.visible=function(e,i){var a=d(this).eq(0),f=a.get(0),c=d(window),g=c.scrollTop();c=g+c.height();var b=a.offset().top,h=b+a.height();a=e===true?h:b;b=e===true?b:h;return!!(i===true?f.offsetWidth*f.offsetHeight:true)&&b<=c&&a>=g}})(jQuery);

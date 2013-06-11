@@ -47,88 +47,9 @@
                         <div class="roller"><span></span></div>
 						<p class="description"><strong>Staff</strong> only beyond this point. This special place is for the brave and awesome.</p>
 					</a></li>
-                    <!-- ELSE -->
-                    <li class="forum-extra"><div class="forum-container">
-                        <div class="roller"><span></span></div>
-					</div></li>
                     <!-- ENDIF -->
 				</ul>
 			</div>
-            <script type="text/javascript">
-            // Forum selector setup code. This should be moved
-            // elsewhere as soon as possible.
-            var $forumSelector = $('#forum-selector');
-            
-            function computeGoldenRatio(width, factor) {
-        
-                var result = width;
-                var goldenRatio = 1.618;
-                while(factor >= 1) {
-                
-                    result = result / goldenRatio;
-                    factor--;
-                }
-                return result;
-            }
-            
-            function configForumBlocks() {
-            
-                // Variables.
-                var rightMargin = 5;
-               
-                var workingWidth = $forumSelector.width();
-                var effectiveWidth = workingWidth + rightMargin; // the last one has no margin
-                
-                // Logic.
-                var blocksPerRow = 4;
-                while(effectiveWidth / blocksPerRow > 290) {
-                
-                    blocksPerRow++;
-                }
-                
-                calculatedWidth = effectiveWidth / blocksPerRow - rightMargin;
-                leftoverPx = Math.ceil((calculatedWidth - Math.floor(calculatedWidth)) * blocksPerRow);
-                finalWidth = Math.floor(calculatedWidth);
-                finalHeight = computeGoldenRatio(finalWidth, 3) + 10;
-                
-                $forumSelector.find('li .forum-container').css({
-                
-                    'width' : finalWidth + 'px'
-                });
-                
-                $forumSelector.find('li .roller').css({
-                
-                    'height' : finalHeight + 'px'
-                });
-                
-                $forumSelector.find('li').removeClass('no-right-margin');
-                $forumSelector.find('li:nth-child(' + blocksPerRow + 'n)').addClass('no-right-margin');
-                
-                var fontSize;
-                if (finalWidth >= 275) fontSize = 13;
-                else if (finalWidth < 275 && finalWidth >= 255) fontSize = 12;
-                else if (finalWidth < 255 && finalWidth >= 241) fontSize = 11;
-                else if (finalWidth < 241) fontSize = 10;
-                
-                $forumSelector.find('.description').css({
-                
-                    'font-size' : fontSize + 'px'
-                });
-            }
-                
-            function resizeEvents() {
-                
-                $(window).resize(function() {
-            
-                    configForumBlocks();
-                });
-            }
-            
-            // Setup the forum selector.
-            $('.forum-blocks').css('width', '101%');
-            configForumBlocks();
-            resizeEvents();
-            </script>
         </section>
         <section class="discussions-list forum-section">
             <div class="forum-section-pre">

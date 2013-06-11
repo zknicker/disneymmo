@@ -29,12 +29,12 @@
         <div class="ui-utilitybar-container">
             <div class="ui-utilitybar-actions-container">
                 <div class="ui-utilitybar-actions">
-                    <a class="utility-action-button" href="{U_POST_NEW_TOPIC}">Create Discussion</a>
+                    <a class="button-generic" href="{U_POST_NEW_TOPIC}">Create Discussion</a>
                     <!-- IF S_DISPLAY_SEARCHBOX -->
-                    <div class="utility-search-field">
+                    <div class="utility-search">
                         <form method="get" id="topic-search" action="{S_SEARCHBOX_ACTION}">
                         <fieldset>
-                            <input type="text" name="keywords" id="search_keywords" size="20" value="" />
+                            <input class="search-generic" type="text" name="keywords" id="search_keywords" size="20" value="" />
                             {S_SEARCH_LOCAL_HIDDEN_FIELDS}
                         </fieldset>
                         </form>

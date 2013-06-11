@@ -21,30 +21,14 @@
     /* --------------------------------------------------
      * Defines an individual post...
      * -------------------------------------------------- */
-    .post-block { background-color: #F0F0F0; position: relative; margin-top: $modulized-content-separation; border: 1px solid #E0E0E0; }
-    .post-block:first-child { margin-top: 0; }
-    .post-block.staff:before { content: ''; height: 187px; width: 280px; background: url($path-layout + 'forum-post-staff-logo.png') no-repeat 0 0; position: absolute; }
-    .post-block.deleted { background: #E8E8E8; }
-    
-    .post-block table { width: 100%; }
-    .post-block td { vertical-align: top; }
-        
-        /* --------------------------------------------------
-         * Post Profile
-         * -------------------------------------------------- */
-        .post-profile { width: 260px; font-size: 11px; }
-        .post-profile .post-profile-wrapper { height: 130px; width: 240px; position: relative; }
-        .post-profile .avatar { position: absolute; top: 20px; left: 20px; }
-        .post-profile .user-info { top: 22px; left: 117px; position: absolute; }
-        
-        .post-block.anonymous .post-profile { width: 22px; }
-        .post-block.anonymous .post-profile .post-profile-wrapper { display: none; }
-        .post-block.deleted .post-profile .post-profile-wrapper { height: auto; }
-        .post-block.deleted .user-info { left: 24px; }
+    .post-block { width: 100%; position: relative; margin-top: 10px; margin-bottom: 20px; }
+
+        .post-profile { min-height: 150px; width: 240px; float: left; }
+        .post-profile .avatar { position: absolute; top: 20px; left: 0; }
+        .post-profile .user-info { top: 22px; left: 97px; position: absolute; }
         
             /* username */
             .user-info .username > a { display: block; font-size: 14px; color: $font-color-contrast; }
-            .post-block.deleted .username a { color: #7A7A7A !important; }
             .user-info .username > a:hover { color: $font-color-contrast-hover !important; }
             
             /* user menu */
@@ -57,18 +41,12 @@
             .user-info .credits-count { height: 16px; background: url($path-icons + 'post-stats-credits.png') no-repeat 0 50%; margin-top: 3px; padding-left: 23px; color: #949496; line-height: 16px; font-size: 11px; }
             .user-info .post-count:hover, .user-info .credits-count:hover { color: $font-color-primary-hover; cursor: help; }
 
-        
-        /* --------------------------------------------------
-         * Post Content
-         * -------------------------------------------------- */
-        .post-content { font-size: 13px; }
-        .post-content .post-interior-padding { padding: 16px 20px 20px 0; position: relative; z-index: $z-index-forum-post-content; line-height: 200%; }
-        .post-block.deleted .post-content { color: #7A7A7A; }
-        .post-block.deleted .deleted-post-content { margin-top: 12px; }
+        .post-content { min-height: 130px; background-color: #F0F0F0; margin-left: 240px; padding: 16px 180px 100px 20px; padding-right: 180px; position: relative; font-size: 13px; border: 1px solid #E0E0E0; border-radius: 4px; }
+        .post-message { z-index: $z-index-forum-post-content; line-height: 200%; }
         
             /* ul bbcode */
-            .post-content ul { list-style-type: disc; padding: 0 0 0 40px; }
-            .post-content ol { list-style-type: decimal; padding: 0 0 0 40px; }
+            .post-message ul { list-style-type: disc; padding: 0 0 0 40px; }
+            .post-message ol { list-style-type: decimal; padding: 0 0 0 40px; }
         
             /* quote bbcode */
             blockquote { border-left: 1px solid #b7b7b7; padding: 10px 14px 10px 10px; margin-left: 12px; color: #9b9a9a; }
@@ -76,52 +54,64 @@
             blockquote cite { display: block; }
         
             /* align bbcode - only applicable to privileged posts */
-            .post-block.privileged .bbcode-left { text-align: left; }
-            .post-block.privileged .bbcode-center { text-align: center; }
-            .post-block.privileged .bbcode-right { text-align: right; }
-            .post-content .bbcode-left,
-            .post-content .bbcode-center,
-            .post-content .bbcode-right { text-align: left; }
-            
-            /* quick reply */
-            .post-block.reply { background-image: url($path-layout + 'discussions-quickreply-bg.png'); }
-            .post-block.reply .post-content textarea { height: 170px; width: 100%; background-color: #F5F5F5; }
-            .post-block.reply .post-content textarea:focus { }
-            .post-block.reply .post-controls { padding-left: 241px; padding-bottom: 16px; } /* due to below, extra padding is applied for aesthetic purposes */
-            .post-block.reply .post-controls .post-control { top: 0px; float: left; } /* float post controls leftward, remove top so they always appear */
-            .post-block.reply .post-content .post-interior-padding { padding-bottom: 4px; }
-        
-            .login-to-post { height: 225px; width: 100%; background: url($path-layout + 'discussions-quickreply-loggedout.png') no-repeat 50% 50%; padding-top: 70px; text-align: center; }
-            .login-to-post .call-to-action { color: #AEAEAE; font-size: 16px; font-family: $font-family-component; text-transform: uppercase; }
-            .login-to-post .action-reward { margin-top: 5px; font-size: 34px; font-weight: bold; font-family: $font-family-component; text-transform: uppercase; }
-        
+            .post-block.privileged .post-message .bbcode-left { text-align: left; }
+            .post-block.privileged .post-message .bbcode-center { text-align: center; }
+            .post-block.privileged .post-message .bbcode-right { text-align: right; }
+            .post-message .bbcode-left,
+            .post-message .bbcode-center,
+            .post-message .bbcode-right { text-align: left; }
+                    
         /* --------------------------------------------------
          * Post Stamp
          * -------------------------------------------------- */
-        .post-stamp { width: 140px; color: #b2b2b2; text-align: right; }
-        .post-block.staff .post-stamp { color: #a3a3a3; }
-        .post-block.deleted .post-stamp { width: 300px; font-size: 10px; text-transform: uppercase; }
+        .post-stamp { width: 140px; color: #b2b2b2; text-align: right; padding: 20px 20px 0 0; position: absolute; top: 0; right: 0; text-transform: uppercase; }
         .post-stamp .post-interior-padding { padding: 24px 20px 24px 0; position: relative; z-index: $z-index-forum-post-content; }
         
             /* post count */
             .post-stamp a.post-count { font-size: 11px; }
             
             /* post date */
-            .post-stamp .post-date { padding-top: 5px; font-size: 10px; text-transform: uppercase; }
+            .post-stamp .post-date { padding-top: 5px; font-size: 10px; }
             .post-stamp .post-date:hover { cursor: help; }
             
-            /* why deleted? */
-            .post-stamp .why-deleted { padding-top: 5px; }
-            .post-stamp .why-deleted:hover { cursor: help; }
-            
             /* staff label */
-            .post-stamp .post-staff-label { padding-top: 5px; font-size: 10px; text-transform: uppercase; }
+            .post-stamp .post-staff-label { padding-top: 5px; font-size: 10px; }
             .post-stamp .post-staff-label:hover { cursor: help; }
     
         /* --------------------------------------------------
+         * Staff Posts
+         * -------------------------------------------------- */
+        .post-block.staff:before { content: ''; height: 187px; width: 280px; background: url($path-layout + 'forum-post-staff-logo.png') no-repeat 0 0; position: absolute; }
+        .post-block.staff .post-stamp { color: #a3a3a3; }
+
+        /* --------------------------------------------------
+         * Deleted Posts
+         * -------------------------------------------------- */
+        .post-block.deleted .post-content { border-color: #C0C0C0; @include opacity(0.5); }
+        .post-block.deleted:hover .post-content { border-color: #E0E0E0; @include opacity(1); }
+        .post-block.deleted .username a { color: #7A7A7A !important; }
+        .post-stamp .why-deleted { padding-top: 10px; }
+        .post-stamp .why-deleted:hover { cursor: help; }
+        .post-block.deleted .post-stamp { width: 300px; font-size: 10px; }
+
+        /* --------------------------------------------------
+         * Reply Styling
+         * -------------------------------------------------- */
+        .post-block.reply .post-profile .avatar { top: 68px; }
+        .post-block.reply .post-profile .user-info { top: 70px; }
+        .post-editor { min-height: 130px; margin-left: 240px; }
+    
+        .quick-reply-options { margin: 8px 0 0 240px; overflow: hidden; }
+        .quick-reply-options button { float: left; margin-right: 8px; }
+
+        .login-to-post { height: 225px; width: 100%; background: url($path-layout + 'discussions-quickreply-loggedout.png') no-repeat 50% 50%; padding-top: 70px; text-align: center; }
+        .login-to-post .call-to-action { color: #AEAEAE; font-size: 16px; font-family: $font-family-component; text-transform: uppercase; }
+        .login-to-post .action-reward { margin-top: 5px; font-size: 34px; font-weight: bold; font-family: $font-family-component; text-transform: uppercase; }
+
+        /* --------------------------------------------------
          * Post Controls
          * -------------------------------------------------- */
-        .post-controls { padding: 0 20px 20px 20px; position: relative; z-index: $z-index-forum-post-content; overflow: hidden; }
+        .post-controls { position: absolute; bottom: 20px; right: 20px; z-index: $z-index-forum-post-content; overflow: hidden; }
         .post-controls .login-to-reply { padding: 13px 0 9px 0; float: right; line-height: 18px; color: #9b9a9a; font-size: 11px; text-transform: uppercase; visibility: hidden; }
         
         /* events */
@@ -161,3 +151,8 @@
      * Post Signature
      * -------------------------------------------------- */
     .signature { max-height: 250px; width: 100%; padding-top: 6px; margin-top: 18px; border-top: 1px solid #c8c8c8; overflow: hidden; }
+
+    /* --------------------------------------------------
+     * PHPBB Components
+     * -------------------------------------------------- */
+    .phpbb-quickmod-container { margin-left: 240px; }

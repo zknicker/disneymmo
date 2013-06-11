@@ -8,7 +8,7 @@
  *	Zach Knickerbocker
  */
  
-dmmo.discussionMode = {
+dmmo.discussionmode = {
 
     setMode: function(type) {            // If invalid type supplied, just choose compact.
         if (type != 'compact' && type != 'detailed') {                    

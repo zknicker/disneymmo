@@ -56,12 +56,15 @@
     textarea { resize: vertical; font-family: $font-family-primary; }
     
     /* input buttons */
-    .button-generic { height: 38px; background-color: $font-color-contrast; display: inline-block; padding: 0 18px; color: #FFF; line-height: 38px; font-size: 13px; border-width: 0 3px 0 0; border-style: solid; border-color: darken($font-color-contrast, 20%); @include transition(all, .25s, ease); cursor: pointer; }
+    .button-generic { height: 38px; background-color: $font-color-contrast; display: block; padding: 0 18px; color: #FFF; line-height: 38px; font-size: 13px; border-width: 0 3px 0 0; border-style: solid; border-color: darken($font-color-contrast, 20%); @include transition(all, .25s, ease); cursor: pointer; }
     .button-generic:hover { background-color: darken($font-color-contrast, 20%); border-color: darken($font-color-contrast, 40%); color: #FFF; @include transition-duration(0s); }
     .button-generic:active { background-color: $font-color-contrast; border-color: darken($font-color-contrast, 20%); }
-    
+    .button-generic.hot { background-color: #FF0000; border-color: darken(#FF0000, 20%); }
+    .button-generic.hot:hover { background-color: darken(#FF0000, 20%); border-color: darken(#FF0000, 40%); }
+    .button-generic.hot:active { background-color: #FF0000; border-color: darken(#FF0000, 20%); }
+
     /* select */
-    select { background: #FBFBFB url($path-layout + 'select-drop-arrow.png') no-repeat 100% 50%; margin: 0; padding: 7px 39px 9px 6px; border-width: 1px 3px 1px 1px; border-style: solid; border-color: #DDD #CCC #DDD #DDD; color: #686868; @include appearance(none); cursor: pointer; }
+    select { background: #FBFBFB url($path-layout + 'select-drop-arrow.png') no-repeat 100% 50%; margin: 0; padding: 8px 39px 10px 6px; border-width: 1px 3px 1px 1px; border-style: solid; border-color: #DDD #CCC #DDD #DDD; color: #686868; @include appearance(none); font-size: 13px; cursor: pointer; }
     select:focus { border-right-color: $font-color-contrast; }
     
     /* field row (an organized arrangement of form fields) */
@@ -107,6 +110,11 @@
     .faux-text-input.focused { border-right-color: $font-color-contrast; }
     .faux-text-input input[type='text'] { border: 0; }
     
+    /* search bar */
+    input[type='text'].search-generic { height: 38px; background: transparent url($path-icons + 'forum-search.png') no-repeat 10px 50%; border: 0; padding-left: 46px; position: relative; border-right: 3px solid transparent; }
+    input[type='text'].search-generic:hover { background-color: $search-generic-hover-color; border-color: #CCC; }
+    input[type='text'].search-generic:focus { background-color: $search-generic-active-color; border-color: darken($theme-secondary, 20%); }
+
     /* table */
     table, tbody, thead, tr, td { @include box-sizing(content-box); }
     

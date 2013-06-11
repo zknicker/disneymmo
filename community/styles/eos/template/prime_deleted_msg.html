@@ -1,25 +1,21 @@
 <!-- BEGIN deleted -->
-                                <!-- IF deleted.VIEW_LINK or deleted.UNDO_LINK or deleted.PERM_LINK -->Deleted by {deleted.BY}<!-- IF deleted.VIEW_LINK --> ({deleted.VIEW_LINK})<!-- ENDIF -->: {deleted.REASON}<!-- ENDIF -->
-                                <!-- IF deleted.VIEW_LINK and deleted.ID and deleted.TEXT --><div class="deleted-post-content" style="display:none" id="{deleted.ID}"><blockquote>{deleted.TEXT}</blockquote></div><!-- ENDIF -->
-                            </p></div>
-                        </td>
-                        <td class="post-stamp">
-                            <div class="post-interior-padding">
-                                <span>Deleted on {deleted.ON}<span>
-                                <div class="why-deleted">
-                                        <span data-tooltip="Posts that do not conform with DisneyMMO's rules and guidelines are deleted by moderation staff. If you believe a post has been deleted without proper reason, please send a private message to a moderator.">Why was this post deleted?</span>
-                                </div>
+                            <!-- IF deleted.VIEW_LINK or deleted.UNDO_LINK or deleted.PERM_LINK -->Deleted by {deleted.BY}<!-- IF deleted.VIEW_LINK --> ({deleted.VIEW_LINK})<!-- ENDIF -->: {deleted.REASON}<!-- ENDIF -->
+                            <!-- IF deleted.VIEW_LINK and deleted.ID and deleted.TEXT --><div class="deleted-post-content" style="display:none" id="{deleted.ID}"><blockquote>{deleted.TEXT}</blockquote></div><!-- ENDIF -->
+                        </div>
+                        <div class="post-stamp">
+                            <span>Deleted on {deleted.ON}<span>
+                            <div class="why-deleted">
+                                    <span data-tooltip="Posts that do not conform with DisneyMMO's rules and guidelines are deleted by moderation staff. If you believe a post has been deleted without proper reason, please send a private message to a moderator.">Why was this post deleted?</span>
                             </div>
-                        </td>
-                    </tr>
-                </table>
-                <!-- IF not S_IS_BOT -->
-                <div class="post-controls group">
-                    <!-- IF deleted.UNDO_LINK -->
-                        <div class="post-control post-control-button report">{deleted.UNDO_LINK}</div>
-                    <!-- ENDIF --><!-- IF deleted.PERM_LINK -->
-                        <div class="post-control post-control-button report">{deleted.PERM_LINK}</div>
-                    <!-- ENDIF -->
-                </div>
-                <!-- ENDIF -->
+                            <!-- IF postrow.S_IS_STAFF --><div class="post-staff-label" data-tooltip="This user is a DisneyMMO staff member, and can be trusted as a figure of authority.">staff</div><!-- ENDIF -->
+                        </div>
+                        <!-- IF not S_IS_BOT -->
+                        <div class="post-controls group">
+                            <!-- IF deleted.UNDO_LINK -->
+                            <div class="post-control post-control-button report">{deleted.UNDO_LINK}</div>
+                            <!-- ENDIF --><!-- IF deleted.PERM_LINK -->
+                            <div class="post-control post-control-button report">{deleted.PERM_LINK}</div>
+                            <!-- ENDIF -->
+                        </div>
+                        <!-- ENDIF -->
 <!-- END deleted -->
