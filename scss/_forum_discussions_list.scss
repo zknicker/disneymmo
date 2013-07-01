@@ -10,56 +10,62 @@
  
     @import "resources/assets";
  
-    // Discussion Filters
-    // --------------------------------------------------------------------------------
-	.discussions-filter-menu { padding: 3px; border: 1px solid #E4E4E4; position: relative; bottom: -3px; }
-    .discussions-filter-menu ul { float: left; }
-    .discussions-filter-menu li { background-repeat: no-repeat; position: relative; float: left; margin-left: 1px; }
- 
-    .discussions-filter-block { height: 47px; width: 47px; background-color: #E4E4E4; background-position: 0 100%; }
-    .discussions-filter-block:hover { @include opacity(.6); cursor: pointer; }
-    .discussions-filter-block:after { content: ''; height: 7px; width: 47px; background: url($path-layout + 'filters/aarow-sprite.png') repeat-x 50% 0; display: block; position: absolute; top: 0; left: 50%; margin-left: -50%; }
-    .discussions-filter-block.filtered { background-position: 0 -47px; }
-    .discussions-filter-block.filtered:after { background-position: 50% -47px; }
- 
-    .discussions-filter-menu-label { width: 20px; height: 47px; background-color: #D8D8D8; position: relative; float: left; }
-    .discussions-filter-menu-label span { display: block; position: absolute; bottom: 19px; left: -7px; text-transform: uppercase; font-size: 9px; color: #5C5C5C; @include rotate(-90deg); }
- 
-    .discussions-filter-menu .discussions-filter-menu-control { height: 47px; width: 0; margin-left: 0; overflow: hidden; @include opacity(0); @include transition(width, .25s, ease); }
-    .discussions-filter-menu:hover .discussions-filter-menu-control { width: 47px; margin-left: 1px; @include opacity(1); }
-    .discussions-filter-menu-control button { height: 47px; width: 47px; background-color: lighten($font-color-contrast, 10); }
-    .discussions-filter-menu-control button:hover { background-color: $font-color-contrast; }
-    .discussions-filter-menu-control button:active { background-color: lighten($font-color-contrast, 13); }
-    .discussions-filter-menu-control button[data-icon]:before { font-size: 24px; text-shadow: 0px 1px 1px darken($font-color-contrast, 15); font-size: 17px; color: #FAFAFA; }
- 
     // Discussions List
     // --------------------------------------------------------------------------------
-	.discussions-list table { width: 100%; color: #616161; border: 1px solid #E0E0E0; }
-    .discussions-list .no-top-border { border-top: 0px; }
+	.discussions-list table { width: 100%; border-collapse: separate; border-spacing: 0; border-top: 1px solid #E0E0E0; border-bottom: 1px solid #E0E0E0; }
 	
         /* Normal row */
-		.discussions-list-row { background-color: #F0F0F0; @include transition(background-color, .06s, ease); }
-		.discussions-list-row:hover { background-color: #FBFBFB; @include transition(background-color, 0, ease); }
+		.discussions-list-row { background-color: #F0F0F0; }
 		.discussions-list-row:last-child td { border-bottom: 0; }
-		.discussions-list-row td { height: 46px; border-bottom: 1px solid #E0E0E0; padding-top: 0; padding-bottom: 0; vertical-align: middle; }
+		.discussions-list-row td { height: 46px; padding-top: 0; padding-bottom: 0; border-bottom: 1px solid #E0E0E0; border-top: 2px solid $bg-global-color; vertical-align: middle; }
 	
         /* Guide (top) row */
-        .discussions-list-row.discussions-list-guide { background-color: #F8F8F8; }
+        .discussions-list-row.discussions-list-guide { background-color: #2B2B2B; color: #9E9E9E; }
         .discussions-list-row.discussions-list-guide td { height: 28px; }
-        .discussions-list-guide td span { padding-left: 5px; font-size: 10px; color: #AEAEAE; text-transform: uppercase; }
+        .discussions-list-guide td span { padding-left: 5px; font-size: 10px; text-transform: uppercase; }
         .discussions-list-guide .discussion-last span { padding-left: 10px; }
     
+    /* Avatar (takes the place of icon) */
+    .discussion-avatar { width: 40px; }
+    .discussion-avatar .avatar { height: 46px; width: 34px; }
+    .discussion-avatar .avatar img { height: 34px; width: auto; margin-top: 5px; }
+
+
 	/* Icon */
 	.discussion-icon { width: 52px; }
-	.discussion-icon div { height: 46px; width: 46px; background-repeat: no-repeat; }
+	.discussion-icon div { height: 46px; width: 46px; background-position: 12px 50%; background-repeat: no-repeat; border-left-width: 5px; border-left-style: solid; }
     
-    .pm-unread-icon { background-image: url($path-filters + 'pm-unread.png'); }
-    .pm-read-icon { background-image: url($path-filters + 'pm-read.png'); }
+        .discussion-icon .discussion-filter-general { border-color: #75AE2C; }
+        .discussion-icon .discussion-filter-news { border-color: #7F0000; }
+        .discussion-icon .discussion-filter-games-and-puzzles { border-color: #1379C0; }
+        .discussion-icon .discussion-filter-role-playing-games { border-color: #700505; }
+        .discussion-icon .discussion-filter-entertainment { border-color: #7610A0; }
+        .discussion-icon .discussion-filter-items { border-color: #CA7C00; }
+        .discussion-icon .discussion-filter-guides { border-color: #AE0CB8; }
+        .discussion-icon .discussion-filter-mini-games { border-color: #143DC3; }
+        .discussion-icon .discussion-filter-media { border-color: #511093; }
+        .discussion-icon .discussion-filter-test-realm { border-color: #70230E; }
+        .discussion-icon .discussion-filter-writers-at-heart { border-color: #B1004B; }
+        .discussion-icon .discussion-filter-walt-disney-world { border-color: #C8541B; }
+        .discussion-icon .discussion-filter-disneyland-and-california-adventure { border-color: #6B108D; }
+        .discussion-icon .discussion-filter-television-and-film { border-color: #0E5A9A; }
+        .discussion-icon .discussion-filter-virtual-magic-kingdom { border-color: #8BB706; }
+        .discussion-icon .discussion-filter-world-of-cars { border-color: #C41C0B; }
+        .discussion-icon .discussion-filter-avatars { border-color: #0FA5B3; }
+        .discussion-icon .discussion-filter-signatures { border-color: #993804; }
+        .discussion-icon .discussion-filter-polls { border-color: #7613C3; }
+        .discussion-icon .discussion-filter-contests { border-color: #DBAA00; }
+
+    .pm-unread-icon { background-image: url($path-filters + 'pm-unread.png'); border-color: #C2840C; }
+    .pm-read-icon { background-image: url($path-filters + 'pm-read.png'); border-color: #396A0E; }
 	
 	/* Subject */
-	.discussion-subject { /* expands to 100% via table width */ }
-	.discussion-subject .topic-title { height: 46px; max-width: 380px;  margin-left: 6px; display: block; float: left; overflow: hidden; color: $font-color-primary; line-height: 46px; font-size: 13px; }
+	.discussion-subject { font-size: 13px; }
+	.discussion-subject .topic-title { height: 46px; max-width: 380px;  margin-left: 6px; display: block; float: left; overflow: hidden; color: $font-color-primary; line-height: 46px; }
     .discussion-subject .topic-title:hover { color: $font-color-primary-hover; }
+    .discussion-subject .message-info { padding-left: 10px; color: #BBB; line-height: 46px; }
+    .discussion-subject .message-info a { color: #BBB; }
+    .discussion-subject .message-info a:hover { color: $font-color-primary-hover; }
 	
     .discussion-subject .topic-latest-reply { background-color: $ui-forum-discussions-list-button; padding: 4px; margin: 13px 9px 0 13px; float: left; font-size: 9px; color: #FFF; visibility: hidden; text-transform: uppercase; @include rounded-border(1px, 4px, $ui-forum-discussions-list-button); @include transition-property(background-color, border-color); }
     .discussion-subject .topic-latest-reply:hover { background-color: $ui-forum-discussions-list-button-hover; border-color: $ui-forum-discussions-list-button-hover; }
@@ -72,10 +78,10 @@
     .global .discussion-subject .topic-title:before { content: '[Global] '; color: $font-color-contrast; }
     
     /* Pagination */
-    .per-pagination { height: 46px; background: url($path-icons + 'per-topic-pagination.png') no-repeat 0 50%; display: block; padding-left: 16px; font-size: 11px; }
+    .per-pagination { height: 46px; background: url($path-icons + 'per-topic-pagination.png') no-repeat 0 50%; display: block; padding-left: 16px; font-size: 13px; }
     .per-pagination span { cursor: default; line-height: 48px; }
-    .per-pagination a { height: 100%; display: inline-block; color: $font-color-primary; line-height: 18px; @include transition(top, .15s, ease); }
-    .per-pagination a:hover { position: relative; top: 2px; font-size: 18px; color: $font-color-primary-hover; }
+    .per-pagination a { height: 100%; display: inline-block; padding: 4px 2px 4px 6px; line-height: 18px; @include transition(top, .15s, ease); }
+    .per-pagination a:hover { position: relative; top: 2px; font-size: 22px; }
     
 	/* Topic Type */
 	.discussion-type, .discussion-topic { width: 125px; text-align: right; }
@@ -91,7 +97,7 @@
     .discussion-stats dd { font-size: 11px; }
     
 	/* Last Reply */
-	.discussion-last { width: 180px; font-family: $font-family-secondary; }
+	.discussion-last { width: 180px; }
     .discussion-last .discussion-last-user { padding-top: 2px; font-size: 11px; color: #7b7b7b; }
     .discussion-last .discussion-last-user a:hover { color: $font-color-contrast-hover !important; }
     .discussion-last .discussion-last-time { padding-top: 4px; font-size: 10px; color: #9c9b9b; }
@@ -99,6 +105,9 @@
     .discussion-last-avatar img { height: 28px; min-width: 28px; }
     .discussion-last-avatar:hover { border-color: $font-color-primary-hover; }
     
+    /* Discussion Fancy Time */
+    .discussion-fancy-time { width: 180px; text-align: right; }
+
     /* Mark */
     .discussion-mark { width: 50px; text-align: center; }
     .discussion-mark label { padding: 10px; }

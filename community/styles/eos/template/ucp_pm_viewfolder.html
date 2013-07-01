@@ -1,7 +1,14 @@
 <!-- INCLUDE ucp_pm_header.html -->
+        <section>
+            <!-- IF FOLDER_STATUS and FOLDER_MAX_MESSAGES neq 0 --><p class="sidebar-subtext"></p>
+            <div class="folder-capacity-bar">
+                <div class="folder-status">{FOLDER_STATUS}</div>
+                <div class="capacity-bar"><div class="capacity-bar-fill" style="width: {FOLDER_PERCENT}%"></div></div>
+            </div>
+            <!-- ENDIF -->
             <div class="ui-utilitybar-actions-container">
                 <div class="ui-utilitybar-actions">
-                    <a class="utility-action-button" href="{U_POST_NEW_TOPIC}">Compose Message</a>
+                    <a class="utility-action-button button-generic" href="{U_POST_NEW_TOPIC}">Compose Message</a>
                     <!-- IF PAGINATION -->
                     <div class="utility-pagination">
                         {PAGINATION}
@@ -12,151 +19,117 @@
                     {S_FORM_TOKEN}                    
                 </div>
             </div>
-        </div>
-        <!-- IF NUM_REMOVED -->
-        <div class="usercp-component usercp-notice">
-            <p>{RULE_REMOVED_MESSAGES}</p>
-        </div>
-        <!-- ENDIF -->
-        <!-- IF NUM_NOT_MOVED -->
-        <div class="usercp-component usercp-notice">
-            <p>{NOT_MOVED_MESSAGES}<br />{RELEASE_MESSAGE_INFO}</p>
-        </div>
-        <!-- ENDIF -->
-        <!-- IF PROMPT -->
-        <div class="usercp-component">
-            <h2>{L_EXPORT_AS_CSV}</h2>
-            <form id="viewfolder" method="post" action="{S_PM_ACTION}">
-            <div class="panel">
-                <div class="inner"><span class="corners-top"><span></span></span>
-                <h3>{L_OPTIONS}</h3>
-                <fieldset>
-                    <dl>
-                        <dt><label for="delimiter">{L_DELIMITER}:</label></dt>
-                        <dd><input class="inputbox" type="text" id="delimiter" name="delimiter" value="," /></dd>
-                    </dl>
-                    <dl>
-                        <dt><label for="enclosure">{L_ENCLOSURE}:</label></dt>
-                        <dd><input class="inputbox" type="text" id="enclosure" name="enclosure" value="&#034;" /></dd>
-                    </dl>
-                </fieldset>
-                <span class="corners-bottom"><span></span></span></div>
+            <!-- IF NUM_REMOVED -->
+            <div class="usercp-component usercp-notice">
+                <p>{RULE_REMOVED_MESSAGES}</p>
             </div>
-            <fieldset class="submit-buttons">
-                <input type="hidden" name="export_option" value="CSV" />
-                <input class="button1" type="submit" name="submit_export" value="{L_EXPORT_FOLDER}" />&nbsp;
-                <input class="button2" type="reset" value="Reset" name="reset" />&nbsp;
-                {S_FORM_TOKEN}
-            </fieldset>
-            </form>
-        </div>
-        <!-- ELSE -->
-        <!-- IF .messagerow -->
-        <div class="discussions-list forum-section-content usercp-component-plain">
-            <table class="no-top-border">
-                <tr class="discussions-list-row discussions-list-guide">
-                    <td class="discussion-icon"></td>
-                    <td class="discussion-subject"><span>Message</span></td>
-                    <td class="discussion-last"><span>Sender</span></td>
-                    <td class="discussion-mark"><span>Mark</span></td>
-                </tr>
-                <!-- BEGIN messagerow -->
-                <tr class="discussions-list-row">
-                    <td class="discussion-icon"><div class="discussion-icon-general <!-- IF messagerow.S_PM_UNREAD -->pm-unread-icon<!-- ELSE -->pm-read-icon<!-- ENDIF -->" data-tooltip="<!-- IF messagerow.S_PM_UNREAD -->Unread Message<!-- ELSE -->Old Message<!-- ENDIF -->"></div></td>
-                    <td class="discussion-subject">
-                        <a href="{messagerow.U_VIEW_PM}" class="topic-title">{messagerow.SUBJECT}</a>
-                    </td>
-                    <td class="discussion-last">
-                        <a href="{messagerow.MESSAGE_AUTHOR_LINK}" class="discussion-last-avatar"><img src="{messagerow.MESSAGE_AUTHOR_AVATAR_URL}" /></a>
-                        <div class="discussion-last-user">{messagerow.MESSAGE_AUTHOR_FULL}</div>
-                        <div class="discussion-last-time" data-tooltip="{messagerow.SENT_TIME}">{messagerow.SENT_TIME_REL}</div>
-                    </td>
-                    <td class="discussion-mark">
-                        <label for="message_{messagerow.MESSAGE_ID}"><input id="message_{messagerow.MESSAGE_ID}" type="checkbox" name="marked_msg_id[]" value="{messagerow.MESSAGE_ID}" /></label>
-                    </td>
-                </tr>
-                <!-- END messagerow -->
-            </table>
-        </div>
-        <!-- IF false -->
-        <ul class="topiclist">
-            <li class="header">
-                <dl>
-                    <dt>{L_MESSAGE}</dt>
-                    <dd class="mark">{L_MARK}</dd>
-                </dl>
-            </li>
-        </ul>
-        <ul class="topiclist cplist pmlist">
-
-        <!-- BEGIN messagerow -->
-            <li class="row<!-- IF messagerow.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF messagerow.PM_CLASS --> {messagerow.PM_CLASS}<!-- ENDIF -->">
-                <dl class="icon" style="background-image: url({messagerow.FOLDER_IMG_SRC}); background-repeat: no-repeat;">
-                    <dt<!-- IF messagerow.PM_ICON_URL and S_PM_ICONS --> style="background-image: url({messagerow.PM_ICON_URL}); background-repeat: no-repeat;"<!-- ENDIF -->>
-
-                        <!-- IF messagerow.S_PM_DELETED -->
-                            <a href="{messagerow.U_REMOVE_PM}" class="topictitle">{L_DELETE_MESSAGE}</a><br />
-                            <span class="error">{L_MESSAGE_REMOVED_FROM_OUTBOX}</span>
-                        <!-- ELSE -->
-                            <a href="{messagerow.U_VIEW_PM}" class="topictitle">{messagerow.SUBJECT}</a>
-                        <!-- ENDIF -->
-                        <!-- IF messagerow.S_AUTHOR_DELETED -->
-                            <br /><em class="small">{L_PM_FROM_REMOVED_AUTHOR}</em>
-                        <!-- ENDIF -->
-
-                        <!-- IF messagerow.S_PM_REPORTED --><a href="{messagerow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF --> {messagerow.ATTACH_ICON_IMG}<br />
-                        <!-- IF S_SHOW_RECIPIENTS -->{L_MESSAGE_TO} {messagerow.RECIPIENTS}<!-- ELSE -->{L_MESSAGE_BY_AUTHOR} {messagerow.MESSAGE_AUTHOR_FULL} &raquo; {messagerow.SENT_TIME}<!-- ENDIF -->
-                    </dt>
-                    <!-- IF S_SHOW_RECIPIENTS --><dd class="info"><span>{L_SENT_AT}: {messagerow.SENT_TIME}</span></dd><!-- ENDIF -->
-                    <!-- IF S_UNREAD --><dd class="info"><!-- IF messagerow.FOLDER --><a href="{messagerow.U_FOLDER}">{messagerow.FOLDER}</a><!-- ELSE -->{L_UNKNOWN_FOLDER}<!-- ENDIF --></dd><!-- ENDIF -->
-                    <dd class="mark"><input type="checkbox" name="marked_msg_id[]" value="{messagerow.MESSAGE_ID}" /></dd>
-                </dl>
-            </li>
-        <!-- END messagerow -->
-
-        </ul>
-        <!-- ENDIF -->
-        <!-- ELSE -->
-        <div class="usercp-component usercp-notice">
-            <!-- IF S_COMPOSE_PM_VIEW and S_NO_AUTH_SEND_MESSAGE -->
-                <p><!-- IF S_USER_NEW -->{L_USER_NEW_PERMISSION_DISALLOWED}<!-- ELSE -->{L_NO_AUTH_SEND_MESSAGE}<!-- ENDIF --></p>
-            <!-- ELSE -->
-                <p>{L_NO_MESSAGES}</p>
             <!-- ENDIF -->
-        </div>
-        <!-- ENDIF -->
-        <!-- IF FOLDER_CUR_MESSAGES neq 0 -->
-        <div class="usercp-component group">
-            <aside class="gutter">
-                <div>
-                    <span>Message Actions</span>
-                    <p>Viewing messages is great, but actioning them is better.</p>
+            <!-- IF NUM_NOT_MOVED -->
+            <div class="usercp-component usercp-notice">
+                <p>{NOT_MOVED_MESSAGES}<br />{RELEASE_MESSAGE_INFO}</p>
+            </div>
+            <!-- ENDIF -->
+<!-- IF PROMPT -->
+            <div class="usercp-component">
+                <h2>{L_EXPORT_AS_CSV}</h2>
+                <form id="viewfolder" method="post" action="{S_PM_ACTION}">
+                <div class="panel">
+                    <div class="inner"><span class="corners-top"><span></span></span>
+                    <h3>{L_OPTIONS}</h3>
+                    <fieldset>
+                        <dl>
+                            <dt><label for="delimiter">{L_DELIMITER}:</label></dt>
+                            <dd><input class="inputbox" type="text" id="delimiter" name="delimiter" value="," /></dd>
+                        </dl>
+                        <dl>
+                            <dt><label for="enclosure">{L_ENCLOSURE}:</label></dt>
+                            <dd><input class="inputbox" type="text" id="enclosure" name="enclosure" value="&#034;" /></dd>
+                        </dl>
+                    </fieldset>
+                    <span class="corners-bottom"><span></span></span></div>
                 </div>
-            </aside>
-            <div class="core">
-                <fieldset class="display-actions">
-                    <div class="left-box"><label for="export_option">{L_EXPORT_FOLDER}: <select name="export_option" id="export_option"><option value="CSV">{L_EXPORT_AS_CSV}</option><option value="CSV_EXCEL">{L_EXPORT_AS_CSV_EXCEL}</option><option value="XML">{L_EXPORT_AS_XML}</option></select></label> <input class="button2" type="submit" name="submit_export" value="{L_GO}" /><br /></div>
-                    <select name="mark_option">{S_MARK_OPTIONS}{S_MOVE_MARKED_OPTIONS}</select> <input class="button2" type="submit" name="submit_mark" value="{L_GO}" />
-                    <div><a href="#" onclick="marklist('viewfolder', 'marked_msg', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('viewfolder', 'marked_msg', false); return false;">{L_UNMARK_ALL}</a></div>
+                <fieldset class="submit-buttons">
+                    <input type="hidden" name="export_option" value="CSV" />
+                    <input class="button1" type="submit" name="submit_export" value="{L_EXPORT_FOLDER}" />&nbsp;
+                    <input class="button2" type="reset" value="Reset" name="reset" />&nbsp;
+                    {S_FORM_TOKEN}
                 </fieldset>
+                </form>
             </div>
-        </div>
-        <!-- ENDIF -->
-
-        <!-- IF FOLDER_CUR_MESSAGES neq 0 -->
-        <div class="usercp-component group">
-            <aside class="gutter"></aside>
-            <div class="core">
-                <fieldset class="display-options">
-                    <!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a><!-- ENDIF -->
-                    <!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
-                    <label>{L_DISPLAY}: {S_SELECT_SORT_DAYS}</label>
-                    <label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label>
-                    <label>{S_SELECT_SORT_DIR} <input type="submit" name="sort" value="{L_GO}" class="button2" /></label>
+<!-- ELSE -->
+            <!-- IF .messagerow -->
+            <div class="discussions-list forum-section-content usercp-component-plain">
+                <table class="no-top-border">
+                    <!-- BEGIN messagerow -->
+                    <tr class="discussions-list-row">
+                        <td class="discussion-avatar" data-tooltip="Message from {messagerow.MESSAGE_AUTHOR}."><a class="avatar" href="{messagerow.MESSAGE_AUTHOR_LINK}"><img src="{messagerow.MESSAGE_AUTHOR_AVATAR_URL}" /></a></td>
+                        <td class="discussion-subject">
+                            <!-- IF messagerow.S_PM_DELETED -->
+                            <a href="{messagerow.U_REMOVE_PM}" class="topic-title">{L_DELETE_MESSAGE}</a>
+                            <span class="message-info">from {L_MESSAGE_REMOVED_FROM_OUTBOX}</span>
+                            <!-- ELSE -->
+                            <a href="{messagerow.U_VIEW_PM}" class="topic-title"><!-- IF messagerow.S_PM_UNREAD --><b><!-- ENDIF -->{messagerow.SUBJECT}<!-- IF messagerow.S_PM_UNREAD --><b><!-- ENDIF --></a>
+                            <!-- IF messagerow.S_AUTHOR_DELETED -->
+                            <span class="message-info">{L_PM_FROM_REMOVED_AUTHOR}</span>
+                            <!-- ELSE -->
+                            <span class="message-info">from {messagerow.MESSAGE_AUTHOR_FULL}</span>
+                            <!-- ENDIF -->
+                            <!-- ENDIF -->
+                        </td>
+                        <td class="discussion-fancy-time" data-tooltip="{messagerow.SENT_TIME}">{messagerow.SENT_TIME_REL}</td>
+                        <td class="discussion-mark">
+                            <label for="message_{messagerow.MESSAGE_ID}"><input id="message_{messagerow.MESSAGE_ID}" type="checkbox" name="marked_msg_id[]" value="{messagerow.MESSAGE_ID}" /></label>
+                        </td>
+                    </tr>
+                    <!-- END messagerow -->
+                </table>
+            </div>
+            <!-- ELSE -->
+            <div class="usercp-component usercp-notice">
+                <!-- IF S_COMPOSE_PM_VIEW and S_NO_AUTH_SEND_MESSAGE -->
+                    <p class="error-generic"><!-- IF S_USER_NEW -->{L_USER_NEW_PERMISSION_DISALLOWED}<!-- ELSE -->{L_NO_AUTH_SEND_MESSAGE}<!-- ENDIF --></p>
+                <!-- ELSE -->
+                    <p class="error-generic">This folder does not presently have any messages to view.</p>
+                <!-- ENDIF -->
+            </div>
+            <!-- ENDIF -->
+            <!-- IF FOLDER_CUR_MESSAGES neq 0 -->
+            <div class="usercp-component usercp-controls group">
+                <section>
+                    <dl class="auto has-action-button">
+                        <dt><label for="export_option">{L_EXPORT_FOLDER}</label></dt>
+                        <dd>
+                            <select name="export_option" id="export_option"><option value="CSV">{L_EXPORT_AS_CSV}</option><option value="CSV_EXCEL">{L_EXPORT_AS_CSV_EXCEL}</option><option value="XML">{L_EXPORT_AS_XML}</option></select>
+                            <input class="button-generic" type="submit" name="submit_export" value="{L_GO}" />
+                        </dd>
+                </section>
+                <section>
+                    <dl class="auto has-action-button">
+                        <dt><label name="mark_option">Actions</label></dt>
+                        <dd>
+                            <select name="mark_option">{S_MARK_OPTIONS}{S_MOVE_MARKED_OPTIONS}</select>
+                            <input class="button-generic" type="submit" name="submit_mark" value="{L_GO}" />
+                        </dd>
+                    </dl>
+                </section>
+                <a href="#" onclick="marklist('viewfolder', 'marked_msg', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('viewfolder', 'marked_msg', false); return false;">{L_UNMARK_ALL}</a>
+            </div>
+            <div class="usercp-component group">
+                <section class="columns">
+                    <!-- IF PREVIOUS_PAGE and false --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a><!-- ENDIF -->
+                    <!-- IF NEXT_PAGE and false --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
+                    <dl class="auto">
+                        <dt><label for="st">{L_DISPLAY}:</label></dt>
+                        <dd>{S_SELECT_SORT_DAYS}</dd>
+                    </dl>
+                    <dl class="auto has-action-button">
+                        <dt><label for="sk">{L_SORT_BY}</label></dt>
+                        <dd>{S_SELECT_SORT_KEY}{S_SELECT_SORT_DIR}<input type="submit" name="sort" value="{L_GO}" class="button-generic" /></dd>
+                    </dl>
                     <input type="hidden" name="cur_folder_id" value="{CUR_FOLDER_ID}" />
-                </fieldset>
+                </section>
             </div>
-        </div>
+            <!-- ENDIF -->
         <!-- ENDIF -->
-<!-- ENDIF -->
+        </section>
 <!-- INCLUDE ucp_pm_footer.html -->

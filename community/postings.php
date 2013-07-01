@@ -1589,7 +1589,7 @@ if($mode == 'post') {
     
         $template->assign_block_vars('category_filters', array(
             'FILTER_NAME'        => $row['forum_name'],
-            'FILTER_ICON'        => $phpbb_root_path . '../' . $eos_config['filter_icon_path'] . $row['icon'],
+            'FILTER_NAME_CLEAN'	 => strtolower(str_replace(" ", "-", $row['forum_name'])),
             'FORUM_ID'           => $row['forum_id'],
             'SELECTED'           => ($row['forum_id'] == $forum_id) || (($forum_id == $parent_id) && ($row['is_default'] != 0)),
             'POSTS_ARTICLES'     => $row['posts_articles']

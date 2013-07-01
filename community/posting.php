@@ -31,13 +31,18 @@ $auth->acl($user->data);
 $post_id	= request_var('p', 0);
 $topic_id	= request_var('t', 0);
 
-// [DMMO] A form in the HTML changes the forum_id based on user seletion, since it
+// [DMMO] NOTE: An HTML form changes the forum_id based on user seletion, since it
 //        is anticipated that the incoming forum_id is that of a category, which
 //        cannot be posted to. request_var then works here because it checks for
 //        POST first (as opposed to GET).
 $forum_id	= request_var('f', 0);
 $draft_id	= request_var('d', 0);
 $lastclick	= request_var('lastclick', 0);
+
+// ---------- BEGIN [DMMO] EOS MODIFICATION ----------
+$article_thumbnail = request_var('article_thumbnail', '', true);
+$article_preview = request_var('article_preview', '', true);
+// ---------- END [DMMO] EOS MODIFICATION ------------
 
 $submit		= (isset($_POST['post'])) ? true : false;
 $preview	= (isset($_POST['preview'])) ? true : false;
@@ -1167,6 +1172,11 @@ if ($submit || $preview || $refresh)
 
 				'topic_approved'		=> (isset($post_data['topic_approved'])) ? $post_data['topic_approved'] : false,
 				'post_approved'			=> (isset($post_data['post_approved'])) ? $post_data['post_approved'] : false,
+                
+                // ---------- BEGIN [DMMO] EOS FILTERS MODIFICATION ----------
+                'article_thumbnail'     => $article_thumbnail,
+                'article_preview'       => $article_preview
+                // ---------- END [DMMO] EOS FILTERS MODIFICATION ------------
 			);
 
 			if ($mode == 'edit')
@@ -1177,7 +1187,7 @@ if ($submit || $preview || $refresh)
 
 			// The last parameter tells submit_post if search indexer has to be run
 			$redirect_url = submit_post($mode, $post_data['post_subject'], $post_data['username'], $post_data['topic_type'], $poll, $data, $update_message, ($update_message || $update_subject) ? true : false);
-
+            
 			if ($config['enable_post_confirm'] && !$user->data['is_registered'] && (isset($captcha) && $captcha->is_solved() === true) && ($mode == 'post' || $mode == 'reply' || $mode == 'quote'))
 			{
 				$captcha->reset();
@@ -1199,7 +1209,7 @@ if ($submit || $preview || $refresh)
 			}
 
 			$message .= '<br /><br />' . sprintf($user->lang['RETURN_FORUM'], '<a href="' . append_sid("{$phpbb_root_path}viewforum.$phpEx", 'f=' . $data['forum_id']) . '">', '</a>');
-			trigger_error($message);
+			//trigger_error($message);
 		}
 	}
 }
@@ -1396,7 +1406,7 @@ $notify_set			= ($mode != 'edit' && $config['allow_topic_notify'] && $user->data
 $notify_checked		= (isset($notify)) ? $notify : (($mode == 'post') ? $user->data['user_notify'] : $notify_set);
 
 // Page title & action URL
-$s_action = append_sid("{$phpbb_root_path}posting.$phpEx", "mode=$mode&amp;f=$forum_id");
+$s_action = append_sid("{$phpbb_root_path}postings.$phpEx", "mode=$mode&amp;f=$forum_id");
 $s_action .= ($topic_id) ? "&amp;t=$topic_id" : '';
 $s_action .= ($post_id) ? "&amp;p=$post_id" : '';
 
@@ -1458,7 +1468,7 @@ add_form_key('posting');
 
 // For the purpose of deciding what the forum abbreviation is, query
 // for said abbreviation from the discussion_filters table.
-$sql = 'SELECT * FROM phpbb_discussion_filters WHERE forum_id = ' . $parent_id;
+$sql = 'SELECT abbr FROM ' . $eos_config['filters_table'] . ' WHERE forum_id = ' . $parent_id;
 $result = $db->sql_query($sql);
 $result = $db->sql_fetchrow($result);
 
@@ -1568,8 +1578,8 @@ if($mode == 'post') {
         list($active_forum_ary) = display_forums($forum_data, $config['load_moderators'], $config['load_moderators']);
     }
 
-    $sql = 'SELECT DISTINCT f.forum_id, f.forum_name, df.icon, df.is_default
-            FROM ' . FORUMS_TABLE . ' f, phpbb_discussion_filters df
+    $sql = 'SELECT DISTINCT f.forum_id, f.forum_name, df.icon, df.is_default, df.posts_articles
+            FROM ' . FORUMS_TABLE . ' f, ' . $eos_config['filters_table'] . ' df
             WHERE ' . $db->sql_in_set('df.forum_id', $active_forum_ary['forum_id']) .
             'AND f.forum_id = df.forum_id';
     $result = $db->sql_query($sql);
@@ -1579,15 +1589,20 @@ if($mode == 'post') {
     
         $template->assign_block_vars('category_filters', array(
             'FILTER_NAME'        => $row['forum_name'],
-            'FILTER_ICON'        => $phpbb_root_path . '../' . $eos_config['filter_icon_path'] . $row['icon'],
+            'FILTER_NAME_CLEAN'	 => strtolower(str_replace(" ", "-", $row['forum_name'])),
             'FORUM_ID'           => $row['forum_id'],
-            'SELECTED'           => ($row['forum_id'] == $forum_id) || (($forum_id == $parent_id) && ($row['is_default'] != 0))
+            'SELECTED'           => ($row['forum_id'] == $forum_id) || (($forum_id == $parent_id) && ($row['is_default'] != 0)),
+            'POSTS_ARTICLES'     => $row['posts_articles']
         ));
+        
+        // If the filter for our forum_id posts articles, make a note of it.
+        $forum_id_posts_articles = ($row['forum_id'] == $forum_id && $row['posts_articles']) ? true : false;
     } 
     
     $template->assign_vars(array(
         'S_DISPLAY_FILTER_CHOICE'   => true,
-        'CATEGORY_ID'               => $post_data['forum_id']
+        'CATEGORY_ID'               => $post_data['forum_id'],
+        'FORUM_ID_POSTS_ARTICLES'   => $forum_id_posts_articles
     ));
 }
 /* END [DMMO] EOS FILTERS MODIFICATION ------------ */
@@ -1630,7 +1645,6 @@ $template->assign_vars(array(
 
 // Output page ...
 page_header($page_title, false);
-
 $template->set_filenames(array(
 	'body' => 'posting_body.html')
 );

@@ -25,21 +25,61 @@
     // forum module to describe the behavior  
     // for the content of that module.       
     // --------------------------------------------------------------------------------
-    .forum-section { width: $page-width-fluid; min-width: $page-width; margin: 10px auto 15px auto; }
+    .forum-section { width: $page-width-fluid; min-width: $page-width; margin: 0 auto 15px auto; }
     html.fixed-width .forum-section { width: $page-width; }
-    .forum-section-content { width: 100%; margin: 6px auto 0 auto; }
+    .forum-section-content { width: 100%; margin: 10px auto 0 auto; }
     
     // Forum Section Pre
     // --------------------------------------------------------------------------------
     .forum-section-pre { width: 100%; margin: 0 auto 16px auto; position: relative; }
     
     /* Discussion */
-    .forum-section-pre .discussion-info { position: absolute; bottom: 0; left: 0; }
-    .forum-section-pre .discussion-info h3 { font-size: 22px; }
+    .forum-section-pre .discussion-info { padding-bottom: 12px; float: left; }
     .forum-section-pre .breadcrumb { margin-top: 1px; position: relative; bottom: -4px; }
     .forum-section-pre .discussions-mode-toggle { float: right; }
     .forum-section-pre .discussions-filter-menu { float: right; }
      
+    // Filter Select Menu
+    // --------------------------------------------------------------------------------
+    .discussions-filter-chooser { float: right; }
+
+    .discussions-filter-chooser-controls { @include opacity(0); position: absolute; padding: 30px 30px 30px 200px; right: -30px; bottom: 0; @include transition(all, 0.25s, ease); }
+    .discussions-filter-chooser:hover .discussions-filter-chooser-controls { @include opacity(1); bottom: 7px; }
+    .filter-chooser-control { height: 23px; background-repeat: no-repeat; background-position: 100% 0; display: inline-block; margin-left: 10px; padding-right: 30px; line-height: 23px; font-size: 13px; }
+    .filter-chooser-control:hover { background-position: 100% -23px; }
+    .submit-filter-choices { background-image: url($path-layout + 'discussions-filter-chooser-submit.png'); }
+    .reset-filter-choices { background-image: url($path-layout + 'discussions-filter-chooser-reset.png'); }
+
+    .discussions-filter-list { position: absolute; right: 0; bottom: 0; }
+    .discussions-filter-list li { float: left; margin-left: 10px; }
+    .discussions-filter-list li.selected { margin-left: 8px; }
+
+    .discussion-filter-select-button { height: 30px; background-color: #F0F0F0; background-repeat: no-repeat; background-position: 8px 50%; padding: 0 8px 0 34px; border: 1px solid #D8D8D8; border-radius: 4px; line-height: 30px; @include user-select(none); }
+    .discussion-filter-select-button:hover { cursor: pointer; @include opacity(0.7); }
+    .discussion-filter-select-button.selected { padding-left: 34px; padding-right: 6px; border-width: 3px; line-height: 26px; }
+
+        /* Filtered styling */
+        .discussion-filter-general.selected { border-color: #75AE2C; }
+        .discussion-filter-news.selected { border-color: #7F0000; }
+        .discussion-filter-games-and-puzzles.selected { border-color: #1379C0; }
+        .discussion-filter-role-playing-games.selected { border-color: #700505; }
+        .discussion-filter-entertainment.selected { border-color: #7610A0; }
+        .discussion-filter-items.selected { border-color: #CA7C00; }
+        .discussion-filter-guides.selected { border-color: #AE0CB8; }
+        .discussion-filter-mini-games.selected { border-color: #143DC3; }
+        .discussion-filter-media.selected { border-color: #511093; }
+        .discussion-filter-test-realm.selected { border-color: #70230E; }
+        .discussion-filter-writers-at-heart.selected { border-color: #B1004B; }
+        .discussion-filter-walt-disney-world.selected { border-color: #C8541B; }
+        .discussion-filter-disneyland-and-california-adventure.selected { border-color: #6B108D; }
+        .discussion-filter-television-and-film.selected { border-color: #0E5A9A; }
+        .discussion-filter-virtual-magic-kingdom.selected { border-color: #8BB706; }
+        .discussion-filter-world-of-cars.selected { border-color: #C41C0B; }
+        .discussion-filter-avatars.selected { border-color: #0FA5B3; }
+        .discussion-filter-signatures.selected { border-color: #993804; }
+        .discussion-filter-polls.selected { border-color: #7613C3; }
+        .discussion-filter-contests.selected { border-color: #DBAA00; }
+
     // Forum Section Post
     // --------------------------------------------------------------------------------
     .forum-section-post { width: 100%; margin: 16px auto 0 auto; position: relative; }
@@ -50,14 +90,18 @@
     .forum-section-post .phpbb-quickmod-container { position: absolute; top: 4px; left: 0; }
         
     // Reusable Components
-    // --------------------------------------------------------------------------------      
+    // --------------------------------------------------------------------------------
+    .category-title { font-size: 24px; }
+    .discussion-title { font-size: 24px; }
+    .discussion-details { margin-top: 4px; color: #A2A2A2; font-size: 13px; line-height: 20px; }
+
     .editor-button { height: 16px; background-color: #f8f8f8; background-repeat: no-repeat; background-position: 12px 50%; display: block; padding: 13px 22px 9px 40px; @include rounded-border(1px, 4px, #d5d5d5); font-size: 16px; color: #686868; text-decoration: none; }
     .editor-button:hover { background-color: #c7d9e1; border-color: #b7ccd6;color: #686868; }
     .editor-button.manage-poll { background-image: url($path-layout + 'editor-manage-poll.png'); }
     .editor-button.manage-attachments { background-image: url($path-layout + 'editor-manage-attachments.png'); }
 
     /* discussions mode toggle */
-    .discussions-mode-toggle { padding-top: 22px; position: relative; }
+    .discussions-mode-toggle { position: relative; }
     .discussions-mode-toggle li { height: 19px; background-repeat: no-repeat; background-position: 0 0; display: block; float: left; margin-left: 15px; padding-left: 30px; color: #B3B3B3; line-height: 19px; }
     .discussions-mode-toggle li:hover { background-position: 0 100%; color: $font-color-primary-hover; cursor: pointer; }
 	.discussions-mode-toggle .compact-mode { background-image: url($path-layout + 'discussions-mode-compact.png'); }

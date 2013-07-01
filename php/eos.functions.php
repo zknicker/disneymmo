@@ -191,7 +191,7 @@ function constructArticlesArray($begin, $qty) {
 	// (1) Retrieve raw query result, and store in array.
 	$result = $db->sql_query($articles_sql);
 	while ($r = $db->sql_fetchrow($result))	{
-	
+
 		$posts[] = array(
 			'topic_id'			=>	$r['topic_id'],
 			'topic_time'		=>	$r['topic_time'],

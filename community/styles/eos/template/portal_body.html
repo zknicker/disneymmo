@@ -65,7 +65,7 @@
                 </tr>
                 <!-- BEGIN active_topics -->
 				<tr class="discussions-list-row">
-					<td class="discussion-icon"><div class="discussion-icon-general" style="background-image: url({active_topics.FILTER_ICON})" data-tooltip="{active_topics.FILTER_NAME}"></div></td>
+					<td class="discussion-icon"><div class="discussion-icon-general discussion-filter-{active_topics.FILTER_NAME_CLEAN}" style="background-image: url({active_topics.FILTER_ICON})" data-tooltip="{active_topics.FILTER_NAME}"></div></td>
 					<td class="discussion-subject"><a id="t-{active_topics.TOPIC_ID}" class="topic-title" href="{active_topics.TOPIC_LINK}">{active_topics.TOPIC_TITLE}</a><a href="{active_topics.TOPIC_LAST_REPLY_LINK}" class="topic-latest-reply clickable">Last Post</a><!-- IF active_topics.PAGINATION --><span class="per-pagination">{active_topics.PAGINATION}</span><!-- ENDIF --></td>
 					<td class="discussion-topic"><a href="{active_topics.CATEGORY_LINK}" class="tag-{active_topics.CATEGORY_ABBR}">{active_topics.CATEGORY}</a></td>
 					<td class="discussion-stats">

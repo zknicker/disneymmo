@@ -27,10 +27,19 @@
     
     // Sidebar Layout
     // --------------------------------------------------------------------------------
-    .full-sidebar {  }
-    .full-sidebar > aside { height: 100%; width: 420px; position: fixed; top: 0; left: 0; padding: 122px 30px 22px 5%; float: left; border-right: 1px solid #E4E4E4; @include box-shadow(8px 0 80px #FFF) }
-    .full-sidebar > section { margin-left: 420px; padding: 0 5% 22px 34px; }
-    .sidebar-item { padding-bottom: 25px; }
-    .sidebar-item .sidebar-title { padding-bottom: 10px; font-weight: bold; font-size: 24px; }
-    .sidebar-item .sidebar-subtext { color: #9E9E9E; line-height: 180%; }
-    
+    .full-sidebar { }
+    .full-sidebar > aside { height: 100%; width: 420px; position: fixed; top: 0; left: 0; padding: 122px 20px 22px 2%; float: left; border-right: 1px solid #E4E4E4; @include box-shadow(8px 0 80px #FFF) }
+    .full-sidebar > section { margin-left: 420px; padding: 0 2% 22px 34px; }
+    .full-sidebar .sidebar-item { padding-bottom: 25px; position: relative; }
+    .full-sidebar .sidebar-item.right-flush { right: -20px; }
+    .full-sidebar .sidebar-item .sidebar-title { padding-bottom: 10px; font-weight: bold; font-size: 24px; }
+    .full-sidebar .sidebar-item .sidebar-subtext { color: #7E7E7E; line-height: 180%; font-size: 13px; }
+
+    .sidebar-nav li { height: 33px; width: 100%; float: right; margin-bottom: 10px; }
+    .sidebar-nav li a { height: 33px; width: 100%; display: block; padding-right: 22px; line-height: 33px; text-align: right; font-size: 13px; }
+    .sidebar-nav li.selected a { background: url($path-layout + 'sidebar-nav-highlight.png') no-repeat 100% 50%; }
+    .sidebar-nav li a:hover { background: url($path-layout + 'sidebar-nav-highlight.png') no-repeat 100% 50%; }
+
+    .full-sidebar.smaller { }
+    .full-sidebar.smaller > aside { width: 340px; }
+    .full-sidebar.smaller > section { margin-left: 340px; }

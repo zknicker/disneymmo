@@ -10,14 +10,14 @@
  
     @import "resources/assets";
  
-    .forum-editor { padding: 14px 20px 20px 0; }
+    .forum-editor { padding: 14px 0 20px 0; }
  
     .edit-block { margin-bottom: 50px; }
     .edit-block.no-space { margin-bottom: 0; }
     .edit-title { padding-bottom: 9px; }
  
     /* Editor */
-    .editor-ckeditor { padding-top: 7px; }
+    .editor-ckeditor { min-height: 302px; padding-top: 7px; }
     .cke_skin_eos .cke_contents.focused { border-right-color: $theme-secondary; }
     
     /* Attachments */
@@ -42,17 +42,20 @@
     
     /* Filter Grid */
     .edit-filter-grid { position: relative; left: -20px; }
-    .edit-filter-grid li { width: 89px; margin: 0 1px 17px 0; float: left; text-align: center; color: #B2B2B2; line-height: 16px; }
-    .edit-filter-grid li:hover { cursor: pointer; }
-    .edit-filter-grid li div { height: 47px; width: 47px; background-color: #EAEAEA; background-repeat: no-repeat; background-position: 50% -94px; border: 1px solid #DBDBDB; margin: 0 auto 3px auto; }
-    .edit-filter-grid li:hover, .edit-filter-grid li.selected { color: $font-color-primary; }
-    .edit-filter-grid li:hover div, .edit-filter-grid li.selected div { background-position: 50% -47px; }
+    .edit-filter-grid li { height: 47px; width: 47px; background-color: #EAEAEA; background-repeat: no-repeat; background-position: 50% 50%; margin: 0 21px 42px 21px; position: relative; float: left; border: 1px solid #DBDBDB; border-radius: 4px; }
+    .edit-filter-grid li span { width: 80px; display: block; padding-top: 10px; position: absolute; bottom: -19px; left: -18px; text-align: center; color: #B2B2B2; }
+    .edit-filter-grid li:hover { cursor: pointer; @include opacity(0.7); }
+    .edit-filter-grid li:hover span, .edit-filter-grid li.selected span { color: $font-color-primary; }
+    .edit-filter-grid li.selected { border-width: 3px; }
+    .edit-filter-grid li.selected span { bottom: -21px; left: -20px; }
     .edit-filter-grid li:active { @include user-select(none); }
     
     .edit-articles-only { display: none; }
     .edit-articles-only.visible { display: block; }
     
-    
+    /* Controls */
+    .edit-block-controls { margin-bottom: 80px; overflow: hidden; }
+    .edit-block-controls button { float: left; margin-right: 10px; }
     
     
     

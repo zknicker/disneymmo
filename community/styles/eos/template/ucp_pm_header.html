@@ -1,46 +1,34 @@
 <!-- INCLUDE overall_header.html -->
+<div class="eos-container group">
     <!-- IF S_COMPOSE_PM -->
     <form id="postform" method="post" action="{S_POST_ACTION}"{S_FORM_ENCTYPE}>
     <!-- ELSEIF not PROMPT -->
     <form id="viewfolder" method="post" action="{S_PM_ACTION}">
     <!-- ENDIF -->
-    <div class="ui-content-section ui-navigated-content">
-        <div class="ui-content-top">
-            <div class="content-info">
-                <h2>Private Messaging</h2>
-                <!-- IF FOLDER_STATUS and FOLDER_MAX_MESSAGES neq 0 --><p>{FOLDER_STATUS}</p><!-- ENDIF -->
+    <div class="full-sidebar fix-scroll smaller">
+        <aside>
+            <div class="sidebar-item">
+                <h2 class="sidebar-title">Private Messaging</h2>
+                <p class="sidebar-subtext">Manage your private messages and compose new ones by using the navigation below and to the right.</p>
             </div>
-        </div>
-        <div class="ui-utilitybar-container">
-            <nav class="ui-utilitybar-nav group">
-                <dl class="nav-section">
-                    <dt class="nav-section-title">Message Folders</dt>
-                    <dd class="nav-section-items">
-                    <!-- BEGIN folder -->
-                    <!-- IF folder.S_FIRST_ROW -->
-                    <ul class="shorter">
-                    <!-- ENDIF -->
+            <div class="sidebar-item right-flush">
+                <nav class="sidebar-nav">
+                    <ul>
+                        <!-- BEGIN folder -->
+                        <!-- IF CUR_FOLDER_ID == folder.FOLDER_ID and not S_COMPOSE_PM -->
+                        <li class="selected">
+                        <!-- ELSE -->
                         <li>
-                            <a<!-- IF folder.FOLDER_ID == 0 --> data-icon="&#xe000;"<!-- ENDIF --><!-- IF folder.FOLDER_ID == -2 --> data-icon="&#xe002;"<!-- ENDIF --><!-- IF folder.FOLDER_ID == -1 --> data-icon="&#xe003;"<!-- ENDIF --><!-- IF folder.FOLDER_ID > 0 --> data-icon="&#xe001;"<!-- ENDIF --> href="{folder.U_FOLDER}">{folder.FOLDER_NAME}<!-- IF folder.UNREAD_MESSAGES > 0 --> ({folder.UNREAD_MESSAGES})<!-- ENDIF --></a>
+                        <!-- ENDIF -->
+                            <a href="{folder.U_FOLDER}">{folder.FOLDER_NAME}<!-- IF folder.UNREAD_MESSAGES > 0 --> ({folder.UNREAD_MESSAGES})<!-- ENDIF --></a>
                         </li>
-                    <!-- IF not folder.S_FIRST_ROW and (folder.S_ROW_COUNT + 1) % 4 == 0 -->
+                        <!-- END folder -->
+                        <li class="spacer"></li>
+                        <li<!-- IF S_COMPOSE_PM --> class="selected"<!-- ENDIF -->><a href="{U_POST_NEW_TOPIC}">Compose Message</a></li>
+                        <li><a href="{DMMO_U_PM_DRAFTS}">Manage Drafts</a></li>
+                        <li><a href="{DMMO_U_PM_OPTIONS}">Messaging Options</a></li>
                     </ul>
-                    <ul class="shorter">
-                    <!-- ENDIF -->
-                    <!-- IF folder.S_LAST_ROW -->
-                    </ul>
-                    <!-- ENDIF -->
-                    <!-- END folder -->
-                    </dd>
-                </dl>
-                <dl class="nav-section">
-                    <dt class="nav-section-title">Management</dt>
-                    <dd class="nav-section-items">
-                        <ul class="shorter">
-                            <li><a href="{U_POST_NEW_TOPIC}" data-icon="&#xe01c;">Compose Message</a></li>
-                            <li><a href="{DMMO_U_PM_DRAFTS}" data-icon="&#xe01d;">Manage Drafts</a></li>
-                            <li><a href="{DMMO_U_PM_OPTIONS}" data-icon="&#xe01e;">Messaging Options</a></li>
-                        </ul>
-                    </dd>
-                </dl>
-            </nav>
+                </nav>
+            </div>
+        </aside>
+        <section>

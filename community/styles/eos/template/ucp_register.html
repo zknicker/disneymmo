@@ -1,4 +1,4 @@
-<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE overall_header_core.html -->
 
 <script type="text/javascript">
 // <![CDATA[
@@ -18,96 +18,94 @@
 // ]]>
 </script>
 
-<form method="post" action="{S_UCP_ACTION}" id="register">
+<div class="register-container">
+	<div class="register-header">
+		<a href="{DMMO_NAV_HOME}"></a>
+	</div>
+	<section class="register-content-block">
+		<div class="inner-padding">
+		
+			<form method="post" action="{S_UCP_ACTION}" id="register">
 
-<div class="panel">
-	<div class="inner"><span class="corners-top"><span></span></span>
+				<!-- IF ERROR --><dl><dd class="error">{ERROR}</dd></dl><!-- ENDIF -->
+				<!-- IF L_REG_COND -->
+				<dl class="register-condition"><dd><strong>{L_REG_COND}</strong></dd></dl>
+				<!-- ENDIF -->
+				<section class="register-field-set group" data-instruction="{L_USERNAME_EXPLAIN}">
+					<dl>
+						<dt><label for="username">{L_USERNAME}:</label></dt>
+						<dd><input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" class="inputbox autowidth" title="{L_USERNAME}" /></dd>
+					</dl>
+				</section>
+				
+				<section class="register-field-set double group" data-instruction="{L_PASSWORD_EXPLAIN}">
+					<dl>
+						<dt><label for="new_password">{L_PASSWORD}:</label></dt>
+						<dd><input type="password" tabindex="2" name="new_password" id="new_password" size="25" value="{PASSWORD}" class="inputbox autowidth" title="{L_NEW_PASSWORD}" /></dd>
+					</dl>
+					<dl>
+						<dt><label for="password_confirm">{L_CONFIRM_PASSWORD}:</label></dt>
+						<dd><input type="password" tabindex="3" name="password_confirm" id="password_confirm" size="25" value="{PASSWORD_CONFIRM}" class="inputbox autowidth" title="{L_CONFIRM_PASSWORD}" /></dd>
+					</dl>
+				</section>
+				
+				<section class="register-field-set double group">
+					<dl>
+						<dt><label for="email">{L_EMAIL_ADDRESS}:</label></dt>
+						<dd><input type="text" tabindex="4" name="email" id="email" size="25" maxlength="100" value="{EMAIL}" class="inputbox autowidth" title="{L_EMAIL_ADDRESS}" /></dd>
+					</dl>
+					<dl>
+						<dt><label for="email_confirm">{L_CONFIRM_EMAIL}:</label></dt>
+						<dd><input type="text" tabindex="5" name="email_confirm" id="email_confirm" size="25" maxlength="100" value="{EMAIL_CONFIRM}" class="inputbox autowidth" title="{L_CONFIRM_EMAIL}" /></dd>
+					</dl>
+				</section>
 
-	<h2>{SITENAME} - {L_REGISTRATION}</h2>
+				<div style="display: none;">
+					<dl>
+						<dt><label for="lang">{L_LANGUAGE}:</label></dt>
+						<dd><select name="lang" id="lang" onchange="change_language(this.value); return false;" tabindex="6" title="{L_LANGUAGE}">{S_LANG_OPTIONS}</select></dd>
+					</dl>
+					<dl>
+						<dt><label for="tz">{L_TIMEZONE}:</label></dt>
+						<dd><select name="tz" id="tz" tabindex="7" class="autowidth">{S_TZ_OPTIONS}</select></dd>
+					</dl>
+				</div>
 
-	<fieldset class="fields2">
-	<!-- IF ERROR --><dl><dd class="error">{ERROR}</dd></dl><!-- ENDIF -->
-	<!-- IF L_REG_COND -->
-		<dl><dd><strong>{L_REG_COND}</strong></dd></dl>
-	<!-- ENDIF -->
-	<dl>
-		<dt><label for="username">{L_USERNAME}:</label><br /><span>{L_USERNAME_EXPLAIN}</span></dt>
-		<dd><input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" class="inputbox autowidth" title="{L_USERNAME}" /></dd>
-	</dl>
-	<dl>
-		<dt><label for="email">{L_EMAIL_ADDRESS}:</label></dt>
-		<dd><input type="text" tabindex="2" name="email" id="email" size="25" maxlength="100" value="{EMAIL}" class="inputbox autowidth" title="{L_EMAIL_ADDRESS}" /></dd>
-	</dl>
-	<dl>
-		<dt><label for="email_confirm">{L_CONFIRM_EMAIL}:</label></dt>
-		<dd><input type="text" tabindex="3" name="email_confirm" id="email_confirm" size="25" maxlength="100" value="{EMAIL_CONFIRM}" class="inputbox autowidth" title="{L_CONFIRM_EMAIL}" /></dd>
-	</dl>
-	<dl>
-		<dt><label for="new_password">{L_PASSWORD}:</label><br /><span>{L_PASSWORD_EXPLAIN}</span></dt>
-		<dd><input type="password" tabindex="4" name="new_password" id="new_password" size="25" value="{PASSWORD}" class="inputbox autowidth" title="{L_NEW_PASSWORD}" /></dd>
-	</dl>
-	<dl>
-		<dt><label for="password_confirm">{L_CONFIRM_PASSWORD}:</label></dt>
-		<dd><input type="password" tabindex="5" name="password_confirm" id="password_confirm" size="25" value="{PASSWORD_CONFIRM}" class="inputbox autowidth" title="{L_CONFIRM_PASSWORD}" /></dd>
-	</dl>
+				<!-- IF .profile_fields -->
+					<dl><dd><strong>{L_ITEMS_REQUIRED}</strong></dd></dl>
 
-	<hr />
+				<!-- BEGIN profile_fields -->
+				<section class="register-field-set group">
+					<dl>
+						<dt><label<!-- IF profile_fields.FIELD_ID --> for="{profile_fields.FIELD_ID}"<!-- ENDIF -->>{profile_fields.LANG_NAME}:<!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF --></label>
+						<!-- IF profile_fields.LANG_EXPLAIN --><br /><span>{profile_fields.LANG_EXPLAIN}</span><!-- ENDIF -->
+						<!-- IF profile_fields.ERROR --><br /><span class="error">{profile_fields.ERROR}</span><!-- ENDIF --></dt>
+						<dd>{profile_fields.FIELD}</dd>
+					</dl>
+				</section>
+				<!-- END profile_fields -->
+				<!-- ENDIF -->
 
-	<dl>
-		<dt><label for="lang">{L_LANGUAGE}:</label></dt>
-		<dd><select name="lang" id="lang" onchange="change_language(this.value); return false;" tabindex="6" title="{L_LANGUAGE}">{S_LANG_OPTIONS}</select></dd>
-	</dl>
-	<dl>
-		<dt><label for="tz">{L_TIMEZONE}:</label></dt>
-		<dd><select name="tz" id="tz" tabindex="7" class="autowidth">{S_TZ_OPTIONS}</select></dd>
-	</dl>
+				<!-- IF CAPTCHA_TEMPLATE -->
+					<!-- DEFINE $CAPTCHA_TAB_INDEX = 8 -->
+					<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+				<!-- ENDIF -->
 
-	<!-- IF .profile_fields -->
-		<dl><dd><strong>{L_ITEMS_REQUIRED}</strong></dd></dl>
+				<!-- IF S_COPPA -->
+				<h4>{L_COPPA_COMPLIANCE}</h4>
 
-	<!-- BEGIN profile_fields -->
-		<dl>
-			<dt><label<!-- IF profile_fields.FIELD_ID --> for="{profile_fields.FIELD_ID}"<!-- ENDIF -->>{profile_fields.LANG_NAME}:<!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF --></label>
-			<!-- IF profile_fields.LANG_EXPLAIN --><br /><span>{profile_fields.LANG_EXPLAIN}</span><!-- ENDIF -->
-			<!-- IF profile_fields.ERROR --><br /><span class="error">{profile_fields.ERROR}</span><!-- ENDIF --></dt>
-			<dd>{profile_fields.FIELD}</dd>
-		</dl>
-	<!-- END profile_fields -->
-	<!-- ENDIF -->
+				<p>{L_COPPA_EXPLAIN}</p>
+				<!-- ENDIF -->
+				<fieldset class="register-controls">
+					{S_HIDDEN_FIELDS}
+					<input type="submit" tabindex="9" name="submit" id="submit" value="{L_SUBMIT}" class="button-generic register" />
+					<input type="reset" value="{L_RESET}" name="reset" class="button-generic register" />
+					{S_FORM_TOKEN}
+				</fieldset>
+			</form>
 
-	</fieldset>
-	<span class="corners-bottom"><span></span></span></div>
+		</div>
+	</section>
 </div>
-<!-- IF CAPTCHA_TEMPLATE -->
-	<!-- DEFINE $CAPTCHA_TAB_INDEX = 8 -->
-	<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
-<!-- ENDIF -->
 
-<!-- IF S_COPPA -->
-
-
-<div class="panel">
-	<div class="inner"><span class="corners-top"><span></span></span>
-
-	<h4>{L_COPPA_COMPLIANCE}</h4>
-
-	<p>{L_COPPA_EXPLAIN}</p>
-	<span class="corners-bottom"><span></span></span></div>
-</div>
-<!-- ENDIF -->
-
-<div class="panel">
-	<div class="inner"><span class="corners-top"><span></span></span>
-
-	<fieldset class="submit-buttons">
-		{S_HIDDEN_FIELDS}
-		<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp;
-		<input type="submit" tabindex="9" name="submit" id="submit" value="{L_SUBMIT}" class="button1 default-submit-action" />
-		{S_FORM_TOKEN}
-	</fieldset>
-
-	<span class="corners-bottom"><span></span></span></div>
-</div>
-</form>
-
-<!-- INCLUDE overall_footer.html -->
+<!-- INCLUDE overall_footer_core.html -->

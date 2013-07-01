@@ -16,10 +16,10 @@ dmmo.discussionfilters = {
     configToggleClickEvents: function() {
         
         // Toggle invisible checkboxes and click of filter buttons.
-        $('.discussions-filter-block').click(function() {
+        $('.discussion-filter-select-button').click(function() {
 
             // Toggle class.
-            $(this).toggleClass('filtered');
+            $(this).toggleClass('selected');
             
             // Toggle checkbox.
             var li_id = $(this).attr('id');
@@ -33,10 +33,19 @@ dmmo.discussionfilters = {
     configResetClickEvents: function() {
     
         // Support resetting of filter choices when the reset form button is clicked.
-        $('.discussions-filter-menu-control button[type="reset"]').click(function() {
+        $('.reset-filter-choices').click(function() {
         
-            $(this).parent().siblings('input').attr('checked', false);
-            $(this).closest('.discussions-filter-form').submit();
+            $('input[name="efid[]"]').attr('checked', false);
+            $(this).closest('form').submit();
+        });
+    },
+    
+    configSubmitClickEvents: function() {
+    
+        // Support submitting form when submit button is clicked.
+        $('.submit-filter-choices').click(function() {
+        
+            $(this).closest('form').submit();
         });
     },
     
@@ -44,6 +53,7 @@ dmmo.discussionfilters = {
 		
         dmmo.discussionfilters.configToggleClickEvents();
         dmmo.discussionfilters.configResetClickEvents();
+        dmmo.discussionfilters.configSubmitClickEvents();
     }
 }
 

@@ -174,6 +174,9 @@ function view_message($id, $mode, $folder_id, $msg_id, $folder, $message_row)
 
 	$bbcode_status	= ($config['allow_bbcode'] && $config['auth_bbcode_pm'] && $auth->acl_get('u_pm_bbcode')) ? true : false;
 
+	// [DMMO] EOS Functions Include
+    include_once($phpbb_root_path . '../php/eos.functions.php');
+
 	$template->assign_vars(array(
 		'MESSAGE_AUTHOR_FULL'		=> get_username_string('full', $author_id, $user_info['username'], $user_info['user_colour'], $user_info['username']),
 		'MESSAGE_AUTHOR_COLOUR'		=> get_username_string('colour', $author_id, $user_info['username'], $user_info['user_colour'], $user_info['username']),
@@ -200,6 +203,9 @@ function view_message($id, $mode, $folder_id, $msg_id, $folder, $message_row)
 		'MINI_POST_IMG'		=> $user->img('icon_post_target', $user->lang['PM']),
 
 		'SENT_DATE'			=> ($view == 'print') ? $user->format_date($message_row['message_time'], false, true) : $user->format_date($message_row['message_time']),
+		// ---------- BEGIN [DMMO] EOS MODIFICATION ----------
+        'SENT_DATE_REL'     => getRelativeTime($message_row['message_time']),
+        // ---------- END [DMMO] EOS MODIFICATION ------------
 		'SUBJECT'			=> $message_row['message_subject'],
 		'MESSAGE'			=> $message,
 		'SIGNATURE'			=> ($message_row['enable_sig']) ? $signature : '',

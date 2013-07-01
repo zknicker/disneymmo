@@ -1,48 +1,75 @@
-                        <div id="editor-ckeditor">
-                            <textarea <!-- IF S_UCP_ACTION and not S_PRIVMSGS and not S_EDIT_DRAFT -->name="signature" id="signature" style="height: 9em;"<!-- ELSE -->name="message" id="message"<!-- ENDIF --> tabindex="4">{MESSAGE}{DRAFT_MESSAGE}{SIGNATURE}</textarea>
-                            <script src='../lib/ckeditor/ckeditor.js' type='text/javascript'></script>
-                            <script type="text/javascript">
-                            //<![CDATA[
+            <!-- All PM stuff from posting_editor has been moved to posting_pm_layout -->
+            <div class="<!-- IF S_PRIVMSGS -->anonymous <!-- ENDIF -->post-block reply">
+                <table>
+                    <tr>
+                        <td class="post-profile">
+                            <div class="post-profile-wrapper">
+                                <div class="avatar avatar-large">{DMMO_AVATAR}</div>
+                                <div class="user-info">
+                                    <div class="username">{DMMO_USERNAME_FULL}</div>
+                                    <p class="status">Member</p>
+                                    <div class="post-count" data-tooltip="You have {DMMO_POSTS} posts. Nice.">{DMMO_POSTS}</div>
+                                    <div class="credits-count" data-tooltip="You have earned 2000 credits. Just remember, a person should never neglect their good posting habits for credits.">2000</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="post-content">
+                            <div id="editor-ckeditor">
+                                <textarea <!-- IF S_UCP_ACTION and not S_PRIVMSGS and not S_EDIT_DRAFT -->name="signature" id="signature" style="height: 9em;"<!-- ELSE -->name="message" id="message"<!-- ENDIF --> tabindex="4">{MESSAGE}{DRAFT_MESSAGE}{SIGNATURE}</textarea>
+                                <script src='../lib/ckeditor/ckeditor.js' type='text/javascript'></script>
+                                <script type="text/javascript">
+                                //<![CDATA[
 
-                                CKEDITOR.replace( <!-- IF S_UCP_ACTION and not S_PRIVMSGS and not S_EDIT_DRAFT -->'signature'<!-- ELSE -->'message'<!-- ENDIF -->,
-                                {
-                                    skin: 'eos',
-                                    extraPlugins : 'bbcode',
-                                    removePlugins : 'bidi,button,contextmenu,dialogadvtab,div,filebrowser,flash,format,forms,horizontalrule,iframe,indent,justify,liststyle,menubutton,pagebreak,showborders,stylescombo,scayt,table,tabletools,templates',
+                                    CKEDITOR.replace( <!-- IF S_UCP_ACTION and not S_PRIVMSGS and not S_EDIT_DRAFT -->'signature'<!-- ELSE -->'message'<!-- ENDIF -->,
+                                    {
+                                        skin: 'eos',
+                                        extraPlugins : 'bbcode',
+                                        removePlugins : 'bidi,button,contextmenu,dialogadvtab,div,filebrowser,flash,format,forms,horizontalrule,iframe,indent,justify,liststyle,menubutton,pagebreak,showborders,stylescombo,scayt,table,tabletools,templates',
+                                        
+                                        // Bring back my spell checker!
+                                        disableNativeSpellChecker: false,
+                                        
+                                        // Width and height are not supported in the BBCode format, so object resizing is disabled.
+                                        disableObjectResizing : true,
                                     
-                                    // Bring back my spell checker!
-                                    disableNativeSpellChecker: false,
-                                    
-                                    // Width and height are not supported in the BBCode format, so object resizing is disabled.
-                                    disableObjectResizing : true,
-                                
-                                    toolbar :
-                                    [
-                                        ['Bold', 'Italic', 'Underline', 'TextColor', 'BulletedList', 'NumberedList', 'Image', 'Link', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'Smiley']
-                                    ],
-                                    
-                                    smiley_path: 'http://disneymmo.com/community/images/smilies/',
-                                    smiley_images: [<!-- BEGIN smilies_images -->'{smilies_images.SMILEY_REL_URL}',<!-- END smilies_images -->],
-                                    
-                                    smiley_descriptions: [<!-- BEGIN smilies_desc -->'{smilies_desc.SMILEY_CODE}',<!-- END smilies_desc -->],
-                                    
-                                    smiley_categories: [<!-- BEGIN smilies_cat -->"{smilies_cat.SMILEY_CAT}",<!-- END smilies_cat -->],
-                                    
-                                    smiley_map: {<!-- BEGIN smilies_desc -->"{smilies_desc.SMILEY_CODE}":"{smilies_desc.SMILEY_CODE}",<!-- END smilies_desc -->},
-                                    
-                                    resize_dir: 'vertical',
-                                    height: 250,
-                                    width: '100%',
-                                    toolbarCanCollapse: false,
-                                    basicEntities: false,
-                                    entities: false,
-                                    forceSimpleAmpersand: true,
-                            });
-                            CKEDITOR.instances.<!-- IF S_UCP_ACTION and not S_PRIVMSGS and not S_EDIT_DRAFT -->signature<!-- ELSE -->message<!-- ENDIF -->.on("instanceReady", function(e) {
-                                if(e.editor.document.getBody().getHtml().match(/<\/blockquote>$/i))
-                                    e.editor.document.getBody().setHtml(e.editor.document.getBody().getHtml()+"<br /><br />");
-                            });
+                                        toolbar :
+                                        [
+                                            ['Bold', 'Italic', 'Underline', 'TextColor', 'BulletedList', 'NumberedList', 'Image', 'Link', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'Smiley']
+                                        ],
+                                        
+                                        smiley_path: 'http://disneymmo.com/community/images/smilies/',
+                                        smiley_images: [<!-- BEGIN smilies_images -->'{smilies_images.SMILEY_REL_URL}',<!-- END smilies_images -->],
+                                        
+                                        smiley_descriptions: [<!-- BEGIN smilies_desc -->'{smilies_desc.SMILEY_CODE}',<!-- END smilies_desc -->],
+                                        
+                                        smiley_categories: [<!-- BEGIN smilies_cat -->"{smilies_cat.SMILEY_CAT}",<!-- END smilies_cat -->],
+                                        
+                                        smiley_map: {<!-- BEGIN smilies_desc -->"{smilies_desc.SMILEY_CODE}":"{smilies_desc.SMILEY_CODE}",<!-- END smilies_desc -->},
+                                        
+                                        resize_dir: 'vertical',
+                                        height: 250,
+                                        width: '100%',
+                                        toolbarCanCollapse: false,
+                                        basicEntities: false,
+                                        entities: false,
+                                        forceSimpleAmpersand: true,
+                                });
+                                CKEDITOR.instances.<!-- IF S_UCP_ACTION and not S_PRIVMSGS and not S_EDIT_DRAFT -->signature<!-- ELSE -->message<!-- ENDIF -->.on("instanceReady", function(e) {
+                                    if(e.editor.document.getBody().getHtml().match(/<\/blockquote>$/i))
+                                        e.editor.document.getBody().setHtml(e.editor.document.getBody().getHtml()+"<br /><br />");
+                                });
 
-                            //]]>
-                            </script>
-                        </div>
+                                //]]>
+                                </script>
+                            </div>
+                        </td>
+                        <td class="post-stamp"></td>
+                    </tr>
+                </table>
+                <!-- IF not S_SHOW_DRAFTS and not $SIG_EDIT eq 1 -->
+                <div class="post-controls group">
+                    {S_HIDDEN_ADDRESS_FIELD}
+                    {S_HIDDEN_FIELDS}
+                </div>
+                <!-- ENDIF -->
+            </div>

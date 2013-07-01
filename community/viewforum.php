@@ -175,7 +175,18 @@ while($dfrow = $db->sql_fetchrow($result)) {
         'category'  => $dfrow['category'],
         'icon_path' => $phpbb_root_path . '../' . $eos_config['filter_icon_path'] . $dfrow['icon']
     );
+
+    if($i == $forum_id) {
+
+    	$forum_abbr = $dfrow['abbr'];
+    }
 }
+
+// Assign the forum abbreviation variable. This is used to manage CSS themeing.
+// Decide the abbreviation for the current forum using the forum_id provided by this page.
+$template->assign_vars(array(
+    'DMMO_THEME_PREFIX'   => $forum_abbr 
+));
 
 // Retrieve filters for display at the top of a given category.
 // Note that we use the custom array 'forum_id_all' to loop through all of the
@@ -201,11 +212,13 @@ if($is_filter_category && sizeof($active_forum_ary)) {
         // This is known based on rather or not a category's forum is a member of the 'forum_id' array, aka
         // forum ids being used to display threads for the user, like mentioned earlier.
         $filter_active = in_array($fid, $active_forum_ary['forum_id']) ? true : false;
+        $filter_name = $filtered_forum_ary['forum_id_all_name'][$fid];
 
         $template->assign_block_vars('category_filters', array(
-            'FILTER_NAME'       => $filtered_forum_ary['forum_id_all_name'][$fid],
+            'FILTER_NAME'       => $filter_name,
+            'FILTER_NAME_CLEAN' => strtolower(str_replace(" ", "-", $filter_name)),
             'FILTER_ICON'       => $discussion_filters[$fid]['icon_path'],
-            'FILTER_CLASS'      => ($filter_active && $are_filtered) ? 'filtered'  : '',
+            'FILTER_CLASS'      => ($filter_active && $are_filtered) ? 'selected'  : '',
             'FILTER_CHECKED'    => ($filter_active && $are_filtered) ? 'checked="checked"' : '',
             'FORUM_ID'          => $fid
         ));
@@ -807,6 +820,7 @@ if (sizeof($topic_list))
             'LAST_POST_AUTHOR_LINK'     => append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=viewprofile&u=' . $row['user_id']), /* [DMMO] */
             'LAST_POST_AUTHOR_AVATAR'   => dmmo_get_user_avatar_path($row['user_avatar'], $row['user_avatar_type']), /* [DMMO] */
             'FILTER_NAME'               => $row['forum_name'],
+            'FILTER_NAME_CLEAN'         => strtolower(str_replace(" ", "-", $row['forum_name'])),
             'FILTER_ICON'               => $discussion_filters[$topic_forum_id]['icon_path'],
             // ---------- END [DMMO] EOS FILTERS MODIFICATION ------------
 

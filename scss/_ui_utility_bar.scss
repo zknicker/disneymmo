@@ -49,20 +49,22 @@
     /* The stuff */
     .ui-utilitybar-actions .utility-navigation { float: left; }
     .ui-utilitybar-actions .utility-action-button { float: left; }
-    .ui-utilitybar-actions .utility-search-field { float: left; }
+    .ui-utilitybar-actions .utility-search { float: left; }
     .ui-utilitybar-actions .utility-pagination { float: right; }
 
         /* Buttons */
-        .ui-utilitybar-actions .button-generic { float: left; }
+        .ui-utilitybar-actions .button-generic { float: left; margin-left: 8px; }
+        .ui-utilitybar-actions .button-generic:first-child { margin-left: 0; }
         
         /* Search */
         .ui-utilitybar-actions .utility-search { float: left; margin-left: 1px; }
+        .ui-utilitybar-actions .utility-search:first-child { margin-left: 0; }
 
         /* Pagination */
         .utility-pagination { }
-        .utility-pagination .pagination-jump { height: $utility-height; background-color: #3D474C; display: block; float: left; margin-left: 1px; padding: 0 8px; line-height: $utility-height; color: #C1C6C9; font-size: 11px; }
-        .utility-pagination .pagination-jump:hover { background-color: $theme-secondary; color: #F2F2F2; }
-        .utility-pagination .pagination-jump:active { background-color: $theme-secondary; }Ï
+        .utility-pagination .pagination-jump { height: $utility-height; background-color: transparent; display: block; float: left; margin-left: 1px; padding: 0 13px; line-height: $utility-height; font-size: 11px; }
+        .utility-pagination .pagination-jump:hover { background-color: $theme-secondary; color: #FFF; }
+        .utility-pagination .pagination-jump:active { background-color: $theme-secondary; }
         .utility-pagination ul { overflow: hidden; float: left; }
         .utility-pagination li { margin-left: 1px; float: left; }
         .utility-pagination li a { height: $utility-height; display: block; padding: 0 13px; line-height: $utility-height; @include transition-duration(0s); }

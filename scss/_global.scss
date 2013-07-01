@@ -15,7 +15,7 @@
 	html { background-color: $bg-global-color; overflow-y: scroll; overflow-x: hidden; }
 	body { margin: 0; padding: 0; position: relative; font-size: 12px; color: $font-color-primary; font-family: $font-family-primary; }
     
-	.eos-container { margin: 12px auto 0 auto; position: relative; z-index: $z-index-page-contents; }
+	.eos-container { margin: 22px auto 0 auto; position: relative; z-index: $z-index-page-contents; }
     .eos-container-whitespace { margin: 30px auto 0 auto; position: relative; z-index: $z-index-page-contents; }
     
   	// Global Styles
@@ -36,7 +36,10 @@
     
     /* links */
     a { color: $font-color-contrast; text-decoration: none; @include transition(color, .25s, ease); }
-    a:hover { color: $font-color-contrast-hover; }
+    a:hover { color: $font-color-contrast-hover; @include transition-duration(0s); }
+
+    /* status tags */
+    .permissions-warning { color: #CA0000; font-weight: bold; }
     
     /* input */
     textarea, input, select { outline: none; font-family: $font-family-primary; }
@@ -59,17 +62,17 @@
     .button-generic { height: 38px; background-color: $font-color-contrast; display: block; padding: 0 18px; color: #FFF; line-height: 38px; font-size: 13px; border-width: 0 3px 0 0; border-style: solid; border-color: darken($font-color-contrast, 20%); @include transition(all, .25s, ease); cursor: pointer; }
     .button-generic:hover { background-color: darken($font-color-contrast, 20%); border-color: darken($font-color-contrast, 40%); color: #FFF; @include transition-duration(0s); }
     .button-generic:active { background-color: $font-color-contrast; border-color: darken($font-color-contrast, 20%); }
-    .button-generic.hot { background-color: #FF0000; border-color: darken(#FF0000, 20%); }
-    .button-generic.hot:hover { background-color: darken(#FF0000, 20%); border-color: darken(#FF0000, 40%); }
-    .button-generic.hot:active { background-color: #FF0000; border-color: darken(#FF0000, 20%); }
+    .button-generic.hot { background-color: #C40000; border-color: darken(#FF0000, 20%); }
+    .button-generic.hot:hover { background-color: darken(#C40000, 20%); border-color: darken(#C40000, 40%); }
+    .button-generic.hot:active { background-color: #C40000; border-color: darken(#C40000, 20%); }
 
     /* select */
     select { background: #FBFBFB url($path-layout + 'select-drop-arrow.png') no-repeat 100% 50%; margin: 0; padding: 8px 39px 10px 6px; border-width: 1px 3px 1px 1px; border-style: solid; border-color: #DDD #CCC #DDD #DDD; color: #686868; @include appearance(none); font-size: 13px; cursor: pointer; }
     select:focus { border-right-color: $font-color-contrast; }
     
     /* field row (an organized arrangement of form fields) */
-    .field-row { width: 602px; overflow: hidden; }
-    .field-row dl { margin: 0 14px 10px 0; float: left; overflow: hidden; }
+    .field-row { width: 602px; }
+    .field-row dl { margin: 0 14px 10px 0; float: left; }
     .field-row label { font-size: 11px; line-height: 26px; text-transform: uppercase; cursor: pointer; }
     .field-row label[data-tooltip]:after { background-color: #AAA; content: '?'; display: inline-block; margin-left: 5px; padding: 1px 5px; color: #FFF; line-height: 12px; text-align: center; font-size: 8px; @include rounded-border(0, 14px, $font-color-primary); }
     .field-row dl input,
@@ -117,7 +120,53 @@
 
     /* table */
     table, tbody, thead, tr, td { @include box-sizing(content-box); }
+
+    /* error */
+    .error-generic { min-height: 34px; background: url($path-icons + 'generic-error.png') no-repeat 0 0; padding-left: 54px; font-size: 13px; line-height: 180%; }
     
+    // Discussion Filters
+    // --------------------------------------------------------------------------------
+    .discussion-filter-general { background-image: url($path-filters + 'general.png'); }
+    .discussion-filter-general.mini { background-image: url($path-filters + 'general-mini.png'); }
+    .discussion-filter-news { background-image: url($path-filters + 'news.png'); }
+    .discussion-filter-news.mini { background-image: url($path-filters + 'news-mini.png'); }
+    .discussion-filter-games-and-puzzles { background-image: url($path-filters + 'games-and-puzzles.png'); }
+    .discussion-filter-games-and-puzzles.mini { background-image: url($path-filters + 'games-and-puzzles-mini.png'); }
+    .discussion-filter-role-playing-games { background-image: url($path-filters + 'role-playing.png'); }
+    .discussion-filter-role-playing-games.mini { background-image: url($path-filters + 'role-playing-mini.png'); }
+    .discussion-filter-entertainment { background-image: url($path-filters + 'entertainment.png'); }
+    .discussion-filter-entertainment.mini { background-image: url($path-filters + 'entertainment-mini.png'); }
+    .discussion-filter-items { background-image: url($path-filters + 'items.png'); }
+    .discussion-filter-items.mini { background-image: url($path-filters + 'items-mini.png'); }
+    .discussion-filter-guides { background-image: url($path-filters + 'guides.png'); }
+    .discussion-filter-guides.mini { background-image: url($path-filters + 'guides-mini.png'); }
+    .discussion-filter-mini-games { background-image: url($path-filters + 'mini-games.png'); }
+    .discussion-filter-mini-games.mini { background-image: url($path-filters + 'mini-games-mini.png'); }
+    .discussion-filter-media { background-image: url($path-filters + 'media.png'); }
+    .discussion-filter-media.mini { background-image: url($path-filters + 'media-mini.png'); }
+    .discussion-filter-test-realm { background-image: url($path-filters + 'test-realm.png'); }
+    .discussion-filter-test-realm.mini { background-image: url($path-filters + 'test-realm-mini.png'); }
+    .discussion-filter-writers-at-heart { background-image: url($path-filters + 'writers-at-heart.png'); }
+    .discussion-filter-writers-at-heart.mini { background-image: url($path-filters + 'writers-at-heart-mini.png'); }
+    .discussion-filter-walt-disney-world { background-image: url($path-filters + 'wdw.png'); }
+    .discussion-filter-walt-disney-world.mini { background-image: url($path-filters + 'wdw-mini.png'); }
+    .discussion-filter-disneyland-and-california-adventure { background-image: url($path-filters + 'dca.png'); }
+    .discussion-filter-disneyland-and-california-adventure.mini { background-image: url($path-filters + 'dca-mini.png'); }
+    .discussion-filter-television-and-film { background-image: url($path-filters + 'television-and-film.png'); }
+    .discussion-filter-television-and-film.mini { background-image: url($path-filters + 'television-and-film-mini.png'); }
+    .discussion-filter-virtual-magic-kingdom { background-image: url($path-filters + 'virtual-magic-kingdom.png'); }
+    .discussion-filter-virtual-magic-kingdom.mini { background-image: url($path-filters + 'virtual-magic-kingdom-mini.png'); }
+    .discussion-filter-world-of-cars { background-image: url($path-filters + 'world-of-cars.png'); }
+    .discussion-filter-world-of-cars.mini { background-image: url($path-filters + 'world-of-cars-mini.png'); }
+    .discussion-filter-avatars { background-image: url($path-filters + 'avatars.png'); }
+    .discussion-filter-avatars.mini { background-image: url($path-filters + 'avatars-mini.png'); }
+    .discussion-filter-signatures { background-image: url($path-filters + 'signatures.png'); }
+    .discussion-filter-signatures.mini { background-image: url($path-filters + 'signatures-mini.png'); }
+    .discussion-filter-contests { background-image: url($path-filters + 'contests.png'); }
+    .discussion-filter-contests.mini { background-image: url($path-filters + 'contests-mini.png'); }
+    .discussion-filter-polls { background-image: url($path-filters + 'polls.png'); }
+    .discussion-filter-polls.mini { background-image: url($path-filters + 'polls-mini.png'); }
+
 	// Textual Fonts
     // --------------------------------------------------------------------------------
 	@font-face {
@@ -173,7 +222,7 @@
     
     // Breadcrumb
     // --------------------------------------------------------------------------------
-    .breadcrumb { }
+    .breadcrumb { overflow: hidden; }
     .breadcrumb li { float: left; }
     .breadcrumb li:first-child .crumb { padding-left: 0; background-image: none; }
     
@@ -257,7 +306,7 @@
     .global-profile .user-logout { background-image: url($path-icons + 'header-profile-logout.png'); }
     
     /* Authentication Buttons */
-    .global-profile-auth-button { background: #00060C; padding: 10px 20px; margin: 0 0 0 12px; position: relative; top: 14px; border: 1px solid #112735; border-radius: 4px; box-shadow: rgba(21, 145, 197, 0.08) 0px 0px 30px; }
+    .global-profile-auth-button { background: #00060C; padding: 10px 20px; margin: 0 0 0 12px; position: relative; top: 14px; border: 1px solid #1A3749; border-radius: 4px; box-shadow: rgba(21, 145, 197, 0.08) 0px 0px 30px; }
     .global-profile-auth-button:hover { background-color: #FFF; }
 
 	// Notifications

@@ -112,6 +112,7 @@ foreach($topics_json as $topic) {
         'TOPIC_LINK'            => $topic->U_VIEW_TOPIC . '&style=' . $user->theme['style_id'],
         'TOPIC_LAST_REPLY_LINK' => $topic->U_LAST_POST,
         'FILTER_NAME'           => $topic->FORUM_TITLE,
+        'FILTER_NAME_CLEAN'     => strtolower(str_replace(" ", "-", $topic->FORUM_TITLE)),
         'FILTER_ICON'           => $discussion_filters[$topic->FORUM_ID]['icon_path'],
         'CATEGORY'              => $discussion_filters[$topic->FORUM_ID]['category'],
         'CATEGORY_ABBR'         => $discussion_filters[$topic->FORUM_ID]['abbr'],

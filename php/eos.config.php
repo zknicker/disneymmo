@@ -27,7 +27,7 @@ $eos_config = array(
     "website_name"                  =>  'disneymmo',
 
     /* dirs */
-    "public_root"                   =>  'http://' + $server_name + '/',
+    "public_root"                   =>  'http://' . $server_name . '/',
     "server_root"                   =>  $server_root,
     "previews_dir"                  =>  $server_root . '/images/previews/',
     "profile_customizations_dir"    =>  $server_root . '/images/profiles/customizations',

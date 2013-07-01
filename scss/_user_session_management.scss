@@ -17,10 +17,10 @@
     // --------------------------------------------------------------------------------
     .usm-background         { }
     
-        .cp.usm-background      { @include background-gradient(#1596CC 50%, #0C6BE3, left); }
-        .ph.usm-background      { @include background-gradient(#519614 50%, #305B0B, left); }
-        .po.usm-background      { @include background-gradient(#623426 50%, #4F2114, left); }
-        .tt.usm-background      { @include background-gradient(#B28926 50%, #7F5F12, left); }
+        .cp.usm-background      { @include background-gradient(#1596CC, #0C6BE3, left); }
+        .ph.usm-background      { @include background-gradient(#519614, #305B0B, left); }
+        .po.usm-background      { @include background-gradient(#623426, #4F2114, left); }
+        .tt.usm-background      { @include background-gradient(#B28926, #7F5F12, left); }
     
     // Login
     // --------------------------------------------------------------------------------
