@@ -55,7 +55,10 @@
     
     /* Controls */
     .edit-block-controls { margin-bottom: 80px; overflow: hidden; }
-    .edit-block-controls button { float: left; margin-right: 10px; }
+    .edit-block-controls button,
+    .edit-block-controls input[type='submit'],
+    .edit-block-controls input[type='reset'],
+    .edit-block-controls > a { float: left; margin-right: 10px; }
     
     
     
@@ -159,7 +162,7 @@
     /* Error */
     .editor-step.editor-error { border-color: #470000; }
     .editor-error { background-color: #810808; }
-    .editor-error p { padding: 16px 0; line-height: 200%; color: #FFF; text-align: center; }
+    .editor-error p { padding: 16px 0; margin-bottom: 40px; line-height: 200%; color: #FFF; text-align: center; }
     
     /* Notice */
     .editor-step.editor-notice { border-color: darken($font-color-contrast, 20%); }

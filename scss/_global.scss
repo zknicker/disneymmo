@@ -92,6 +92,9 @@
     .field-row dl.alongside dt { float: left; }
     .field-row dl.alongside dd { float: left; margin: 2px 0  0 10px; }
     .field-row:last-child { margin-bottom: -10px; }
+    .field-row input[type='submit'],
+    .field-row input[type='reset'],
+    .field-row button { width: auto; display: inline-block; margin: 0 6px; }
     
     /* checkbox toggle list */
     .toggle-list li { width: 588px; padding: 0 10px 0 0; position: relative; overflow: hidden; border-top: 1px solid #F8F8F8; border-bottom: 1px solid #DDD; }

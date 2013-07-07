@@ -71,6 +71,8 @@
         .utility-pagination li a:hover { background-color: $theme-secondary; color: #FFF; }
         .utility-pagination li.current-page a { background-color: $theme-secondary; color: #FFF; }
         .utility-pagination li.page-dots { padding: 0 10px; position: relative; top: -3px; line-height: $utility-height; color: #5F5F5F; }
+        .utility-pagination li.custom-with-icon a:before { padding-right: 6px; line-height: $utility-height + 1px; }
+        .utility-pagination li.custom-with-icon.right a:before { padding-left: 6px; float: right; }
         
         /* Navigation - DEPRECATED */
         .utility-navigation { height: $utility-height; width: $ui-utilitybar-navigation-width; background: #35434A url($path-icons + 'ui-utilitybar-nav.png') no-repeat 100% 50%; display: block; margin-right: 1px; padding: 0 18px; }

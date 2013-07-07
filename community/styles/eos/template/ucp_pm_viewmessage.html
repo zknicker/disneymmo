@@ -2,12 +2,35 @@
 		<section>
 			<div class="forum-section-pre group">
 	            <div class="discussion-info">
-	                <h2 class="discussion-title">{SUBJECT}</h2>
+                	<h2 class="discussion-title">{SUBJECT}</h2>
 	                <p class="discussion-details">
-	                	<strong>{L_SENT_AT}:</strong> <span data-tooltip="{SENT_DATE}">{SENT_DATE_REL}</span><br>
+	                	<div class="pm-folder-changer">
+	                		<div class="changer-preshow" data-icon="&#xe001;">{CUR_FOLDER_NAME} (<a class="changer-activate" href="javascript:;">change folder</a>)</div>
+	                		<div class="changer-controls">
+	                			<!-- IF S_VIEW_MESSAGE -->
+	                			<div class="field-row">
+	                				<!-- IF S_MARK_OPTIONS -->
+	                				<dl>
+	                					<dt><label for="mark_option">Mark Options:</dt>
+	                					<dd><select name="mark_option" id="mark_option">{S_MARK_OPTIONS}</select><input class="button-generic" type="submit" name="submit_mark" value="{L_GO}" /></dd>
+	                				</dl>
+	                				<!-- ENDIF -->
+									<!-- IF not S_UNREAD and not S_SPECIAL_FOLDER -->
+									<dl>
+										<dt><label for="dest_folder"><!-- IF S_VIEW_MESSAGE -->{L_MOVE_TO_FOLDER}: <!-- ELSE -->{L_MOVE_MARKED_TO_FOLDER}<!-- ENDIF --></label></dt>
+										<dd> <select name="dest_folder" id="dest_folder">{S_TO_FOLDER_OPTIONS}</select><input class="button-generic" type="submit" name="move_pm" value="{L_GO}" /></dd>
+									<!-- ENDIF -->
+	                				<input type="hidden" name="marked_msg_id[]" value="{MSG_ID}" />
+									<input type="hidden" name="cur_folder_id" value="{CUR_FOLDER_ID}" />
+									<input type="hidden" name="p" value="{MSG_ID}" />
+	                			</div>
+								<!-- ENDIF -->
+	                		</div>
+	                	</div>
+	                	<strong>{L_SENT_AT}</strong> <span data-tooltip="{SENT_DATE}">{SENT_DATE_REL}</span>,&nbsp;
 	                	<strong>{L_PM_FROM}:</strong> {MESSAGE_AUTHOR_FULL}
-		                <!-- IF S_TO_RECIPIENT -->,&nbsp;<strong>{L_TO}:</strong><!-- BEGIN to_recipient -->&nbsp;<!-- IF to_recipient.NAME_FULL -->{to_recipient.NAME_FULL}<!-- ELSE --><a href="{to_recipient.U_VIEW}" style="color:<!-- IF to_recipient.COLOUR -->{to_recipient.COLOUR}<!-- ELSEIF to_recipient.IS_GROUP -->#0000FF<!-- ENDIF -->;">{to_recipient.NAME}</a><!-- ENDIF --><!-- END to_recipient --><!-- ENDIF -->
-						<!-- IF S_BCC_RECIPIENT -->,&nbsp;<strong>{L_BCC}:</strong><!-- BEGIN bcc_recipient -->&nbsp;<!-- IF bcc_recipient.NAME_FULL -->{bcc_recipient.NAME_FULL}<!-- ELSE --><a href="{bcc_recipient.U_VIEW}" style="color:<!-- IF bcc_recipient.COLOUR -->{bcc_recipient.COLOUR}<!-- ELSEIF bcc_recipient.IS_GROUP -->#0000FF<!-- ENDIF -->;">{bcc_recipient.NAME}</a><!-- ENDIF --><!-- END bcc_recipient --><!-- ENDIF -->
+		                <!-- IF S_TO_RECIPIENT -->,&nbsp;<strong>{L_TO}:</strong><!-- BEGIN to_recipient -->&nbsp;<!-- IF to_recipient.NAME_FULL -->{to_recipient.NAME_FULL}<!-- ELSE --><a href="{to_recipient.U_VIEW}" style="color:<!-- IF to_recipient.COLOUR -->{to_recipient.COLOUR}<!-- ELSEIF to_recipient.IS_GROUP -->#0000FF<!-- ENDIF -->;">{to_recipient.NAME}</a><!-- ENDIF -->;<!-- END to_recipient --><!-- ENDIF -->
+						<!-- IF S_BCC_RECIPIENT -->,&nbsp;<strong>{L_BCC}:</strong><!-- BEGIN bcc_recipient -->&nbsp;<!-- IF bcc_recipient.NAME_FULL -->{bcc_recipient.NAME_FULL}<!-- ELSE --><a href="{bcc_recipient.U_VIEW}" style="color:<!-- IF bcc_recipient.COLOUR -->{bcc_recipient.COLOUR}<!-- ELSEIF bcc_recipient.IS_GROUP -->#0000FF<!-- ENDIF -->;">{bcc_recipient.NAME}</a><!-- ENDIF -->;<!-- END bcc_recipient --><!-- ENDIF -->
 	                	
 					</p>
 	            </div>
@@ -31,19 +54,28 @@
                     <!-- IF U_EDIT --><a class="utility-action-button button-generic" href="{U_EDIT}" title="{L_POST_EDIT_PM}">Edit</a><!-- ENDIF -->
                     <!-- IF U_DELETE --><a class="utility-action-button button-generic" href="{U_DELETE}" title="{L_DELETE_MESSAGE}">Delete</a><!-- ENDIF -->
                     <!-- IF U_REPORT --><a class="utility-action-button button-generic" href="{U_REPORT}" title="{L_REPORT_PM}">Report</a><!-- ENDIF -->
-                    {S_HIDDEN_FIELDS}
-                    {S_FORM_TOKEN}                    
+                    <!-- IF S_DISPLAY_HISTORY and (U_VIEW_PREVIOUS_HISTORY or U_VIEW_NEXT_HISTORY) -->
+                    <div class="utility-pagination">
+                        <ul>
+                        	<!-- IF U_VIEW_PREVIOUS_HISTORY -->
+                        	<li class="custom-with-icon">
+                        		<a href="{U_VIEW_PREVIOUS_HISTORY}" data-icon="&#xe029;">{L_VIEW_PREVIOUS_HISTORY}</a>
+                        	</li>
+                        	<!-- ENDIF -->
+                        	<!-- IF U_VIEW_NEXT_HISTORY -->
+                        	<li class="custom-with-icon right">
+                        		<a href="{U_VIEW_NEXT_HISTORY}" data-icon="&#xe028;">{L_VIEW_NEXT_HISTORY}</a>
+                        	</li>
+                        	<!-- ENDIF -->
+                        </ul>
+                    </div>
+					<!-- ENDIF -->
                 </div>
             </div>
+            {S_HIDDEN_FIELDS}
+            {S_FORM_TOKEN}
 
-			<!-- IF S_DISPLAY_HISTORY and (U_VIEW_PREVIOUS_HISTORY or U_VIEW_NEXT_HISTORY) -->
-			<fieldset class="display-options clearfix bg1 pm-message-nav">
-				<!-- IF U_VIEW_PREVIOUS_HISTORY --><a href="{U_VIEW_PREVIOUS_HISTORY}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_VIEW_PREVIOUS_HISTORY}</a><!-- ENDIF -->
-				<!-- IF U_VIEW_NEXT_HISTORY --><a href="{U_VIEW_NEXT_HISTORY}" class="right-box {S_CONTENT_FLOW_END}">{L_VIEW_NEXT_HISTORY}</a><!-- ENDIF -->
-			</fieldset>
-			<!-- ENDIF -->
-
-			<div class="posts-list forum-section-content compact">
+			<div class="posts-list forum-section-content extra-top-margin">
 	            <ul class="post-blocks">
 	                <li id="post-{MESSAGE_ID}" class="post-block priveleged<!-- IF S_POST_UNAPPROVED or S_POST_REPORTED --> reported<!-- ENDIF --><!-- IF S_ONLINE --> online<!-- ENDIF -->">
 	                    <div class="post-profile">
@@ -109,20 +141,26 @@
 	            </ul>
 	        </div>
 
-			<div class="back2top"><a href="#top" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a></div>
-
-			<!-- IF S_VIEW_MESSAGE -->
-			<fieldset class="display-options">
-				<!-- IF U_PREVIOUS_PM --><a href="{U_PREVIOUS_PM}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_VIEW_PREVIOUS_PM}</a><!-- ENDIF -->
-				<!-- IF U_NEXT_PM --><a href="{U_NEXT_PM}" class="right-box {S_CONTENT_FLOW_END}">{L_VIEW_NEXT_PM}</a><!-- ENDIF -->
-
-				<!-- IF S_MARK_OPTIONS --><label for="mark_option"><select name="mark_option" id="mark_option">{S_MARK_OPTIONS}</select></label>&nbsp;<input class="button2" type="submit" name="submit_mark" value="{L_GO}" /><!-- ENDIF -->
-				<!-- IF not S_UNREAD and not S_SPECIAL_FOLDER --><label for="dest_folder"><!-- IF S_VIEW_MESSAGE -->{L_MOVE_TO_FOLDER}: <!-- ELSE -->{L_MOVE_MARKED_TO_FOLDER}<!-- ENDIF --> <select name="dest_folder" id="dest_folder">{S_TO_FOLDER_OPTIONS}</select></label> <input class="button2" type="submit" name="move_pm" value="{L_GO}" /><!-- ENDIF -->
-				<input type="hidden" name="marked_msg_id[]" value="{MSG_ID}" />
-				<input type="hidden" name="cur_folder_id" value="{CUR_FOLDER_ID}" />
-				<input type="hidden" name="p" value="{MSG_ID}" />
-			</fieldset>
-			<!-- ENDIF -->
+	        <div class="ui-utilitybar-actions-container">
+            	<div class="ui-utilitybar-actions">
+                    <!-- IF S_DISPLAY_HISTORY and (U_VIEW_PREVIOUS_HISTORY or U_VIEW_NEXT_HISTORY) -->
+                    <div class="utility-pagination">
+                        <ul>
+                        	<!-- IF U_VIEW_PREVIOUS_HISTORY -->
+                        	<li class="custom-with-icon">
+                        		<a href="{U_VIEW_PREVIOUS_HISTORY}" data-icon="&#xe029;">{L_VIEW_PREVIOUS_HISTORY}</a>
+                        	</li>
+                        	<!-- ENDIF -->
+                        	<!-- IF U_VIEW_NEXT_HISTORY -->
+                        	<li class="custom-with-icon right">
+                        		<a href="{U_VIEW_NEXT_HISTORY}" data-icon="&#xe028;">{L_VIEW_NEXT_HISTORY}</a>
+                        	</li>
+                        	<!-- ENDIF -->
+                        </ul>
+                    </div>
+					<!-- ENDIF -->
+                </div>
+            </div>
 
 			<!-- IF S_DISPLAY_HISTORY --><!-- INCLUDE ucp_pm_history.html --><!-- ENDIF -->
 		</section>

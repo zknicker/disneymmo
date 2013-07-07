@@ -936,8 +936,6 @@ $(document).ready(function() {
         $(this).siblings('span').text(fileName);
      });
      
-     
-
     /* Focus parents when their child inputs recieve focus.
      * -------------------------------------------------------------------------------- */
      $('.faux-text-input').children('input[type="text"]').focus(function() {
@@ -948,6 +946,5 @@ $(document).ready(function() {
      
         $(this).parent().removeClass('focused');
      
-     });
-    
+     });    
 });

@@ -28,6 +28,7 @@
     .forum-section { width: $page-width-fluid; min-width: $page-width; margin: 0 auto 15px auto; }
     html.fixed-width .forum-section { width: $page-width; }
     .forum-section-content { width: 100%; margin: 10px auto 0 auto; }
+    .forum-section-content.extra-top-margin { margin-top: 30px; }
     
     // Forum Section Pre
     // --------------------------------------------------------------------------------

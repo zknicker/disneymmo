@@ -6,9 +6,10 @@
     <!-- The rest of our JS for optimization awesomeness. -->
     <script src='{DMMO_JS_DIR}/plugins.js' type='text/javascript'></script>
     <script src='{DMMO_JS_DIR}/core.js' type='text/javascript'></script>
+    <!-- IF PAGE_ID == S_IN_UCP --><script src='{DMMO_JS_DIR}/module/usercp_events.js' type='text/javascript'></script><!-- ENDIF -->
     <!-- IF PAGE_ID == homepage --><script src='{DMMO_JS_DIR}/module/showcase.js' type='text/javascript'></script><!-- ENDIF -->
     <!-- IF PAGE_ID == homepage --><script src='{DMMO_JS_DIR}/module/poll.js' type='text/javascript'></script><!-- ENDIF -->
-    <!-- IF PAGE_ID == discussion --><script src='{DMMO_JS_DIR}/module/discussionmode.js' type='text/javascript'></script><!-- ENDIF -->
+    <!-- IF PAGE_ID == discussion or PAGE_ID == pm_viewmessage --><script src='{DMMO_JS_DIR}/module/discussionmode.js' type='text/javascript'></script><!-- ENDIF -->
     <!-- IF PAGE_ID == discussion --><script src='{DMMO_JS_DIR}/module/discussion_events.js' type='text/javascript'></script><!-- ENDIF -->
     <!-- IF PAGE_ID == discussions_list --><script src='{DMMO_JS_DIR}/module/discussionfilters.js' type='text/javascript'></script><!-- ENDIF -->
     <!-- IF PAGE_ID == editor --><script src='{DMMO_JS_DIR}/module/discussion_category_selector.js' type='text/javascript'></script><!-- ENDIF -->

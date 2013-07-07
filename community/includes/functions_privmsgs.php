@@ -2030,11 +2030,16 @@ function message_history($msg_id, $user_id, $message_row, $folder, $in_post_mode
 			$previous_history_pm = $prev_id;
 		}
 
+		// [DMMO] Add additional template variables.
+        include_once $phpbb_root_path . '../php/eos.functions.php';
+        include_once $phpbb_root_path . 'includes/functions_display.php';
+
 		$template->assign_block_vars('history_row', array(
 			'MESSAGE_AUTHOR_QUOTE'		=> (($decoded_message) ? addslashes(get_username_string('username', $author_id, $row['username'], $row['user_colour'], $row['username'])) : ''),
 			'MESSAGE_AUTHOR_FULL'		=> get_username_string('full', $author_id, $row['username'], $row['user_colour'], $row['username']),
 			'MESSAGE_AUTHOR_COLOUR'		=> get_username_string('colour', $author_id, $row['username'], $row['user_colour'], $row['username']),
 			'MESSAGE_AUTHOR'			=> get_username_string('username', $author_id, $row['username'], $row['user_colour'], $row['username']),
+            'MESSAGE_AUTHOR_AVATAR'    => get_user_avatar($row['user_avatar'], $row['user_avatar_type'], '100%', '100%'), // [DMMO]
 			'U_MESSAGE_AUTHOR'			=> get_username_string('profile', $author_id, $row['username'], $row['user_colour'], $row['username']),
 
 			'SUBJECT'			=> $subject,
