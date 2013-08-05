@@ -9,171 +9,152 @@
  *	Zach Knickerbocker
  */
 
-/* Profile Events
- * --------------------------------------------------------------------------------- */
-dmmo.profiles = {
+/*
+ * jQuery autoResize (textarea auto-resizer)
+ * @copyright James Padolsey http://james.padolsey.com
+ * @version 1.04
+ */
 
-    showCustomizer: function()
-    {
-        $('#customize-profile-menu')
-            .css('visibility', 'visible')
-            .animate({opacity: 1}, 700);
-            
-        $('#menu-active-area')
-            .animate({top: '45%'}, 700);
-    },
-    
-    hideCustomizer: function() {
-    
-        $('#customize-profile-menu')
-            .animate({opacity: 0}, 700, function() {
-                $(this).css('visibility', 'hidden');
-            });
-            
-        $('#menu-active-area')
-            .animate({top: '-45%'}, 700);
-    },
-    
-    commitChanges: function(form) {
-    
-        $('form[name=' + form + ']').submit();
-    },
-    
-    /* Close menu when user clicks in non-menu space.
-     * ------------------------------------------------------------ */
-    indirectMenuCloseEvent: function() {
-    
-        var that = this;
-        var isHovered = false;
-        
-        $('#menu-active-area').hover(function() {
-        
-            isHovered = true;
-        }, function() {
-        
-            isHovered = false;
-        });
-        
-        $('#customize-profile-menu').click(function() {
-        
-            if(!isHovered) that.hideCustomizer();
-        });
-    },
-    
-    init: function()
-    {
-        this.indirectMenuCloseEvent();
+var globprof;
+
+dmmo.profiles = (function() {
+  
+    function profiles(profile_wall) {
+
+        var _this = this; 
+        var _msnry;
+
+        this.setupUIBindings();
+        this.initializeMasonry(profile_wall);
     }
-}
+    
+    /*
+     * Initializes masonry to organize messages on the profile wall.
+     */
+    profiles.prototype.initializeMasonry = function(profile_wall) {
+        this._msnry = new Masonry(document.querySelector(profile_wall));
+    }
+    
+    /*
+     * Posts a new message to your profile.
+     */
+    profiles.prototype.postMessage = function(message, recipient) {
+        var _this = this;
 
-/* Make the magic happen baby. */
-(function() {
+        var data = {
+            operation: 'addMessage',
+            message: message,
+            recipient: recipient
+        }
 
-  dmmo.profiles.init();
+        $.ajax({
+            url: '../php/eos_profiles.ajax.php',
+            type: 'post',
+            dataType: 'json',
+            data: data,
+            success: function(data, status, jqXHR){
+                console.log(data);
+                console.log(status);
+                _this.addMessageInDom(data.message, data.sender, data.sender_url, data.sender_avatar, data.date);
+            },
+            error:function(jqXHR, textStatus, errorThrown){
+                console.log("jqHXR: " + jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            } 
+        });
+    }
+
+    /* 
+     * AJAX logic for posting a message.
+     */
+    profiles.prototype.addMessageInDom = function(message, sender, sender_url, sender_avatar, date) {
+        
+        var $new_message = $(
+            "<li class=\"wall-block wall-block-message\">" +
+            "    <div class=\"message-header group\">" +
+            "        <div class=\"avatar avatar-small\"><img src=\"" + sender_avatar + "\" /></div>" +
+            "        <a class=\"username\" href=\"#\">" + sender + "</a>" +
+            "        <span class=\"date\">" + date + "</span>" +
+            "    </div>" +
+            "    <div class=\"message\">" + message + "</div>" +
+            "</li>"
+        );
+
+        $('#profile-wall .wall').prepend($new_message);
+        this._msnry.prepended($new_message);
+    }
+
+    /*
+     * Setup UI bindings for profile elements.
+     */
+    profiles.prototype.setupUIBindings = function() {
+        var _this = this;
+
+        // Disable form submit. Everything is done with AJAX.
+        // --------------------------------------------------------------------------------
+        $('#profile-wall-form').submit(function(e) {
+            e.preventDefault();
+        });
+
+        // New message submit button.
+        // --------------------------------------------------------------------------------
+        $('#profile-message-submitter').click(function() {
+            var message = $('#profile-message-input').val();
+            $('#profile-message-input').val('');
+            var recipient = $('#profile-message-recipient').val();
+            _this.postMessage(message, recipient);
+        })
+
+        // Textbox growing and special functionality with the enter button.
+        // --------------------------------------------------------------------------------
+        $('#profile-message-input').keydown(function(e){
+
+            // Enter was pressed without shift key, trigger message submit.
+            if (e.keyCode == 13 && !e.shiftKey)
+            {
+                $('#profile-message-submitter').click();
+                e.preventDefault();
+
+                return false;
+            }
+        }).autoResize({
+            animate: false,
+            extraSpace: -4
+        });
+
+        // Submit button animation over the text box.
+        // --------------------------------------------------------------------------------
+        var isHovered = false;
+
+        $('#profile-message-input').focus(function() {
+            isHovered = true;
+
+            $('#profile-message-submitter').addClass('active');
+
+        }).blur(function() {
+            isHovered = false;
+
+            setTimeout(function() {
+                if(!isHovered) {
+                    $('#profile-message-submitter').removeClass('active');
+                }
+            }, 700);
+        });
+
+        // More messages button.
+        // --------------------------------------------------------------------------------
+        $('#profile-more-messages').click(function() {
+
+            // more to come
+        });
+    }
+    
+    return profiles;
 })();
 
-/* Profile Uploader [OBJECT]
- * --------------------------------------------------------------------------------- */
-ProfileUploader = function(parent, name, defaultImgSrc, buttonText) {
+/* Make the magic happen. */
+$(function() {
 
-    var _parent = '#' + parent;
-    createProfileUploader(_parent);
-    
-    /* creates the profile uploader HTML */
-    function createProfileUploader()
-    {
-        var _preview = document.createElement('div');
-        $(_preview)
-            .addClass("customize-image")
-            .css('background-image', 'url(' + defaultImgSrc + ')');
-        
-        var _uploaderButton = document.createElement('div');
-        $(_uploaderButton)
-            .addClass('button-file-selector')
-            .addClass('clickable')
-            .html(buttonText);
-            
-        var _uploader = document.createElement('div');
-        $(_uploader)
-            .addClass('faux-file-viewer')
-            .append(_uploaderButton);
-        
-        var _progress = document.createElement('div');
-        $(_progress)
-            .addClass('upload-progress');
-        
-        var _hiddenInput = document.createElement('input');
-        $(_hiddenInput)
-            .attr('type', 'hidden')
-            .attr('name', name);
-        
-        $(_parent)
-            .append(_progress)
-            .append(_preview)
-            .append(_uploader)
-            .append(_hiddenInput);
-        
-        /* create instance of the file uploader */
-        var _qqu = new qq.FileUploaderBasic({
-            
-            button: $(_uploaderButton)[0],
-            multiple: false,
-            action: 'http://disneymmo.com/lib/fileuploader/uploader.php',
-            debug: true,
-            sizeLimit: 2097152,
-            maxConnections: 1,
-            allowedExtensions: ['jpg', 'jpeg', 'bmp', 'png', 'gif'],
-            onUpload: uploadResponse,
-            onProgress: progressResponse,
-            onComplete: completeResponse,
-            onError: errorResponse
-        });
-        
-        /* response to detection of uploading image */
-        function errorResponse(id, fileName, errorReason)
-        {
-            alert("Error: " + errorReason);
-        }
-        
-        /* response to detection of uploading image */
-        function uploadResponse(id, fileName)
-        {
-            $(_parent).addClass('uploading');
-        }
-        
-        /* response to progress in uploading image */
-        function progressResponse(id, fileName, uploadedBytes, totalBytes)
-        {
-            var height = $(_preview).outerHeight();
-            $(_progress)
-                .css('height', uploadedBytes / totalBytes *  height)
-                .html(Math.ceil(uploadedBytes / totalBytes * 100) + '%');
-        }
-        
-        /* response to completion in uploading of an image */
-        function completeResponse(id, fileName, responseJSON)
-        {
-            var url = 'http://disneymmo.com/images/previews/' + fileName;
-        
-            // update image preview
-            $(_preview).css('background-image', 'url(' + url + ')');
-        
-            // update hidden input
-            $(_hiddenInput).val(fileName);
-        
-            // after so many seconds, remove progress bar
-            setTimeout(function() {
-                
-                $(_progress).animate({
-                    opacity: 0,
-                    height: 0
-                    
-                }, 500, function() {
-                
-                    $(this).fadeTo(0, 1);
-                    $(_parent).removeClass('uploading');
-                });
-            }, 500);
-        }
-    }
-}
+    globprof = new dmmo.profiles('#profile-wall .wall');
+});

@@ -17,6 +17,11 @@ $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
 include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 
+// DMMO [EOS] Includes
+include($phpbb_root_path . '../php/eos.config.' . $phpEx);
+include($phpbb_root_path . '../php/eos.functions.' . $phpEx);
+include($phpbb_root_path . '../php/eos_profiles.' . $phpEx);
+
 // Start session management
 $user->session_begin();
 $auth->acl($user->data);
@@ -571,6 +576,11 @@ switch ($mode)
 
 		$template->assign_vars(show_profile($member, $user_notes_enabled, $warn_user_enabled));
 
+		// ---------- BEGIN [DMMO] EOS FILTERS MODIFICATION ----------
+		// Gather profile wall messages.
+		getMessagesForPHPBBTemplate(getWallMessages($user_id, 0, $eos_config['initial_num_wall_messages']));
+		// ---------- END [DMMO] EOS FILTERS MODIFICATION ------------
+
 		// Custom Profile Fields
 		$profile_fields = array();
 		if ($config['load_cpf_viewprofile'])
@@ -597,16 +607,15 @@ switch ($mode)
 			$member['posts_in_queue'] = 0;
 		}
 
-        // ---------- BEGIN [DMMO] EOS FILTERS MODIFICATION ----------
-        // Facilitate retrieval and replacement of user's profile bg and profile image.
-        include($phpbb_root_path . '../php/eos.profiles.php');        
-        // ---------- END [DMMO] EOS FILTERS MODIFICATION ------------
-
 		$template->assign_vars(array(
 			'L_POSTS_IN_QUEUE'	=> $user->lang('NUM_POSTS_IN_QUEUE', $member['posts_in_queue']),
 
 			'POSTS_DAY'			=> sprintf($user->lang['POST_DAY'], $posts_per_day),
 			'POSTS_PCT'			=> sprintf($user->lang['POST_PCT'], $percentage),
+
+			// DMMO [EOS]
+			'POSTS_DAY_NUM'			=> round($posts_per_day, 2),
+			'POSTS_PCT_NUM'			=> round($percentage, 2),
 
 			'OCCUPATION'	=> (!empty($member['user_occ'])) ? censor_text($member['user_occ']) : '',
 			'INTERESTS'		=> (!empty($member['user_interests'])) ? censor_text($member['user_interests']) : '',
@@ -1620,8 +1629,10 @@ switch ($mode)
 }
 
 // ---------- BEGIN [DMMO] EOS FILTERS MODIFICATION ----------
-// Assign identifying tempalte var.
-$template->assign_vars(array('PAGE_ID' => 'profile'));
+if($mode == 'viewprofile') {
+	// Assign identifying template var.
+	$template->assign_vars(array('PAGE_ID' => 'profile'));
+}
 // ---------- END [DMMO] EOS FILTERS MODIFICATION ------------
 
 // Output the page
@@ -1712,6 +1723,9 @@ function show_profile($data, $user_notes_enabled = false, $warn_user_enabled = f
 		'USERNAME'			=> get_username_string('username', $user_id, $username, $data['user_colour']),
 		'USER_COLOR'		=> get_username_string('colour', $user_id, $username, $data['user_colour']),
 		'U_VIEW_PROFILE'	=> get_username_string('profile', $user_id, $username, $data['user_colour']),
+
+		// DMMO [EOS]
+		'USER_ID'			=> $user_id,
 
 		'A_USERNAME'		=> addslashes(get_username_string('username', $user_id, $username, $data['user_colour'])),
 

@@ -252,11 +252,9 @@ function generate_smilies($mode, $forum_id)
 	{
 		page_footer();
 	}
-    
+	
     // ---------- BEGIN [DMMO] EOS MODIFICATION ----------
-    // Generate a listen of all smilies, separated by category,
-    // for CKEditor. This needs to somehow be better integrated
-    // with generate_smilies().
+    // Adds template vars for smilies in CKEditor.
     dmmo_generate_ckeditor_smilies();
     // ---------- END [DMMO] EOS MODIFICATION ------------
 }

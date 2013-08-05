@@ -1,53 +1,43 @@
 <!-- INCLUDE ucp_header.html -->
-            <div class="ui-utilitybar-actions-container">
-                <div class="ui-utilitybar-actions">
-                    <button class="button-as-anchor utility-action-button" type="submit" accesskey="s" tabindex="6" name="submit" value="{L_SUBMIT}">Save Changes</button>
-                    <button class="button-as-anchor utility-action-button" type="reset" accesskey="s" tabindex="6" name="reset" value="{L_RESET}">Reset</button>
-                    {S_HIDDEN_FIELDS}
-                    {S_FORM_TOKEN}                    
-                </div>
-            </div>
-        </div>
-        <div class="usercp-component group">
-            <aside class="gutter">
-                <div>
-                    <span>Posting Options</span>
-                    <p>Everything and anything related to your default posting options.</p>
-                </div>
-            </aside>
-            <div class="core">
-                <fieldset>
-                <!-- IF ERROR -->
-                <section>
-                    <p class="error">{ERROR}</p>
-                </section>
-                <!-- ENDIF -->
-                <section>
-                <fieldset>
-                    <ul class="usercp-toggle-list">
-                        <li>
-                            <label for="bbcode">{L_DEFAULT_BBCODE}:</label>
-                            <input type="hidden" name="bbcode" id="bbcodeh" value="0" />
-                            <input type="checkbox" name="bbcode" id="bbcode"<!-- IF S_BBCODE --> value="1" checked="checked"<!-- ENDIF --> />
-                        </li>
-                        <li>
-                            <label for="smilies">{L_DEFAULT_SMILIES}:</label>
-                            <input type="hidden" name="smilies" id="smiliesh" value="0" />
-                            <input type="checkbox" name="smilies" id="smilies"<!-- IF S_SMILIES --> value="1" checked="checked"<!-- ENDIF --> />
-                        </li>
-                        <li>
-                            <label for="sig">{L_DEFAULT_ADD_SIG}:</label>
-                            <input type="hidden" name="sig" id="sigh" value="0" />
-                            <input type="checkbox" name="sig" id="sig"<!-- IF S_SIG --> value="1" checked="checked"<!-- ENDIF --> />
-                        </li>
-                        <li>
-                            <label for="notify">{L_DEFAULT_NOTIFY}:</label>
-                            <input type="hidden" name="notify" id="notifyh" value="0" />
-                            <input type="checkbox" name="notify" id="notify"<!-- IF S_NOTIFY --> value="1" checked="checked"<!-- ENDIF --> /> 
-                        </li>
-                    </ul>
-                </fieldset>
-                </section>
-            </div>
-        </div>
+    <!-- IF ERROR -->
+    <div class="usercp-component usercp-error">
+        <p>{ERROR}</p>
+    </div>
+    <!-- ENDIF -->  
+    <div class="usercp-component group">
+        <h3 class="usercp-component-title">Posting Options</h3>
+        <fieldset>
+        <section>
+        <fieldset>
+            <ul class="usercp-toggle-list">
+                <li>
+                    <label for="bbcode">{L_DEFAULT_BBCODE}:</label>
+                    <input type="hidden" name="bbcode" id="bbcodeh" value="0" />
+                    <input type="checkbox" name="bbcode" id="bbcode"<!-- IF S_BBCODE --> value="1" checked="checked"<!-- ENDIF --> />
+                </li>
+                <li>
+                    <label for="smilies">{L_DEFAULT_SMILIES}:</label>
+                    <input type="hidden" name="smilies" id="smiliesh" value="0" />
+                    <input type="checkbox" name="smilies" id="smilies"<!-- IF S_SMILIES --> value="1" checked="checked"<!-- ENDIF --> />
+                </li>
+                <li>
+                    <label for="sig">{L_DEFAULT_ADD_SIG}:</label>
+                    <input type="hidden" name="sig" id="sigh" value="0" />
+                    <input type="checkbox" name="sig" id="sig"<!-- IF S_SIG --> value="1" checked="checked"<!-- ENDIF --> />
+                </li>
+                <li>
+                    <label for="notify">{L_DEFAULT_NOTIFY}:</label>
+                    <input type="hidden" name="notify" id="notifyh" value="0" />
+                    <input type="checkbox" name="notify" id="notify"<!-- IF S_NOTIFY --> value="1" checked="checked"<!-- ENDIF --> /> 
+                </li>
+            </ul>
+        </fieldset>
+        </section>
+    </div>
+    <div class="usercp-controls">
+        <button class="button-generic" type="submit" accesskey="s" tabindex="6" name="submit" value="{L_SUBMIT}">Save Changes</button>
+        <button class="button-generic" type="reset" accesskey="s" tabindex="6" name="reset" value="{L_RESET}">Reset</button>
+        {S_HIDDEN_FIELDS}
+        {S_FORM_TOKEN}   
+    </div>
 <!-- INCLUDE ucp_footer.html -->

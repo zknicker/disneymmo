@@ -456,6 +456,9 @@ class ucp_profile
 
 				$signature		= utf8_normalize_nfc(request_var('signature', (string) $user->data['user_sig'], true));
 
+				// [DMMO] EOS - Generate smilies.
+				dmmo_generate_ckeditor_smilies();
+
 				add_form_key('ucp_sig');
 
 				if ($submit || $preview)

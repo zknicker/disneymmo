@@ -9,31 +9,74 @@
  */
  
 	@import "resources/assets";
-	
-    /* *************************************** */
-	/* TOP LEVEL STYLES
-	/* *************************************** */
-    #profile footer { height: auto; }
-    #profile footer #footer-content { border-top: 1px solid #BEBEBE; }
-    #profile footer #footer-extra { display: none; }
-    #profile-content { position: relative; z-index: $z-index-page-contents; }
-    
-    /* *************************************** */
-    /* PROFILE CUSTOMIZATIONS
-    /* *************************************** */
-    .profile-background { background-repeat: repeat; background-position: 50% 0; padding: 18px 0 130px 0; margin-top: -12px; @include box-sizing(); }
-    
-    .profile-picture { height: 280px; width: 230px; float: left; position: relative; @include transition(all, .25s, ease); background-size: auto 100%; background-position: 50% 50%; }
-    .profile-picture a { @include opacity(0); }
-    .profile-picture:hover a { height: 280px; width: 230px; background: #000000 url($path-layout + 'profile-customize-plus.png') no-repeat 50% 50%; display: block; position: absolute; top: 0; left: 0; @include opacity(.5); }
-    
-    /* *************************************** */
-	/* PROFILE MODULES ******************** */
-	/* *************************************** */
-    .profile-border { width: $page-width; background: url($path-layout + 'profile-container-border.png'); margin: 4px auto 0 auto; padding: 6px; @include rounded-border(0px, 6px, #000); }
-    .profile-content { width: $page-width; background-color: #e4e4e4; }
-    .profile-module { width: $page-width; position: relative; }
-    
+
+    // Global Styles
+    // --------------------------------------------------------------------------------
+    .eos-profile-container { position: relative; margin-top: -12px; z-index: $z-index-page-contents; }
+    .profile-content-container { position: relative; padding: 0 2%; }
+
+    // Profile Header
+    // --------------------------------------------------------------------------------
+    .profile-header { height: 340px; width: 100%; background-position: 50% 50%; @include background-size(cover); position: relative; border-bottom: 1px solid #FFF; @include box-shadow(inset 0px -15px 62px -16px #000); z-index: 1000; }
+    .profile-header .grunge { height: 323px; width: 100%; background: url($path-layout + "profile-header-grunge.png") repeat-x 50% 0; position: absolute; bottom: 0; left: 0; z-index: 2000; }
+
+    .profile-header .profile-user-info { position: absolute; left: 2%; bottom: 24px; text-align: center; z-index: 3000; }
+    .profile-user-info:before { content: ''; display: inline-block; vertical-align: middle; margin-right: -0.25em; }
+    .profile-user-info .avatar img { @include rounded-border(0px, 4px, transparent); }
+    .profile-user-info .username { line-height: 50px; margin-left: 17px; }
+    .profile-user-info .username h2 { padding-bottom: 4px; font-size: 42px; color: #FFF; text-shadow: 0 0 36px #000; font-weight: bold; }
+    .profile-user-info .bottomed { display: inline-block; vertical-align: bottom; }
+
+    .profile-header-buttons { position: absolute; right: 2%; bottom: 28px; z-index: 3000; }
+    .profile-header-button { display: inline-block; margin-left: 12px; }
+
+    // Profile Content
+    // --------------------------------------------------------------------------------
+    .profile-content { @include box-shadow(inset 0px 13px 17px -17px #000); }
+    .profile-content .profile-content-inner { padding-top: 40px; }
+    .profile-content .sidebar-content { width: 20%; min-width: 300px; float: left; }
+    .profile-content .main-content { width: 78%; float: right; }
+
+    .sidebar-content { }
+    .sidebar-content section { margin-bottom: 50px; padding-bottom: 11px; border-bottom: 1px solid #FFF; @include box-shadow(0px 13px 25px -25px #444); }
+    .sidebar-content section h3 { margin-bottom: 17px; text-transform: uppercase; }
+
+    .profile-list { }
+    .profile-list span { height: 32px; display: block; margin-bottom: 5px; font-size: 13px; line-height: 32px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .profile-list span:before { margin-right: 8px; float: left; font-size: 22px; line-height: 32px; }
+
+    .profile-attributes { }
+    .profile-attribute span:before { color: $theme-secondary; }
+
+    .profile-contact-info { }
+    .profile-contact-info li.contact-info-email span:before { color: #A8860F; }
+    .profile-contact-info li.contact-info-website span:before { color: #6E0B7A; }
+    .profile-contact-info li.contact-info-pm span:before { color: #7D0909; }
+    .profile-contact-info li.contact-info-messenger span:before { color: #6AB006; }
+    .profile-contact-info li.contact-info-twitter span:before { color: #4EB2C2; }
+    .profile-contact-info li.contact-info-facebook span:before { color: #123B81; }
+
+    .profile-stat { height: 30px; margin-bottom: 5px; line-height: 30px; font-size: 16px; color: #AFAFAF; }
+    .profile-stat span { float: left; margin-right: 6px; font-size: 30px; font-family: $font-family-heading; color: $theme-secondary; line-height: 30px; }
+
+    // Profile Wall
+    // --------------------------------------------------------------------------------
+    .profile-wall { width: 100%; }
+
+    .message-input { min-height: 49px; width: 100%; margin-top: -10px; position: relative; overflow: hidden; }
+    .message-input textarea { height: 49px; width: 100%; background-color: transparent; padding: 10px 95px 10px 0; border-width: 0 0 1px 0; border-color: #8B8B8B; border-style: dashed; line-height: 32px; font-size: 32px; overflow: hidden; resize: none; }
+    .message-input button { position: absolute; top: -49px; right: 0; @include transition(top, 0.25s, ease); }
+    .message-input button.active { top: 4px; }
+
+    .wall { width: 102%; margin-top: 40px; }
+    .wall-block { width: 23%; margin: 0 2% 2% 0; float: left; }
+
+    .wall-block-message { padding: 15px; @include box-shadow(0 0 8px #CCC); @include rounded-border(1px, 8px, #FFF); }
+    .wall-block-message .avatar { float: left; margin-right: 8px; @include rounded-border(1px, 4px, #FFF); @include box-shadow(0 0 6px #CCC); }
+    .wall-block-message .message-header a { display: block; padding: 3px 0 3px 0; font-weight: bold; font-size: 14px; }
+    .wall-block-message .date { color: #AAA; font-size: 11px; text-transform: lowercase; }
+    .wall-block-message .message { padding: 7px 2px 2px 2px; float: left; line-height: 200%; font-size: 14px; }
+
     /* *************************************** */
 	/* PROFILE STYLES
 	/* *************************************** */

@@ -66,6 +66,9 @@
     .button-generic.hot:hover { background-color: darken(#C40000, 20%); border-color: darken(#C40000, 40%); }
     .button-generic.hot:active { background-color: #C40000; border-color: darken(#C40000, 20%); }
 
+    .button-more { height: 38px; display: block; font-size: 19px; line-height: 38px; }
+    .button-more:before { @include icomoon-icon(); content: "\e024"; float: left; margin-right: 8px; font-size: 22px; line-height: 38px; }
+
     /* select */
     select { background: #FBFBFB url($path-layout + 'select-drop-arrow.png') no-repeat 100% 50%; margin: 0; padding: 8px 39px 10px 6px; border-width: 1px 3px 1px 1px; border-style: solid; border-color: #DDD #CCC #DDD #DDD; color: #686868; @include appearance(none); font-size: 13px; cursor: pointer; }
     select:focus { border-right-color: $font-color-contrast; }
@@ -108,7 +111,7 @@
     /* faux file input - for use in a parent element - resembles a file input with style */
     .faux-file-input { height: 38px; background-color: #E5E5E5; position: relative; cursor: pointer; border-width: 1px 3px 1px 1px; border-style: solid; border-color: #D5D5D5 #C6C6C6 #D5D5D5 #D5D5D5; }
     .faux-file-input:hover { border-right-color: $font-color-contrast; }
-    .faux-file-input span { display: block; padding: 5px 11px; font-size: 13px; color: #767676; }
+    .faux-file-input span { display: block; padding: 6px 11px 0 11px; font-size: 13px; color: #767676; }
     .faux-file-input input[type='file'] { height: 500px; position: absolute; right: 0; bottom: 0; font-size: 1000px; @include opacity(0); cursor: inherit; }
     
     /* faux text input - for use on a parent element with a text input child - resembles text input with style */
@@ -126,6 +129,7 @@
 
     /* error */
     .error-generic { min-height: 34px; background: url($path-icons + 'generic-error.png') no-repeat 0 0; padding-left: 54px; font-size: 13px; line-height: 180%; }
+    .error-generic.vertical-spacing { margin-top: 20px; margin-bottom: 20px; }
     
     // Discussion Filters
     // --------------------------------------------------------------------------------

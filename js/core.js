@@ -43,6 +43,7 @@ dmmo = {
         dmmo.maintenance.centerAvatars();
         dmmo.maintenance.setupFooter();
         dmmo.maintenance.fullSidebarFixer();
+        dmmo.maintenance.fauxFileInputEvents();
         
     },
     
@@ -290,7 +291,7 @@ dmmo.maintenance = {
  
     centerAvatars: function() {
     
-        $('.avatar-large, .poster-avatar').each(function() {
+        $('.avatar-large, .poster-avatar, .centered-avatar').each(function() {
     
             $(this).imagesLoaded(function() {
 
@@ -344,6 +345,19 @@ dmmo.maintenance = {
             
                 $('.full-sidebar.fix-scroll').children('aside').css('paddingTop', distance_from_top);
             }
+        });
+    },
+
+    fauxFileInputEvents: function() {
+
+        $('.faux-file-input').each(function() {
+
+            var that = $(this);
+            $(this).find('input[type=file]').on('change', function() {
+
+                var filename = $(this).val().split('\\').pop();
+                that.children('span:first-child').text(filename);
+            })
         });
     },
     

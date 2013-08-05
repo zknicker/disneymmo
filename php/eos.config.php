@@ -68,7 +68,10 @@ $eos_config = array(
     
     /* profiles */
     "profile_customizations_table"  =>  'phpbb_profile_customizations',
+    "profile_wall_messages_table"   =>  'phpbb_wall_messages',
+    "profile_wall_messages_track_table" => 'phpbb_wall_messages_track',
     "profile_customizations_path"   =>  'images/profiles/customizations/',
+    "initial_num_wall_messages"     =>  10,
     
     /* uploads */
     "upload_max_image_length"       =>  1048576,

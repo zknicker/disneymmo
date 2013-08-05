@@ -28,18 +28,30 @@
     // Sidebar Layout
     // --------------------------------------------------------------------------------
     .full-sidebar { }
-    .full-sidebar > aside { height: 100%; width: 420px; position: fixed; top: 0; left: 0; padding: 122px 20px 22px 2%; float: left; border-right: 1px solid #E4E4E4; @include box-shadow(8px 0 80px #FFF) }
+    .full-sidebar > aside { height: 100%; width: 420px; position: fixed; top: 0; left: 0; padding: 122px 20px 22px 2%; float: left; border-right: 1px solid #E4E4E4; @include box-shadow(8px 0 40px #FFF); overflow-y: auto; }
     .full-sidebar > section { margin-left: 420px; padding: 0 2% 22px 34px; }
     .full-sidebar .sidebar-item { padding-bottom: 25px; position: relative; }
     .full-sidebar .sidebar-item.right-flush { right: -20px; }
+    .full-sidebar .sidebar-item.sidebar-item-header { text-align: right; }
     .full-sidebar .sidebar-item .sidebar-title { padding-bottom: 10px; font-weight: bold; font-size: 24px; }
     .full-sidebar .sidebar-item .sidebar-subtext { color: #7E7E7E; line-height: 180%; font-size: 13px; }
 
-    .sidebar-nav li { height: 33px; width: 100%; float: right; margin-bottom: 10px; }
+    .sidebar-nav ul { overflow: hidden; }
+    .sidebar-nav ul + ul { margin-top: 25px; }
+    .sidebar-nav li { height: 33px; width: 100%; float: right; margin-bottom: 6px; }
+    .sidebar-nav li.sidebar-nav-title { height: auto; padding-right: 21px; margin-bottom: 8px; text-transform: uppercase; text-align: right; font-size: 11px; }
     .sidebar-nav li a { height: 33px; width: 100%; display: block; padding-right: 22px; line-height: 33px; text-align: right; font-size: 13px; }
     .sidebar-nav li.selected a { background: url($path-layout + 'sidebar-nav-highlight.png') no-repeat 100% 50%; }
     .sidebar-nav li a:hover { background: url($path-layout + 'sidebar-nav-highlight.png') no-repeat 100% 50%; }
+    .sidebar-nav li a:before { float: right; line-height: 32px; margin-left: 12px; font-size: 19px; }
+
+    .sidebar-nav.mini li { height: 26px; margin-bottom: 2px; }
+    .sidebar-nav.mini li.sidebar-nav-title { height: auto; margin-bottom: 8px; }
+    .sidebar-nav.mini li a { height: 26px; line-height: 26px; }
+    .sidebar-nav.mini li.selected a { background-image: url($path-layout + 'sidebar-nav-highlight-mini.png'); }
+    .sidebar-nav.mini li a:hover { background-image: url($path-layout + 'sidebar-nav-highlight-mini.png'); }
+    .sidebar-nav.mini li a:before { margin-left: 8px; line-height: 26px; font-size: 17px; }
 
     .full-sidebar.smaller { }
-    .full-sidebar.smaller > aside { width: 340px; }
-    .full-sidebar.smaller > section { margin-left: 340px; }
+    .full-sidebar.smaller > aside { width: 324px; }
+    .full-sidebar.smaller > section { margin-left: 324px; }

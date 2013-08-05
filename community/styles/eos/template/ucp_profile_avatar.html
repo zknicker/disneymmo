@@ -1,25 +1,20 @@
 <!-- INCLUDE ucp_header.html -->
-            <div class="ui-utilitybar-actions-container">
-                <div class="ui-utilitybar-actions">
-                    <button class="button-as-anchor utility-action-button" type="submit" accesskey="s" tabindex="6" name="submit" value="{L_SUBMIT}">Save Changes</button>
-                    <!-- IF .draftrow --><button class="button-as-anchor utility-action-button" type="submit" name="delete" value="{L_DELETE_MARKED}" tabindex="6">{L_DELETE_MARKED}</button><!-- ENDIF -->
-                    <!-- IF S_DISPLAY_GALLERY --><button class="button-as-anchor utility-action-button" type="submit" name="display_gallery" value="{L_DISPLAY_GALLERY}" tabindex="6">{L_DISPLAY_GALLERY}</button> <!-- ENDIF -->
-                    <!-- IF S_IN_AVATAR_GALLERY --><input type="submit" name="cancel" value="{L_CANCEL}" tabindex="6">{L_CANCEL}</button><!-- ENDIF -->
-                    <!-- IF not S_IN_AVATAR_GALLERY --><button class="button-as-anchor utility-action-button" type="reset" accesskey="s" tabindex="6" name="reset" value="{L_RESET}">Reset</button><!-- ENDIF -->
-                    {S_HIDDEN_FIELDS}
-                    {S_FORM_TOKEN}                    
-                </div>
-            </div>
-        </div>
-        <div class="usercp-component group">
-            <aside class="gutter">
-                <div>
-                    <span>{L_TITLE}</span>
-                    <p>Customize your avatar, an image with a single purpose: to express who you are as a person! It is used around the site.</p>
-                </div>
-            </aside>
-            <div class="core">
-            <!-- INCLUDE ucp_avatar_options.html -->
-            </div>
-        </div>
+    <!-- IF ERROR -->
+    <div class="usercp-component usercp-error">
+        <p class="error">{ERROR}</p>
+    </div>
+    <!-- ENDIF -->
+    <div class="usercp-component group">
+        <h3 class="usercp-component-title">Your avatar is the virtual representation of yourself. People will recognize you by your avatar.</h3>
+        <!-- INCLUDE ucp_avatar_options.html -->
+    </div>
+    <div class="usercp-controls">
+        <button class="button-generic" type="submit" accesskey="s" tabindex="6" name="submit" value="{L_SUBMIT}">Save Changes</button>
+        <!-- IF .draftrow --><button class="button-generic" type="submit" name="delete" value="{L_DELETE_MARKED}" tabindex="6">{L_DELETE_MARKED}</button><!-- ENDIF -->
+        <!-- IF S_DISPLAY_GALLERY --><button class="button-generic" type="submit" name="display_gallery" value="{L_DISPLAY_GALLERY}" tabindex="6">{L_DISPLAY_GALLERY}</button> <!-- ENDIF -->
+        <!-- IF S_IN_AVATAR_GALLERY --><input class="button-generic" type="submit" name="cancel" value="{L_CANCEL}" tabindex="6"></input><!-- ENDIF -->
+        <!-- IF not S_IN_AVATAR_GALLERY --><button class="button-generic" type="reset" accesskey="s" tabindex="6" name="reset" value="{L_RESET}">Reset</button><!-- ENDIF -->
+        {S_HIDDEN_FIELDS}
+        {S_FORM_TOKEN}  
+    </div>
 <!-- INCLUDE ucp_footer.html -->

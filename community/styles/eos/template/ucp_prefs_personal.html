@@ -1,143 +1,133 @@
 <!-- INCLUDE ucp_header.html -->
-            <div class="ui-utilitybar-actions-container">
-                <div class="ui-utilitybar-actions">
-                    <button class="button-as-anchor utility-action-button" type="submit" accesskey="s" tabindex="6" name="submit" value="{L_SUBMIT}">Save Changes</button>
-                    <button class="button-as-anchor utility-action-button" type="reset" accesskey="s" tabindex="6" name="reset" value="{L_RESET}">Reset</button>
-                    {S_HIDDEN_FIELDS}
-                    {S_FORM_TOKEN}                    
-                </div>
-            </div>
-        </div>
-        <!-- IF ERROR -->
-        <div class="usercp-component usercp-error">
-            <p>{ERROR}</p>
-        </div>
-        <!-- ENDIF -->
-        <div class="usercp-component group">
-            <aside class="gutter">
-                <div>
-                    <span>Global Settings</span>
-                    <p>Modify a variety of global settings pertaining to your account and experience.</p>
-                </div>
-            </aside>
-            <div class="core">
-                <fieldset>
-                <section>
-                    <ul class="usercp-toggle-list">
-                        <li>
-                            <label for="viewemail">{L_SHOW_EMAIL}:</label></dt>
-                            <input type="hidden" name="viewemail" id="viewemailh" value="0" />
-                            <input type="checkbox" name="viewemail" id="viewemail"<!-- IF S_VIEW_EMAIL --> value="1" checked="checked"<!-- ENDIF --> />
-                        </li>
-                        <li>
-                            <label for="massemail">{L_ADMIN_EMAIL}:</label>
-                            <input type="hidden" name="massemail" id="massemailh" value="0" />
-                            <input type="checkbox" name="massemail" id="massemail"<!-- IF S_MASS_EMAIL --> value="1" checked="checked"<!-- ENDIF --> />
-                        </li>
-                        <li>
-                            <label for="allowpm" data-tooltip="{L_ALLOW_PM_EXPLAIN}">{L_ALLOW_PM}:</label>
-                            <input type="hidden" name="allowpm" id="allowpmh" value="0" />
-                            <input type="checkbox" name="allowpm" id="allowpm"<!-- IF S_ALLOW_PM --> value="1" checked="checked"<!-- ENDIF --> />
-                        </li> 
-                        <!-- IF S_CAN_HIDE_ONLINE -->
-                        <li>
-                            <label for="hideonline" data-tooltip="{L_HIDE_ONLINE_EXPLAIN}">{L_HIDE_ONLINE}:</label></dt>
-                            <input type="hidden" name="hideonline" id="hideonlineh" value="0" />
-                            <input type="checkbox" name="hideonline" id="hideonline"<!-- IF S_HIDE_ONLINE --> value="1" checked="checked"<!-- ENDIF --> />
-                        </li>
-                        <!-- ENDIF -->		
-                        <!-- IF S_SELECT_NOTIFY -->
-                            <dl>
-                                <dt><label for="notifymethod0">{L_NOTIFY_METHOD}:</label></dt>
-                                <dd>
-                                    <label for="notifymethod0"><input type="radio" name="notifymethod" id="notifymethod0" value="0"<!-- IF S_NOTIFY_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_NOTIFY_METHOD_EMAIL}</label> 
-                                    <label for="notifymethod1"><input type="radio" name="notifymethod" id="notifymethod1" value="1"<!-- IF S_NOTIFY_IM --> checked="checked"<!-- ENDIF --> /> {L_NOTIFY_METHOD_IM}</label> 
-                                    <label for="notifymethod2"><input type="radio" name="notifymethod" id="notifymethod2" value="2"<!-- IF S_NOTIFY_BOTH --> checked="checked"<!-- ENDIF --> /> {L_NOTIFY_METHOD_BOTH}</label>
-                                </dd>
-                            </dl>
-                        <!-- ENDIF -->
-                        <li>
-                            <label for="notifypm">{L_NOTIFY_ON_PM}:</label>
-                            <input type="hidden" name="notifypm" id="notifypmh" value="0" />
-                            <input type="checkbox" name="notifypm" id="notifypm"<!-- IF S_NOTIFY_PM --> value="1" checked="checked"<!-- ENDIF --> />
-                        </li>
-                        <li>
-                            <label for="popuppm">{L_POPUP_ON_PM}:</label>
-                            <input type="hidden" name="popuppm" id="popuppmh" value="0" />
-                            <input type="checkbox" name="popuppm" id="popuppm"<!-- IF S_POPUP_PM --> checked="checked"<!-- ENDIF --> />
-                        </li>
-                    </ul>
-                </section>
-                <section>
+    <!-- IF ERROR -->
+    <div class="usercp-component usercp-error">
+        <p>{ERROR}</p>
+    </div>
+    <!-- ENDIF -->  
+    <div class="usercp-component group">
+        <h3 class="usercp-component-title">Global Settings</h3>
+        <fieldset>
+        <section>
+            <ul class="usercp-toggle-list">
+                <li>
+                    <label for="viewemail">{L_SHOW_EMAIL}:</label></dt>
+                    <input type="hidden" name="viewemail" id="viewemailh" value="0" />
+                    <input type="checkbox" name="viewemail" id="viewemail"<!-- IF S_VIEW_EMAIL --> value="1" checked="checked"<!-- ENDIF --> />
+                </li>
+                <li>
+                    <label for="massemail">{L_ADMIN_EMAIL}:</label>
+                    <input type="hidden" name="massemail" id="massemailh" value="0" />
+                    <input type="checkbox" name="massemail" id="massemail"<!-- IF S_MASS_EMAIL --> value="1" checked="checked"<!-- ENDIF --> />
+                </li>
+                <li>
+                    <label for="allowpm" data-tooltip="{L_ALLOW_PM_EXPLAIN}">{L_ALLOW_PM}:</label>
+                    <input type="hidden" name="allowpm" id="allowpmh" value="0" />
+                    <input type="checkbox" name="allowpm" id="allowpm"<!-- IF S_ALLOW_PM --> value="1" checked="checked"<!-- ENDIF --> />
+                </li> 
+                <!-- IF S_CAN_HIDE_ONLINE -->
+                <li>
+                    <label for="hideonline" data-tooltip="{L_HIDE_ONLINE_EXPLAIN}">{L_HIDE_ONLINE}:</label></dt>
+                    <input type="hidden" name="hideonline" id="hideonlineh" value="0" />
+                    <input type="checkbox" name="hideonline" id="hideonline"<!-- IF S_HIDE_ONLINE --> value="1" checked="checked"<!-- ENDIF --> />
+                </li>
+                <!-- ENDIF -->		
+                <!-- IF S_SELECT_NOTIFY -->
                     <dl>
-                        <dt><label for="lang">{L_BOARD_LANGUAGE}:</label></dt>
-                        <dd><select name="lang" id="lang">{S_LANG_OPTIONS}</select></dd>
-                    </dl>
-                    <!-- IF S_STYLE_OPTIONS -->
-                    <dl>
-                        <dt><label for="style">{L_BOARD_STYLE}:</label></dt>
-                        <dd><select name="style" id="style">{S_STYLE_OPTIONS}</select></dd>
-                    </dl>
-                    <!-- ENDIF -->
-                </section>
-                <section class="columns">
-                    <ul class="usercp-toggle-list bottom-spacing">
-                        <li>
-                            <label for="dst">{L_BOARD_DST}:</label>
-                            <input type="checkbox" name="dst" id="dst"<!-- IF S_DST --> checked="checked"<!-- ENDIF --> />
-                        </li>
-                    </ul>
-                    <dl>
-                        <dt><label for="timezone">{L_BOARD_TIMEZONE}:</label></dt>
-                        <dd><select name="tz" id="timezone" class="autowidth">{S_TZ_OPTIONS}</select></dd>
-                    </dl>
-                    <dl>
-                        <dt><label for="dateformat" data-tooltip="Advanced users: note that custom dates follow the PHP date formatting.">{L_BOARD_DATE_FORMAT}:</label></dt>
+                        <dt><label for="notifymethod0">{L_NOTIFY_METHOD}:</label></dt>
                         <dd>
-                            <select name="dateoptions" id="dateoptions" onchange="if(this.value=='custom'){dE('custom_date',1);}else{dE('custom_date',-1);} if (this.value == 'custom') { document.getElementById('dateformat').value = default_dateformat; } else { document.getElementById('dateformat').value = this.value; }">
-                                {S_DATEFORMAT_OPTIONS}
-                            </select>
+                            <label for="notifymethod0"><input type="radio" name="notifymethod" id="notifymethod0" value="0"<!-- IF S_NOTIFY_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_NOTIFY_METHOD_EMAIL}</label> 
+                            <label for="notifymethod1"><input type="radio" name="notifymethod" id="notifymethod1" value="1"<!-- IF S_NOTIFY_IM --> checked="checked"<!-- ENDIF --> /> {L_NOTIFY_METHOD_IM}</label> 
+                            <label for="notifymethod2"><input type="radio" name="notifymethod" id="notifymethod2" value="2"<!-- IF S_NOTIFY_BOTH --> checked="checked"<!-- ENDIF --> /> {L_NOTIFY_METHOD_BOTH}</label>
                         </dd>
-                        <dd id="custom_date" style="display:none;"><input type="text" name="dateformat" id="dateformat" value="{DATE_FORMAT}" maxlength="30" class="inputbox narrow" style="margin-top: 3px;" /></dd>
                     </dl>
-                </section>
-                </fieldset>
-            </div>
-        </div>
+                <!-- ENDIF -->
+                <li>
+                    <label for="notifypm">{L_NOTIFY_ON_PM}:</label>
+                    <input type="hidden" name="notifypm" id="notifypmh" value="0" />
+                    <input type="checkbox" name="notifypm" id="notifypm"<!-- IF S_NOTIFY_PM --> value="1" checked="checked"<!-- ENDIF --> />
+                </li>
+                <li>
+                    <label for="popuppm">{L_POPUP_ON_PM}:</label>
+                    <input type="hidden" name="popuppm" id="popuppmh" value="0" />
+                    <input type="checkbox" name="popuppm" id="popuppm"<!-- IF S_POPUP_PM --> checked="checked"<!-- ENDIF --> />
+                </li>
+            </ul>
+        </section>
+        <section>
+            <dl>
+                <dt><label for="lang">{L_BOARD_LANGUAGE}:</label></dt>
+                <dd><select name="lang" id="lang">{S_LANG_OPTIONS}</select></dd>
+            </dl>
+            <!-- IF S_STYLE_OPTIONS -->
+            <dl>
+                <dt><label for="style">{L_BOARD_STYLE}:</label></dt>
+                <dd><select name="style" id="style">{S_STYLE_OPTIONS}</select></dd>
+            </dl>
+            <!-- ENDIF -->
+        </section>
+        <section class="columns">
+            <ul class="usercp-toggle-list bottom-spacing">
+                <li>
+                    <label for="dst">{L_BOARD_DST}:</label>
+                    <input type="checkbox" name="dst" id="dst"<!-- IF S_DST --> checked="checked"<!-- ENDIF --> />
+                </li>
+            </ul>
+            <dl>
+                <dt><label for="timezone">{L_BOARD_TIMEZONE}:</label></dt>
+                <dd><select name="tz" id="timezone" class="autowidth">{S_TZ_OPTIONS}</select></dd>
+            </dl>
+            <dl>
+                <dt><label for="dateformat" data-tooltip="Advanced users: note that custom dates follow the PHP date formatting.">{L_BOARD_DATE_FORMAT}:</label></dt>
+                <dd>
+                    <select name="dateoptions" id="dateoptions" onchange="if(this.value=='custom'){dE('custom_date',1);}else{dE('custom_date',-1);} if (this.value == 'custom') { document.getElementById('dateformat').value = default_dateformat; } else { document.getElementById('dateformat').value = this.value; }">
+                        {S_DATEFORMAT_OPTIONS}
+                    </select>
+                </dd>
+                <dd id="custom_date" style="display:none;"><input type="text" name="dateformat" id="dateformat" value="{DATE_FORMAT}" maxlength="30" class="inputbox narrow" style="margin-top: 3px;" /></dd>
+            </dl>
+        </section>
+        </fieldset>
+    </div>
+    <div class="usercp-controls">
+        <button class="button-generic" type="submit" accesskey="s" tabindex="6" name="submit" value="{L_SUBMIT}">Save Changes</button>
+        <button class="button-generic" type="reset" accesskey="s" tabindex="6" name="reset" value="{L_RESET}">Reset</button>
+        {S_HIDDEN_FIELDS}
+        {S_FORM_TOKEN}   
+    </div>
 
-        <script type="text/javascript">
-        // <![CDATA[
-            var date_format = '{A_DATE_FORMAT}';
-            var default_dateformat = '{A_DEFAULT_DATEFORMAT}';
+    <script type="text/javascript">
+    // <![CDATA[
+        var date_format = '{A_DATE_FORMAT}';
+        var default_dateformat = '{A_DEFAULT_DATEFORMAT}';
 
-            function customDates()
+        function customDates()
+        {
+            var e = document.getElementById('dateoptions');
+        
+            e.selectedIndex = e.length - 1;
+        
+            // Loop and match date_format in menu
+            for (var i = 0; i < e.length; i++)
             {
-                var e = document.getElementById('dateoptions');
-            
-                e.selectedIndex = e.length - 1;
-            
-                // Loop and match date_format in menu
-                for (var i = 0; i < e.length; i++)
+                if (e.options[i].value == date_format)
                 {
-                    if (e.options[i].value == date_format)
-                    {
-                        e.selectedIndex = i;
-                        break;
-                    }
-                }
-            
-                // Show/hide custom field
-                if (e.selectedIndex == e.length - 1)
-                {
-                    dE('custom_date',1);
-                }
-                else
-                {
-                    dE('custom_date',-1);
+                    e.selectedIndex = i;
+                    break;
                 }
             }
+        
+            // Show/hide custom field
+            if (e.selectedIndex == e.length - 1)
+            {
+                dE('custom_date',1);
+            }
+            else
+            {
+                dE('custom_date',-1);
+            }
+        }
 
-            customDates();
-        // ]]>
-        </script>
+        customDates();
+    // ]]>
+    </script>
 <!-- INCLUDE ucp_footer.html -->

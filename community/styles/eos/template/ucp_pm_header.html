@@ -7,26 +7,29 @@
     <!-- ENDIF -->
     <div class="full-sidebar fix-scroll smaller">
         <aside>
-            <div class="sidebar-item">
+            <div class="sidebar-item sidebar-item-header">
                 <h2 class="sidebar-title">Private Messaging</h2>
-                <p class="sidebar-subtext">Manage your private messages and compose new ones by using the navigation below and to the right.</p>
+                <p class="sidebar-subtext">Compose new messages; read old ones.</p>
             </div>
             <div class="sidebar-item right-flush">
                 <nav class="sidebar-nav">
                     <ul>
+                        <li class="sidebar-nav-title">Folders</li>
                         <!-- BEGIN folder -->
                         <!-- IF CUR_FOLDER_ID == folder.FOLDER_ID and not S_COMPOSE_PM -->
                         <li class="selected">
                         <!-- ELSE -->
                         <li>
                         <!-- ENDIF -->
-                            <a href="{folder.U_FOLDER}">{folder.FOLDER_NAME}<!-- IF folder.UNREAD_MESSAGES > 0 --> ({folder.UNREAD_MESSAGES})<!-- ENDIF --></a>
+                            <a href="{folder.U_FOLDER}" data-icon="<!-- IF folder.FOLDER_ID == 0 -->&#xe000;<!-- ELSEIF folder.FOLDER_ID == -2 -->&#xe002;<!-- ELSEIF folder.FOLDER_ID == -1 -->&#xe003;<!-- ELSE -->&#xe001;<!-- ENDIF -->">{folder.FOLDER_NAME}<!-- IF folder.UNREAD_MESSAGES > 0 --> ({folder.UNREAD_MESSAGES})<!-- ENDIF --></a>
                         </li>
                         <!-- END folder -->
-                        <li class="spacer"></li>
-                        <li<!-- IF S_COMPOSE_PM --> class="selected"<!-- ENDIF -->><a href="{U_POST_NEW_TOPIC}">Compose Message</a></li>
-                        <li><a href="{DMMO_U_PM_DRAFTS}">Manage Drafts</a></li>
-                        <li><a href="{DMMO_U_PM_OPTIONS}">Messaging Options</a></li>
+                    </ul>
+                    <ul>
+                        <li class="sidebar-nav-title">Messaging Actions</li>
+                        <li<!-- IF S_COMPOSE_PM --> class="selected"<!-- ENDIF -->><a href="{U_POST_NEW_TOPIC}" data-icon="&#xe01c;">Compose Message</a></li>
+                        <li><a href="{DMMO_U_PM_DRAFTS}" data-icon="&#xe01d;">Manage Drafts</a></li>
+                        <li><a href="{DMMO_U_PM_OPTIONS}" data-icon="&#xe01e;">Messaging Options</a></li>
                     </ul>
                 </nav>
             </div>

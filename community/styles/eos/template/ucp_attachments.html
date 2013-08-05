@@ -1,21 +1,11 @@
 <!-- INCLUDE ucp_header.html -->
-            <div class="ui-utilitybar-actions-container">
-                <div class="ui-utilitybar-actions<!-- IF not S_ATTACHMENT_ROWSw --> hidden<!-- ENDIF -->">
-                    <button class="button-as-anchor utility-action-button" type="submit" tabindex="6" name="delete" value="{L_DELETE_MARKED}">{L_DELETE_MARKED}</button>
-                    {S_HIDDEN_FIELDS}
-                    {S_FORM_TOKEN}                    
-                </div>
-            </div>
-        </div>
-        <div class="usercp-component">
+    <div class="usercp-component usercp-warning">
+        <p>Unfortunately, this page is incomplete. Full functionality coming soon!</p>
+    </div>
+    <div class="usercp-component">
         <form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
 
-        <h2>{L_TITLE}</h2>
-
-        <div class="panel">
-            <div class="inner"><span class="corners-top"><span></span></span>
-            
-            <p>{L_ATTACHMENTS_EXPLAIN}</p>
+        <h3 class="usercp-component-title">{L_TITLE}</h3>
 
             <!-- IF .attachrow -->
                 <ul class="linklist">
@@ -68,11 +58,8 @@
                     </li>
                 </ul>
             <!-- ELSE -->
-                <p><strong>{L_UCP_NO_ATTACHMENTS}</strong></p>
+                <p class="error-generic vertical-spacing">{L_UCP_NO_ATTACHMENTS}</p>
             <!-- ENDIF -->
-
-            <span class="corners-bottom"><span></span></span></div>
-        </div>
             
         <!-- IF S_ATTACHMENT_ROWS -->
             <fieldset class="display-actions">	
@@ -80,5 +67,10 @@
                 {S_FORM_TOKEN}
             </fieldset>
         <!-- ENDIF -->
-        </div>
+    </div>
+    <div class="usercp-controls<!-- IF not .topicrow or S_NO_DISPLAY_BOOKMARKS --> hidden<!-- ENDIF -->">
+        <button class="button-generic" type="submit" accesskey="s" tabindex="6" name="delete" value="{L_DELETE_MARKED}">{L_DELETE_MARKED}</button>
+        {S_HIDDEN_FIELDS}
+        {S_FORM_TOKEN}   
+    </div>
 <!-- INCLUDE ucp_footer.html -->

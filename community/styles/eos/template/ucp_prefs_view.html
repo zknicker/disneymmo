@@ -1,27 +1,12 @@
 <!-- INCLUDE ucp_header.html -->
-            <div class="ui-utilitybar-actions-container">
-                <div class="ui-utilitybar-actions">
-                    <button class="button-as-anchor utility-action-button" type="submit" accesskey="s" tabindex="6" name="submit" value="{L_SUBMIT}">Save Changes</button>
-                    <button class="button-as-anchor utility-action-button" type="reset" accesskey="s" tabindex="6" name="reset" value="{L_RESET}">Reset</button>
-                    {S_HIDDEN_FIELDS}
-                    {S_FORM_TOKEN}                    
-                </div>
-            </div>
-        </div>
-<div class="usercp-component group">
-    <aside class="gutter">
-        <div>
-            <span>Global Settings</span>
-            <p>Modify a variety of global settings pertaining to your account and experience.</p>
-        </div>
-    </aside>
-    <div class="core">
+    <!-- IF ERROR -->
+    <div class="usercp-component usercp-error">
+        <p class="error">{ERROR}</p>
+    </div>
+    <!-- ENDIF -->  
+    <div class="usercp-component group">
+        <h3 class="usercp-component-title">Global Settings</h3>
         <fieldset>
-        <!-- IF ERROR -->
-        <section>
-            <p class="error">{ERROR}</p>
-        </section>
-        <!-- ENDIF -->
         <section>
             <ul class="usercp-toggle-list">
                 <li>
@@ -86,6 +71,10 @@
         </section>
         </fieldset>
     </div>
-</div>
-</div>
+    <div class="usercp-controls">
+        <button class="button-generic" type="submit" accesskey="s" tabindex="6" name="submit" value="{L_SUBMIT}">Save Changes</button>
+        <button class="button-generic" type="reset" accesskey="s" tabindex="6" name="reset" value="{L_RESET}">Reset</button>
+        {S_HIDDEN_FIELDS}
+        {S_FORM_TOKEN}   
+    </div>
 <!-- INCLUDE ucp_footer.html -->

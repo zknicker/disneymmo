@@ -69,8 +69,19 @@
 
     $z-index-login-bg: 100;
     $z-index-login-content: 1000;
-	
+    
 	/* Mixins */
+	@mixin icomoon-icon () {
+		font-family: 'DisneyMMO-Icons';
+		speak: none;
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		text-transform: none;
+		line-height: 1;
+		-webkit-font-smoothing: antialiased;
+	}
+
 	@mixin box-shadow ($shadow1: 0 0 5px #000, $shadow2:false) {
     
         $params: $shadow1;
@@ -88,13 +99,13 @@
                 box-sizing: $sizing;
 	}
     
-	@mixin rounded-border ($thickness: 1px, $radius: 4px, $color: #FFFFFF) {
+	@mixin rounded-border ($thickness: 1px, $radius: 4px, $color: #FFFFFF, $style:solid) {
 
 		-webkit-border-radius:	$radius;
 		-moz-border-radius: $radius;
 		border-radius: $radius;
 		
-		border: $thickness solid $color;
+		border: $thickness $style $color;
 	}
     
     @mixin rounded-border-reset () {
@@ -178,4 +189,12 @@
             -ms-user-select: $val; /* IE 10+ */
              -o-user-select: $val; /* Opera (no support) */
                 user-select: $val; /* CSS3 (no support) */
+    }
+    
+    @mixin background-size($val) {
+    
+        -webkit-background-size: $val; /* Chrome all / Safari all */
+           -moz-background-size: $val; /* Firefox all */
+             -o-background-size: $val; /* Opera */
+                background-size: $val; /* CSS3 */
     }
