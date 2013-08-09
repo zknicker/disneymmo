@@ -704,6 +704,7 @@ function getRelativeTime($ts) {
         $ts = strtotime($ts);
 
     $diff = time() - $ts;
+    
     if($diff == 0)
         return 'now';
         

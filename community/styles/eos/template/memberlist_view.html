@@ -81,6 +81,7 @@
 				<form id="profile-wall-form" name="profile-wall" mode="post">
 					<input type="hidden" id="profile-message-recipient" value="{USER_ID}" />
 					<div class="message-input">
+                        <div class="message-input-busy"></div>
 						<textarea id="profile-message-input" name="message" placeholder="leave a message..."></textarea>
 						<button id="profile-message-submitter" class="button-generic hot" type="submit">Submit</button>
 					</div>
@@ -104,7 +105,12 @@
 							<div class="message">Hey dude, long time no see! How's it going? Hey dude, long time no see! How's it going? Hey dude, long time no see! How's it going? Hey dude, long time no see! How's it going? Hey dude, long time no see! How's it going?</div>
 						</li>
 					</ul>
-					<a href="javascript:;" class="button-more">More Messages</a>
+                    <div class="profile-wall-controls">
+                        <a href="javascript:;" class="more-wall-messages">
+                            <div class="spinner"><img src="../images/layout/loader-1.gif" /></div>
+                            <div class="text">More Messages</div>
+                        </a>
+                    </div>
 				</form>
 				</div>
 			</div>

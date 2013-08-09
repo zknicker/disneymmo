@@ -54,9 +54,11 @@ function getWallMessages($recipient_id, $start, $qty) {
 
 		$messages[] = array(
 			'sender' => get_username_string('full', $row['user_id'], $row['username'], $data['user_colour']),
+            'sender_username' => get_username_string('username', $row['user_id'], $row['username'], $data['user_colour']),
+            'sender_url' => get_username_string('profile', $row['user_id'], $row['username'], $data['user_colour']),
 			'sender_avatar' => get_user_avatar($row['user_avatar'], $row['user_avatar_type'], $row['user_avatar_width'], $row['user_avatar_height']),
 			'message' => $message,
-			'date' => $user->format_date($row['message_time'])
+			'date' => $row['message_time']
 		);
     }
     $db->sql_freeresult($result);
@@ -71,7 +73,7 @@ function getWallMessages($recipient_id, $start, $qty) {
 */
 function getMessagesForPHPBBTemplate($messages) {
 
-	global $template;
+	global $template, $user;
 
 	foreach ($messages as $message) {
 
@@ -79,7 +81,7 @@ function getMessagesForPHPBBTemplate($messages) {
 			'SENDER' => $message['sender'],
 			'SENDER_AVATAR' => $message['sender_avatar'],
 			'MESSAGE' => $message['message'],
-			'DATE' => $message['date'],
+			'DATE' => $user->format_date($message['date']),
 			'DATE_REL' => getRelativeTime($message['date'])
 		));
 	}

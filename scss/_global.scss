@@ -66,9 +66,6 @@
     .button-generic.hot:hover { background-color: darken(#C40000, 20%); border-color: darken(#C40000, 40%); }
     .button-generic.hot:active { background-color: #C40000; border-color: darken(#C40000, 20%); }
 
-    .button-more { height: 38px; display: block; font-size: 19px; line-height: 38px; }
-    .button-more:before { @include icomoon-icon(); content: "\e024"; float: left; margin-right: 8px; font-size: 22px; line-height: 38px; }
-
     /* select */
     select { background: #FBFBFB url($path-layout + 'select-drop-arrow.png') no-repeat 100% 50%; margin: 0; padding: 8px 39px 10px 6px; border-width: 1px 3px 1px 1px; border-style: solid; border-color: #DDD #CCC #DDD #DDD; color: #686868; @include appearance(none); font-size: 13px; cursor: pointer; }
     select:focus { border-right-color: $font-color-contrast; }
@@ -318,7 +315,7 @@
 
 	// Notifications
     // --------------------------------------------------------------------------------
-	#notifications-container { width: $page-width-fluid; position: fixed; bottom: 0; z-index: $z-index-global-notifications; }
+	.notifications-container { width: $page-width-fluid; position: fixed; bottom: 0; z-index: $z-index-global-notifications; }
 	.notification { float: right; position: relative; margin-right: 10px; }
 	
 		.notification.normal { height: 111px; width: 352px; background: url($path-layout + 'notification-normal.png') no-repeat 50% 50%; position: relative; top: 111px; @include opacity(0); }

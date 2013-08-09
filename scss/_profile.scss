@@ -67,7 +67,10 @@
     .message-input textarea { height: 49px; width: 100%; background-color: transparent; padding: 10px 95px 10px 0; border-width: 0 0 1px 0; border-color: #8B8B8B; border-style: dashed; line-height: 32px; font-size: 32px; overflow: hidden; resize: none; }
     .message-input button { position: absolute; top: -49px; right: 0; @include transition(top, 0.25s, ease); }
     .message-input button.active { top: 4px; }
-
+    .message-input.busy button { top: -49px; }
+    .message-input .message-input-busy { height: 100%; width: 100%; background: #FFF url($path-layout + 'loader-1.gif') no-repeat 50% 50%; position: absolute; top: -100%; left: 0; @include opacity(.8); @include transition(all, .25s, ease); }
+    .message-input.busy .message-input-busy { top: 0; }
+    
     .wall { width: 102%; margin-top: 40px; }
     .wall-block { width: 23%; margin: 0 2% 2% 0; float: left; }
 
@@ -76,6 +79,18 @@
     .wall-block-message .message-header a { display: block; padding: 3px 0 3px 0; font-weight: bold; font-size: 14px; }
     .wall-block-message .date { color: #AAA; font-size: 11px; text-transform: lowercase; }
     .wall-block-message .message { padding: 7px 2px 2px 2px; float: left; line-height: 200%; font-size: 14px; }
+    
+    .profile-wall-controls { margin-top: 20px; overflow: hidden; }
+    .profile-wall-controls .more-wall-messages { float: left; }
+    
+    .more-wall-messages { height: 38px; display: block; position: relative; }
+    .more-wall-messages .text { font-size: 19px; line-height: 38px; @include transition(all, 0.25s, ease); }
+    .more-wall-messages .text:before { @include icomoon-icon(); content: "\e024"; float: left; margin-right: 8px; font-size: 22px; line-height: 38px; }
+    .more-wall-messages .spinner { width: 30px; height: 30px; position: absolute; top: -40px; left: 50%; margin-left: -15px; @include opacity(0); @include transition(all, 0.25s, ease); }
+    .more-wall-messages .spinner img { width: 30px; height: 30px; }
+    .more-wall-messages.busy { height: 66px; }
+    .more-wall-messages.busy .text { padding-top: 28px; @include opacity(.5); @include scale(.5, .5); }
+    .more-wall-messages.busy .spinner { top: 0; @include opacity(1); }
 
     /* *************************************** */
 	/* PROFILE STYLES

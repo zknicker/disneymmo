@@ -33,32 +33,73 @@ $user->setup();
 $user_id = $user->data['user_id'];
 $username = $user->data['username'];
 $avatar = $user->data['user_avatar'];
+$avatar_type = $user->data['user_avatar_type'];
+$avatar_width = $user->data['user_avatar_width'];
+$avatar_height = $user->data['user_avatar_height'];
+
+$operation = request_var('operation', '', true);
+
 $recipient_id = request_var('recipient', 0);
 $message = request_var('message', '', true);
 
-// Error checking
-if($user_id !== null && $recipient_id !== null && $message !== null) {
+$begin = request_var('begin', 0);
+$qty = request_var('qty', 0);
+switch ($operation) {
 
-	postWallMessage($message, $recipient_id, $user_id);
+    // Post Message
+    case 'postMessage':
+        
+        if($user_id !== null && $recipient_id !== null && $message !== null) {
+            postWallMessage($message, $recipient_id, $user_id);
 
-	$message = censor_text($message);
-	$message = bbcode_nl2br($message);
+            $message = censor_text($message);
+            $message = bbcode_nl2br($message);
 
-	$return_data = json_encode(array(
-	    'sender' => $username,
-	    'sender_url' => append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=viewprofile&u=' . $user_id),
-	    'sender_avatar' => $phpbb_root_path . 'download/file.php?avatar=' . $avatar,
-	    'message' => $message,
-	    'date' => 'Just now.'
-	));
-
-	echo $return_data;
-
-	returnSuccess($return_data);
-
-} else {
-	errorOut("User ID or Recipient ID was null.");
+            $return_data = json_encode(array(
+                'sender' => $username,
+                'sender_url' => append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=viewprofile&u=' . $user_id),
+                'sender_avatar' => get_user_avatar($avatar, $avatar_type, $avatar_width, $avatar_height),
+                'message' => $message,
+                'date' => $user->format_date(time()),
+                'date_rel' => getRelativeTime(time())
+            ));
+            
+        }else {
+            errorOut("User ID or Recipient ID was null.");
+        }
+        break;
+    
+    // Get More Messages
+    case 'getMoreMessages':
+    
+        if($user_id !== null) {
+            $messages = getWallMessages($user_id, $begin, $qty);
+            foreach ($messages as $message) {
+            
+                $return_messages[] = array(
+                    'sender' => $message['sender_username'],
+                    'sender_url' => $message['sender_url'],
+                    'sender_avatar' => $message['sender_avatar'],
+                    'message' => $message['message'],
+                    'date' => $user->format_date($message['date']),
+                    'date_rel' => getRelativeTime($message['date'])
+                );
+            }
+            $return_data = json_encode($return_messages);
+            
+        }else {
+            errorOut("User ID was null.");
+        }
+        break;
+        
+    // Invalid Operation
+    default:
+    
+        errorOut("Invalid operation.");
+        break;
 }
+
+returnSuccess($return_data);
 
 
 /*
@@ -78,5 +119,5 @@ function errorOut($message) {
 */
 function returnSuccess($data) {
 
-	echo $return_data;
+	echo $data;
 }

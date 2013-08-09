@@ -113,7 +113,7 @@ dmmo.notifications = {
     
         // No queueing logic present yet. Don't post unless no notification exists previously.
         if(dmmo.notifications.currTimeout == 0) {
-    
+
             // Retrieve notification ID and increment for next notification.
             var notificationID = dmmo.notifications.currID++;
         
@@ -149,10 +149,10 @@ dmmo.notifications = {
     
         $('body').prepend(
             
-            '<div id="notifications-container"></div>'
+            '<div class="notifications-container"></div>'
         );
         
-        dmmo.notifications.container = $('#notifications-container');
+        dmmo.notifications.container = $('.notifications-container');
     }
 }
 
