@@ -101,7 +101,7 @@ if ($is_allowed) {
             <p class="body">Welcome to the showcase editor. Configure the showcase presented on DisneyMMO's homepage by modifying the slide parameters below. <b>Please make sure to preview</b> your changes before publishing them to the site.</p>
         </section>
         <section class="generic-content-container">
-            <button type="submit" class="button-generic">Preview Showcase</button><button type="submit" class="button-generic">Publish Changes</button>
+            <button type="submit" class="button-generic" style="float: left;">Preview Showcase</button><button type="submit" class="button-generic">Publish Changes</button>
         </section>
         <hr></hr>
         <section id="editor-showcase" class="dese-preview-showcase showcase group">

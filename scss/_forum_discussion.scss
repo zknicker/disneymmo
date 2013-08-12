@@ -41,7 +41,7 @@
             .user-info .credits-count { height: 16px; background: url($path-icons + 'post-stats-credits.png') no-repeat 0 50%; margin-top: 3px; padding-left: 23px; color: #949496; line-height: 16px; font-size: 11px; }
             .user-info .post-count:hover, .user-info .credits-count:hover { color: $font-color-primary-hover; cursor: help; }
 
-        .post-content { min-height: 130px; background-color: #FAFAFA; margin-left: 240px; padding: 16px 180px 100px 20px; padding-right: 180px; position: relative; font-size: 13px; @include rounded-border(1px, 4px, #E4E4E4); @include box-shadow(0px 0px 10px 0px #E8E8E8); }
+        .post-content { min-height: 130px; background-color: #FAFAFA; margin-left: 240px; padding: 16px 180px 100px 20px; padding-right: 180px; position: relative; font-size: 13px; @include rounded-border(1px, 4px, #E0E0E0); @include box-shadow(0px 0px 10px 0px #E6E6E6); }
         .post-message { z-index: $z-index-forum-post-content; line-height: 200%; }
         
             /* ul bbcode */

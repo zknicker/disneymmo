@@ -9,14 +9,6 @@
  *	Zach Knickerbocker
  */
 
-/*
- * jQuery autoResize (textarea auto-resizer)
- * @copyright James Padolsey http://james.padolsey.com
- * @version 1.04
- */
-
-var globprof;
-
 dmmo.profiles = (function() {
   
     function profiles(profile_wall) {
@@ -58,6 +50,7 @@ dmmo.profiles = (function() {
             
                 _this.prependMessage(data.message, data.sender, data.sender_url, data.sender_avatar, data.date, data.date_rel);
                 _this.enableMessageInput();
+                dmmo.notifications.post("Your message has been successfully posted!");
             },
             error:function(jqXHR, textStatus, errorThrown){
             
@@ -94,6 +87,7 @@ dmmo.profiles = (function() {
             error:function(jqXHR, textStatus, errorThrown){
             
                 _this.enableMoreMessagesButton();
+                dmmo.notifications.post("Could not retrieve more messages. Please try again.");
             } 
         });
     }
@@ -244,5 +238,5 @@ dmmo.profiles = (function() {
 /* Make the magic happen. */
 $(function() {
 
-    globprof = new dmmo.profiles('#profile-wall .wall');
+    new dmmo.profiles('#profile-wall .wall');
 });

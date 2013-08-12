@@ -51,12 +51,14 @@ dmmo.showcaseAnimator = (function() {
         var _this = this;
         
         // Hovering over the center slide triggers isHovered.
-        this.$showcase.find('.anim-center').parent().hover(function() {
-            _this._isHovered = true;
-        }, function() {
-            _this._isHovered = false;
+        this.$showcase.find('.slide').hover(function() {
+            if ($(this).hasClass('.anim-center')) {
+                _this._isHovered = true;
+            } else {
+                _this._isHovered = false;
+            }
         });
-        
+
         // Caption hovering changes slide.
         this.$showcase.find('.caption').hover(function() {
             _this.jumpTo($(this).parent('.slide').index());

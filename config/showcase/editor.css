@@ -10,6 +10,6 @@
         .dese-controls-bar li { display: block; float: left; padding: 8px 15px 0 15px; font-size: 27px; }
         .dese-controls-bar li:hover { color: #1596CC; cursor: pointer; }
         
-    .dese-slide-fields { margin: 20px 0 0 20px; padding: 24px; background: #F2F2F2; border: 1px dotted #DFDFDF; }
+    .dese-slide-fields { margin: 20px 0 0 20px; padding: 24px; background: #F2F2F2; border: 1px dotted #DFDFDF; overflow: hidden; }
     
     hr { margin: 30px 5% 30px 5%; border-top: 3px dotted #AFAFAF; }

@@ -106,40 +106,31 @@ dmmo = {
 dmmo.notifications = {
 
     container: 0,            // notifications container element.
-    currID: 1,                // Incrementing unique ID for notifications.
-    currTimeout: 0,            // Tracker for current notification clear timeout.
+    currID: 1,               // Incrementing unique ID for notifications.
     
     post: function(message) {
     
-        // No queueing logic present yet. Don't post unless no notification exists previously.
-        if(dmmo.notifications.currTimeout == 0) {
-
-            // Retrieve notification ID and increment for next notification.
-            var notificationID = dmmo.notifications.currID++;
+        var notificationID = dmmo.notifications.currID++;
         
-            // Post notification HTML.
-            $(dmmo.notifications.container).prepend(
-            
-                '<div id="NID' + notificationID + '" class="notification normal">' +
-                    '<div class="notification-content">' + message + '</div>' +
-                    '<a href="javascript: dmmo.notifications.clear(' + notificationID + ');" class="notification-close"></a>' +
-                '</div>'
-            );
-            
-            // Animate notification onto screen.
-            var notificationHeight = $('#NID' + notificationID).height();
-            $('#NID' + notificationID).animate({ top: '-=111', opacity: '1' }, 500, 'easeOutBack');
+        // Post notification HTML.
+        $(dmmo.notifications.container).prepend(
         
-            // Queue a clear event for the notification.
-            dmmo.notifications.currTimeout = window.setTimeout('dmmo.notifications.clear(' + notificationID + ')', 3500);
-        }
+            '<div id="NID' + notificationID + '" class="notification normal">' +
+                message + '<a href="javascript: dmmo.notifications.clear(' + notificationID + ');" class="notification-close"></a>' +
+            '</div>'
+        );
+            
+        // Animate notification onto screen.
+        var notificationHeight = $('#NID' + notificationID).height();
+        $('#NID' + notificationID).animate({ top: '-=100', opacity: '1' }, 500, 'easeOutBack');
+    
+        // Queue a clear event for the notification.
+        window.setTimeout('dmmo.notifications.clear(' + notificationID + ')', 3500000);
     },
     
     clear: function(notificationID) {
     
-        window.clearTimeout(dmmo.notifications.currTimeout);
-        dmmo.notifications.currTimeout = 0;
-        $('#NID' + notificationID).animate({ opacity: '0' }, 300, function() {
+        $('#NID' + notificationID).animate({ top: '+=100', opacity: '0' }, 300, function() {
         
             $(this).remove();
         });

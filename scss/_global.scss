@@ -315,14 +315,14 @@
 
 	// Notifications
     // --------------------------------------------------------------------------------
-	.notifications-container { width: $page-width-fluid; position: fixed; bottom: 0; z-index: $z-index-global-notifications; }
-	.notification { float: right; position: relative; margin-right: 10px; }
+	.notifications-container { width: 100%; position: fixed; bottom: 0; left: 0; z-index: $z-index-global-notifications; }
+	.notification { height: 50px; width: 90%; margin: 0 5% 20px 5%; padding: 0 20px; position: relative; top: 100px; line-height: 46px; font-size: 15px; }
 	
-		.notification.normal { height: 111px; width: 352px; background: url($path-layout + 'notification-normal.png') no-repeat 50% 50%; position: relative; top: 111px; @include opacity(0); }
+		.notification.normal { background-color: #FFF; @include rounded-border(1px, 4px, $theme-secondary); @include opacity(0); @include box-shadow(0 0 8px 0 #000); }
 	
-	.notification .notification-content { padding: 30px 64px 30px 33px; font-family: $font-family-heading; font-size: 20px; color: $font-color-notification; line-height: 23px; }
-	.notification .notification-close { height: 19px; width: 19px; background-image: url($path-layout + 'notification-close-button.png'); position: absolute; top: 28px; right: 26px; }
-	.notification .notification-close:hover { background-position: 100% 0; }
+	.notification .notification-content {  }
+	.notification .notification-close:before { @include icomoon-icon(); height: 40px; width: 40px; content: "\e025"; position: absolute; top: 50%; right: 10px; margin-top: -20px; color: darken($theme-secondary, 25%); font-size: 16px; text-align: center; line-height: 20px; }
+	.notification .notification-close:before:hover { color: lighten($theme-secondary, 25%); }
 	
 	// ToolTips
     // --------------------------------------------------------------------------------

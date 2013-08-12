@@ -41,8 +41,8 @@ $eos_config = array(
 	"poll_source_forums"            =>  array(36),
 	
 	/* showcase */
-    "showcase_table"                =>  'phpbb_showcase',
     "showcase_json_path"            =>  'json/showcase.json',
+    "showcase_table"                =>  'phpbb_showcase',
     "default_slide_bg"              =>  'images/news/default/dmmo/generic.jpg',
     "uploaded_slide_bg_path"        =>  'images/showcase/',
 	

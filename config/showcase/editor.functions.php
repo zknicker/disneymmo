@@ -27,9 +27,9 @@ function postShowcaseJSON($params) {
 
 function getShowcaseJSON() {
     
-    global $eos_config;
+    global $eos_config, $phpbb_root_path;
 
-    $showcase_json = file_get_contents($eos_config['showcase_json_path'], NULL);
+    $showcase_json = file_get_contents($phpbb_root_path . '../' . $eos_config['showcase_json_path'], NULL);
     return json_decode($showcase_json, TRUE);    
 }
 
