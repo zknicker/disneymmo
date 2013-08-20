@@ -14,7 +14,7 @@ if ($user->data['user_id'] == ANONYMOUS)
     login_box('', $user->lang['LOGIN']);
 } 
 
-page_header('DisneyMMO Chat');
+page_header('Chat');
 
 // Variables to be sent to template.
 $template->assign_vars(array(
@@ -23,7 +23,10 @@ $template->assign_vars(array(
 
 $template->set_filenames(array(
 	'body' => 'chat.html',
+    'PAGE_ID' => 'chat'
 ));
+
+print_r($template);
 
 make_jumpbox(append_sid("{$phpbb_root_path}viewforum.$phpEx"));
 page_footer();

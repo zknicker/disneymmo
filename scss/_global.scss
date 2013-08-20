@@ -15,12 +15,12 @@
 	html { background-color: $bg-global-color; overflow-y: scroll; overflow-x: hidden; }
 	body { margin: 0; padding: 0; position: relative; font-size: 12px; color: $font-color-primary; font-family: $font-family-primary; }
     
-	.eos-container { margin: 22px auto 0 auto; position: relative; z-index: $z-index-page-contents; }
+	.eos-container { margin: 22px auto 0 auto; position: relative; z-index: $z-index-page-contents; overflow: hidden; }
     .eos-container-whitespace { margin: 30px auto 0 auto; position: relative; z-index: $z-index-page-contents; }
     
   	// Global Styles
     // --------------------------------------------------------------------------------
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; -moz-box-sizing: border-box; }
     
 	.preload * {
 		-webkit-transition: none !important;
@@ -37,6 +37,7 @@
     /* links */
     a { color: $font-color-contrast; text-decoration: none; @include transition(color, .25s, ease); }
     a:hover { color: $font-color-contrast-hover; @include transition-duration(0s); }
+    a:active{ background-color: transparent; }
 
     /* status tags */
     .permissions-warning { color: #CA0000; font-weight: bold; }
@@ -67,11 +68,12 @@
     .button-generic.hot:active { background-color: #C40000; border-color: darken(#C40000, 20%); }
 
     /* select */
-    select { background: #FBFBFB url($path-layout + 'select-drop-arrow.png') no-repeat 100% 50%; margin: 0; padding: 8px 39px 10px 6px; border-width: 1px 3px 1px 1px; border-style: solid; border-color: #DDD #CCC #DDD #DDD; color: #686868; @include appearance(none); font-size: 13px; cursor: pointer; }
+    select { min-width: 80px; background: #FBFBFB; margin: 0; padding: 8px 6px 10px 6px; border-width: 1px 3px 1px 1px; border-style: solid; border-color: #DDD #CCC #DDD #DDD; color: #686868; font-size: 13px; cursor: pointer; }
     select:focus { border-right-color: $font-color-contrast; }
+    html.cssappearance select { background: #FBFBFB url($path-layout + 'select-drop-arrow.png') no-repeat 100% 50%; padding: 8px 39px 10px 6px; @include appearance(none); }
     
     /* field row (an organized arrangement of form fields) */
-    .field-row { width: 602px; }
+    .field-row { width: 602px; overflow: hidden; }
     .field-row dl { margin: 0 14px 10px 0; float: left; }
     .field-row label { font-size: 11px; line-height: 26px; text-transform: uppercase; cursor: pointer; }
     .field-row label[data-tooltip]:after { background-color: #AAA; content: '?'; display: inline-block; margin-left: 5px; padding: 1px 5px; color: #FFF; line-height: 12px; text-align: center; font-size: 8px; @include rounded-border(0, 14px, $font-color-primary); }
@@ -321,8 +323,9 @@
 		.notification.normal { background-color: #FFF; @include rounded-border(1px, 4px, $theme-secondary); @include opacity(0); @include box-shadow(0 0 8px 0 #000); }
 	
 	.notification .notification-content {  }
-	.notification .notification-close:before { @include icomoon-icon(); height: 40px; width: 40px; content: "\e025"; position: absolute; top: 50%; right: 10px; margin-top: -20px; color: darken($theme-secondary, 25%); font-size: 16px; text-align: center; line-height: 20px; }
-	.notification .notification-close:before:hover { color: lighten($theme-secondary, 25%); }
+    .notification .notification-close { display: block; }
+	.notification .notification-close:before { @include icomoon-icon(); height: 48px; width: 60px; content: "\e025"; position: absolute; top: 50%; right: 0; margin-top: -24px; color: darken($theme-secondary, 25%); font-size: 16px; text-align: center; line-height: 48px; }
+	.notification .notification-close:hover:before { color: darken($theme-secondary, 50%); }
 	
 	// ToolTips
     // --------------------------------------------------------------------------------

@@ -89,6 +89,20 @@ function getMessagesForPHPBBTemplate($messages) {
 
 /*
 * ==============================================================================
+* Gets the initial profile message for PHPBB templates.
+* ==============================================================================
+*/
+function getInitialMessageForPHPBBTemplate() {
+
+	global $template;
+
+	$template->assign_block_vars('wall_messages', array(
+        'MESSAGE' => "No messages found! Maybe you can leave the first one? Type a message into the input box and press 'enter'."
+    ));
+}
+
+/*
+* ==============================================================================
 * Post Wall Message
 * ==============================================================================
 */
@@ -115,4 +129,19 @@ function postWallMessage($message, $sender_id, $recipient_id) {
 
 	$sql = 'INSERT INTO ' . $eos_config['profile_wall_messages_track_table'] . ' ' . $db->sql_build_array('INSERT', $sql_arr);
 	$db->sql_query($sql);
+}
+
+/*
+* ==============================================================================
+* Moves a profile image to its permanent storage space.
+* ==============================================================================
+*/
+function uploadProfileImage($tempFile, $user_id) {
+
+	global $eos_config;
+    
+    $targetPath = $eos_config['profile_banner_dir'];
+    $targetFile =  $targetPath . (int) $user_id;
+
+    move_uploaded_file($tempFile, $targetFile);
 }

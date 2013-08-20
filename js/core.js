@@ -33,6 +33,9 @@ dmmo = {
     
     init: function() {
 
+        // Extend Modernizr
+        dmmo.modernizr.cssAppearance();
+    
         // Initialize global modules.
         dmmo.notifications.init();
         dmmo.tooltips.init();
@@ -354,6 +357,17 @@ dmmo.maintenance = {
     
     init: function() { }
  }
+ 
+/* Modernizr Extensions
+ * --------------------------------------------------------------------------------- */
+dmmo.modernizr = {
+
+    cssAppearance: function() {
+        if (Modernizr.testProp('webkitAppearance')) {
+            $('html').addClass('cssappearance');
+        }
+    }
+}
  
 /* Make the magic happen baby. */
 $(function() {

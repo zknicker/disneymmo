@@ -44,39 +44,45 @@ $message = request_var('message', '', true);
 
 $begin = request_var('begin', 0);
 $qty = request_var('qty', 0);
+
 switch ($operation) {
 
     // Post Message
     case 'postMessage':
         
         if($user_id !== null && $recipient_id !== null && $message !== null) {
-            postWallMessage($message, $recipient_id, $user_id);
+            postWallMessage($message, $user_id, $recipient_id);
 
             $message = censor_text($message);
             $message = bbcode_nl2br($message);
 
-            $return_data = json_encode(array(
+            $return_data = array(
                 'sender' => $username,
                 'sender_url' => append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=viewprofile&u=' . $user_id),
                 'sender_avatar' => get_user_avatar($avatar, $avatar_type, $avatar_width, $avatar_height),
                 'message' => $message,
                 'date' => $user->format_date(time()),
                 'date_rel' => getRelativeTime(time())
-            ));
+            );
             
         }else {
-            errorOut("User ID or Recipient ID was null.");
+            errorOut("Sorry, we made a mistake (ERROR: user ID or recipient ID was null).");
         }
         break;
     
     // Get More Messages
     case 'getMoreMessages':
     
-        if($user_id !== null) {
-            $messages = getWallMessages($user_id, $begin, $qty);
+        if($recipient_id !== null) {
+            $messages = getWallMessages($recipient_id, $begin, $qty);
+
+            if (count($messages) == 0) {
+                errorOut("There are no more messages to retrieve.");
+            }
+            
             foreach ($messages as $message) {
             
-                $return_messages[] = array(
+                $return_data[] = array(
                     'sender' => $message['sender_username'],
                     'sender_url' => $message['sender_url'],
                     'sender_avatar' => $message['sender_avatar'],
@@ -85,17 +91,30 @@ switch ($operation) {
                     'date_rel' => getRelativeTime($message['date'])
                 );
             }
-            $return_data = json_encode($return_messages);
             
         }else {
-            errorOut("User ID was null.");
+            errorOut("Sorry, we made a mistake (ERROR: No recipient ID specified).");
         }
+        break;
+        
+    // Upload Profile Banner
+    case 'uploadProfileBanner':
+    
+        if (!empty($_FILES)) {        
+            $tempFile = $_FILES['profile_header']['tmp_name'];
+            uploadProfileImage($tempFile, (int) $user_id);
+            $return_data = array('yo' => 'hey');
+            
+        } else {
+            errorOut("Sorry, we made a mistake (ERROR: No file found to upload).");
+        }
+    
         break;
         
     // Invalid Operation
     default:
     
-        errorOut("Invalid operation.");
+        errorOut("Sorry, we made a mistake (ERROR: Invalid operation).");
         break;
 }
 
@@ -107,9 +126,15 @@ returnSuccess($return_data);
 * Error Out
 * ==============================================================================
 */
-function errorOut($message) {
+function errorOut($data) {
 
-    die(json_encode(array('message' => $message)));
+    header('Content-type: text/html');
+    $data_augmented = json_encode(array(
+        'error' => true,
+        'error_message' => $data
+    ));
+    
+    die($data_augmented);
 }
 
 /*
@@ -119,5 +144,11 @@ function errorOut($message) {
 */
 function returnSuccess($data) {
 
-	echo $data;
+    header('Content-type: text/html');
+	$data_augmented = json_encode(array(
+        'error' => false,
+        'data' => $data
+    ));
+    
+    echo $data_augmented;
 }

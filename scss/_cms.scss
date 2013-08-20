@@ -90,7 +90,7 @@
     .showcase {
         height: $showcase-height + $showcase-caption-height;
         width: $showcase-width;
-        overflow: show;
+        overflow: visible;
         position: relative;
         //-webkit-perspective: 500px;
         //-moz-perspective: 500px;
@@ -174,7 +174,7 @@
     }
 
     .showcase .anim-left {
-        opacity: 0;
+        @include opacity(0);
         z-index: 0;
         //-webkit-transform: rotateY(-12deg) translateY(0) translateX(-900px) scale(1);
         //-moz-transform: rotateY(-12deg) translateY(0) translateX(-900px) scale(1);
@@ -191,7 +191,7 @@
     }
 
     .showcase .anim-right {
-        opacity: 0;
+        @include opacity(0);
         z-index: 0;
         //-webkit-transform: rotateY(12deg) translateY(0) translateX(900px) scale(1);
         //-moz-transform: rotateY(12deg) translateY(0) translateX(-900px) scal(1);
@@ -200,7 +200,7 @@
     }
 
     .showcase .anim-left-hidden {
-        opacity: 0;
+        @include opacity(0);
         z-index: -1;
         left: 100%;
         //-webkit-transform: rotateY(-25deg) translateX($showcase-panel-off-neg-x-2) skewY(10deg) scale(0.3, 0.5);
@@ -209,7 +209,7 @@
     }
 
     .showcase .anim-right-hidden {
-        opacity: 0;
+        @include opacity(0);
         z-index: -1;
         left: -100%;
         //-webkit-transform: rotateY(25deg) translateX($showcase-panel-off-x-2) skewY(-10deg) scale(0.3, 0.5);

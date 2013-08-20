@@ -9,7 +9,12 @@
  */
 
 	@import "resources/assets";
-
-	body { overflow-y: scroll; }
-	
-	#dmmo-chat { width: $page-width; margin: 0 auto; }
+    
+    .chat-container { height: 602px; width: $page-width-fluid; margin: 0 auto; z-index: 1; position: relative; border: 1px solid #CCC; }
+    .chat-container applet { position: absolute; top: 0; left: 0; z-index: 1; }
+    .chat-container.hidden applet { visibility: hidden; }
+    
+    .chat-instructions { min-height: 300px; width: $page-width-fluid; background: url($path-layout + 'chat-conversation-icon.png') no-repeat 0 0; margin: 0 auto 0 auto; }
+    .chat-instructions p { padding: 25px 0 0 325px; font-size: 15px; line-height: 180%; }
+    .chat-instructions u { text-decoration: none; border-bottom: 1px dashed #1596CC; }
+    .chat-instructions u:hover { background-color: #1596CC; color: #FFF; }

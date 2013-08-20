@@ -44,7 +44,7 @@
     /* Filter Grid */
     .edit-filter-grid { position: relative; left: -20px; }
     .edit-filter-grid li { height: 47px; width: 47px; background-color: #EAEAEA; background-repeat: no-repeat; background-position: 50% 50%; margin: 0 21px 42px 21px; position: relative; float: left; border: 1px solid #DBDBDB; border-radius: 4px; }
-    .edit-filter-grid li span { width: 80px; display: block; padding-top: 10px; position: absolute; bottom: -19px; left: -18px; text-align: center; color: #B2B2B2; }
+    .edit-filter-grid li span { width: 80px; display: block; padding-top: 10px; position: absolute; top: 40px; left: -18px; text-align: center; line-height: 14px; color: #B2B2B2; }
     .edit-filter-grid li:hover { cursor: pointer; @include opacity(0.7); }
     .edit-filter-grid li:hover span, .edit-filter-grid li.selected span { color: $font-color-primary; }
     .edit-filter-grid li.selected { border-width: 3px; }

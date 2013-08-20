@@ -578,7 +578,19 @@ switch ($mode)
 
 		// ---------- BEGIN [DMMO] EOS FILTERS MODIFICATION ----------
 		// Gather profile wall messages.
-		getMessagesForPHPBBTemplate(getWallMessages($user_id, 0, $eos_config['initial_num_wall_messages']));
+        $wall_messages = getWallMessages($user_id, 0, $eos_config['initial_num_wall_messages']);
+        if (count($wall_messages) > 0) {
+            getMessagesForPHPBBTemplate($wall_messages);
+        } else {
+            getInitialMessageForPHPBBTemplate();
+        }
+        
+        // Get the user's profile banner image.
+        if (file_exists($eos_config['profile_banner_dir'] . $user_id)) {
+            $profile_banner = $phpbb_root_path . '../' . $eos_config['profile_banner_path'] . $user_id;
+        } else {
+            $profile_banner = $phpbb_root_path . '../' . $eos_config['profile_banner_path'] . $eos_config['profile_banner_default'];
+        }
 		// ---------- END [DMMO] EOS FILTERS MODIFICATION ------------
 
 		// Custom Profile Fields
@@ -616,6 +628,9 @@ switch ($mode)
 			// DMMO [EOS]
 			'POSTS_DAY_NUM'			=> round($posts_per_day, 2),
 			'POSTS_PCT_NUM'			=> round($percentage, 2),
+            'PROFILE_BANNER_FORM_ACTION' => $phpbb_root_path . '../php/eos_profiles.ajax.php',
+            'PROFILE_BANNER'        => $profile_banner . '?' . time(),
+            'CAN_CUSTOMIZE_BANNER'  => $user_id == $user->data['user_id'] ? true : false,
 
 			'OCCUPATION'	=> (!empty($member['user_occ'])) ? censor_text($member['user_occ']) : '',
 			'INTERESTS'		=> (!empty($member['user_interests'])) ? censor_text($member['user_interests']) : '',

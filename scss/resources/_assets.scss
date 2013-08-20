@@ -70,6 +70,10 @@
     $z-index-login-bg: 100;
     $z-index-login-content: 1000;
     
+    $z-index-profile-banner-grunge: 1000;
+    $z-index-profile-banner-customizer: 2000;
+    $z-index-profile-banner-ui: 3000;
+    
 	/* Mixins */
 	@mixin icomoon-icon () {
 		font-family: 'DisneyMMO-Icons';
@@ -165,6 +169,38 @@
              -o-transition-delay: $delay; /* Opera */
                 transition-delay: $delay;
 	}
+    
+    @mixin perspective($perspective) {
+    
+        -webkit-perspective: $perspective;
+                perspective: $perspective;
+    }
+    
+    @mixin perspective-origin($perspective-origin) {
+    
+        -webkit-perspective-origin: $perspective-origin;
+                perspective-origin: $perspective-origin;
+    }
+    
+    @mixin transform($transform) {
+    
+        -webkit-transform: $transform;
+            -ms-transform: $transform; 
+                transform: $transform;
+    }
+    
+    @mixin transform-origin($transform-origin) {
+    
+        -webkit-transform-origin: $transform-origin;
+            -ms-transform-origin: $transform-origin; 
+                transform-origin: $transform-origin;
+    }
+    
+    @mixin transform-style($transform-style) {
+    
+        -webkit-transform-style: $transform-style;
+                transform-style: $transform-style;
+    }
     
     @mixin rotate($degrees) {
     

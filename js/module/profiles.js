@@ -19,6 +19,8 @@ dmmo.profiles = (function() {
         
         this.setupUIBindings();
         this.initializeMasonry(profile_wall);
+        
+        this.setupProfileImageCustomizerDropzone();
     }
     
     /*
@@ -30,7 +32,7 @@ dmmo.profiles = (function() {
     }
     
     /*
-     * Posts a new message to your profile.
+     * AJAX logic for posting a new message to your profile.
      */
     profiles.prototype.postMessage = function(message, recipient) {
         var _this = this;
@@ -48,28 +50,34 @@ dmmo.profiles = (function() {
             data: data,
             success: function(data, status, jqXHR){
             
-                _this.prependMessage(data.message, data.sender, data.sender_url, data.sender_avatar, data.date, data.date_rel);
+                // Good to go!
+                if (!data.error) {
+                    _this.prependMessage(data.data.message, data.data.sender, data.data.sender_url, data.data.sender_avatar, data.data.date, data.data.date_rel);
+                // Error, handle it.
+                } else {
+                    dmmo.notifications.post(data.error_message);
+                }
                 _this.enableMessageInput();
-                dmmo.notifications.post("Your message has been successfully posted!");
             },
             error:function(jqXHR, textStatus, errorThrown){
             
-                dmmo.notifications.post("Sorry, your message could not be posted. Please retry.");
                 _this.enableMessageInput();
+                dmmo.notifications.post('Sorry, we made a mistake (ERROR: AJAX request).');
             } 
         });
     }
     
     /*
-     * Retrieves more messages and displays them.
+     * AJAX logic for retrieving more messages and displays them.
      */
-    profiles.prototype.getMoreMessages = function() {
+    profiles.prototype.getMoreMessages = function(recipient) {
         var _this = this;
     
         var data = {
             operation: 'getMoreMessages',
+            recipient: recipient,
             begin: this.$wall.children().size(),
-            qty: 10
+            qty: 20
         }
 
         $.ajax({
@@ -77,17 +85,23 @@ dmmo.profiles = (function() {
             type: 'post',
             dataType: 'json',
             data: data,
-            success: function(data, status, jqXHR){
+            success: function(data){
             
-                jQuery.each(data, function() {
-                    _this.appendMessage(this.message, this.sender, this.sender_url, this.sender_avatar, this.date, this.date_rel);
-                });
+                // Good to go!
+                if (!data.error) {
+                    jQuery.each(data.data, function() {
+                        _this.appendMessage(this.message, this.sender, this.sender_url, this.sender_avatar, this.date, this.date_rel);
+                    });
+                // Error, handle it.
+                } else {
+                    dmmo.notifications.post(data.error_message);
+                }
                 _this.enableMoreMessagesButton();
             },
-            error:function(jqXHR, textStatus, errorThrown){
+            error:function(data){
             
                 _this.enableMoreMessagesButton();
-                dmmo.notifications.post("Could not retrieve more messages. Please try again.");
+                dmmo.notifications.post("Sorry, we made a mistake (ERROR: AJAX request).");
             } 
         });
     }
@@ -156,6 +170,17 @@ dmmo.profiles = (function() {
         $('.more-wall-messages').removeClass('busy');
     }
     
+     /*
+     * Refreshes the profile banner.
+     */
+    profiles.prototype.refreshProfileBanner = function(recipient) {
+        var $profile_header = $('.profile-header');
+        var background = $profile_header.css('background-image');
+        background = background.replace(/url\(\"?/, '').replace(/\"?\)/, '');
+        var date = new Date();
+        $profile_header.css('background-image', 'url(' + background + '?' + date.getTime() + ')');
+    }
+    
     /*
      * Setup UI bindings for profile elements.
      */
@@ -173,7 +198,7 @@ dmmo.profiles = (function() {
         // --------------------------------------------------------------------------------
         $('#profile-message-submitter').click(function() {
             var message = $('#profile-message-input').val();
-            var recipient = $('#profile-message-recipient').val();
+            var recipient = $('#profile-recipient').val();
             
             // Post specified message.
             _this.postMessage(message, recipient);
@@ -199,7 +224,11 @@ dmmo.profiles = (function() {
             }
         }).autoResize({
             animate: false,
-            extraSpace: -4
+            extraSpace: -1
+            
+        // Prevent the textarea from scrolling and looking odd before the resize happens.
+        }).on('scroll', function(e) {
+            this.scrollTop = 0;
         });
 
         // Submit button animation over the text box.
@@ -226,9 +255,112 @@ dmmo.profiles = (function() {
         $('.more-wall-messages').click(function() {
         
             if(!$(this).hasClass('busy')) {
+                var recipient = $('#profile-recipient').val();
                 _this.disableMoreMessagesButton();
-                _this.getMoreMessages();
+                
+                _this.getMoreMessages(recipient);
             }
+        });
+    }
+    
+    /*
+     * Setup Profile Image Dropzone
+     */
+    profiles.prototype.setupProfileImageCustomizerDropzone = function() {
+        var _this = this;
+    
+        // Disable Dropzone's autodiscovery feature.
+        Dropzone.autoDiscover = false;
+    
+        var dropzoneElem = '#profile-banner-customizer';
+        var $dropzoneProgress = $(dropzoneElem).find('.dropzone-progress');
+        
+        // Enable Dropzone on the banner customizer form.
+        var dropzone = new Dropzone(dropzoneElem, {
+            url: $(dropzoneElem).attr('action'),
+            maxFilesize: 1.5,
+            maxFiles: 1,
+            acceptedFiles: 'image/*',
+            clickable: '.profile-banner-customizer, .profile-banner-customizer .upload-button',
+            paramName: 'profile_header',
+            fallback: function() { _this.setupProfileImageCustomizerDropzoneFallback($(dropzoneElem)) }
+        });
+        
+        // Dropzone events and responses.
+        dropzone.on('error', function(file, errorMessage) {
+            dmmo.notifications.post('Error encountered uploading profile banner: ' + errorMessage);
+        });
+        
+        dropzone.on('processing', function(file) {
+            $(dropzoneElem).find('.upload-zone').addClass('uploading');
+            $dropzoneProgress.removeClass('finished');
+        });
+        
+        dropzone.on('uploadprogress', function(file, progress, bytesSent) {
+            $dropzoneProgress.find('.progress span').text(progress);
+        });
+        
+        dropzone.on('complete', function(file) {
+            _this.refreshProfileBanner();
+            
+            // Aesthetic stuff.
+            $(dropzoneElem).find('.upload-zone').removeClass('uploading');
+            $dropzoneProgress.addClass('finished');
+            
+            // Remove uploaded/errored file.
+            dropzone.removeFile(file);
+        });
+        
+        dropzone.on('sending', function(file, xhr, formData) {
+            formData.append('operation', 'uploadProfileBanner');
+        });
+    }
+    
+    /*
+     * Setup Profile Banner Dropzone Fallback
+     */
+    profiles.prototype.setupProfileImageCustomizerDropzoneFallback = function($form) {
+        var _this = this;
+        
+        // Fallback Setup
+        $form.find('.profile-banner-customizer').addClass('customizer-fallback');
+        
+        // Jquery Form Plugin which makes the form send an AJAX request when submitted.
+        $form.ajaxForm({ 
+            cache: false,
+            type: 'post',
+            dataType: 'json',
+            data: {
+                operation: 'uploadProfileBanner'
+            },
+            success: function(data){
+            
+                // Good to go!
+                if (!data.error) {
+                    dmmo.notifications.post("Profile banner image was updated successfully.");
+                    $form.find('.upload-zone').removeClass('uploading');
+                    $form.find('.dropzone-progress').addClass('finished');
+                    _this.refreshProfileBanner();
+                    
+                // Error, handle it.
+                } else {
+                    dmmo.notifications.post(data.error_message);
+                }
+            },
+            error:function(data){
+                dmmo.notifications.post("Sorry, we made a mistake (ERROR: AJAX request).");
+            } 
+        });
+        
+        // Form submit event.
+        $form.on('submit', function() {
+            $form.find('.dropzone-progress').removeClass('finished');
+            $form.find('.upload-zone').addClass('uploading');
+        });
+        
+        // Submit form when the file input is updated by the user.
+        $form.find('.hidden-file-input').on('change', function() {
+            $form.submit();
         });
     }
     

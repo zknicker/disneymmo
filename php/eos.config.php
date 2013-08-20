@@ -20,7 +20,8 @@
 * That is, the most root level of the served content.
 */
 
-$server_root = '/home/xiris/public_html';
+//$server_root = '/home/xiris/public_html';
+$server_root = 'E:/Applications/wamp/www/disneymmo';
 $server_name = (!empty($_SERVER['HTTP_HOST'])) ? strtolower($_SERVER['HTTP_HOST']) : ((!empty($_SERVER['SERVER_NAME'])) ? $_SERVER['SERVER_NAME'] : getenv('SERVER_NAME'));
 $eos_config = array(
 
@@ -30,7 +31,7 @@ $eos_config = array(
     "public_root"                   =>  'http://' . $server_name . '/',
     "server_root"                   =>  $server_root,
     "previews_dir"                  =>  $server_root . '/images/previews/',
-    "profile_customizations_dir"    =>  $server_root . '/images/profiles/customizations',
+    "profile_banner_dir"    =>  $server_root . '/images/profiles/banner/',
 
     /* tweets */
     "tweets_accounts"               =>  array('disney', 'Disney_Toontown', 'pirates_online', 'clubpenguin', 'DisneyMMO'),
@@ -70,8 +71,9 @@ $eos_config = array(
     "profile_customizations_table"  =>  'phpbb_profile_customizations',
     "profile_wall_messages_table"   =>  'phpbb_wall_messages',
     "profile_wall_messages_track_table" => 'phpbb_wall_messages_track',
-    "profile_customizations_path"   =>  'images/profiles/customizations/',
-    "initial_num_wall_messages"     =>  10,
+    "profile_banner_path"           =>  'images/profiles/banner/',
+    "profile_banner_default"        =>  'default.jpg',
+    "initial_num_wall_messages"     =>  20,
     
     /* uploads */
     "upload_max_image_length"       =>  1048576,

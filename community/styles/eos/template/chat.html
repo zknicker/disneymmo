@@ -1,0 +1,37 @@
+<!-- INCLUDE overall_header.html -->
+<div class="eos-container">
+    <div class="chat-instructions">
+        <p>
+            Hello and welcome to DisneyMMO's live chat room! The rest of the community is great, but this is the quickest and most efficient way to talk with the rest of the DisneyMMO population.
+            <br><br>
+            We just need you to follow a couple of really basic guidelines. In addition to the rules that govern the rest of the site, <u>remember not to spam the chat</u> with unnecessary characters, emotes, or sounds. Also <u>avoid using light font colors</u>, and using otherwise obnoxious font styling. And finally, remember to <u>respect the decisions and requests of the moderation staff</u> present to preserve the family friendly atmosphere DisneyMMO.com strives to maintain. They're enjoying the site in the same way you are, and only want to keep the community an enjoyable place for everyone.
+            <br><br>
+            Have a great time!
+        </p>
+    </div>
+    <div class="chat-container">
+        <script type="text/javascript">/*<![CDATA[*/
+           var addonchat = {
+              signed:true, server:4, id:596312, width:"100%",
+              height:"600", language:"en" }
+           var addonchat_param = { iconsize: 0, username:"{CHAT_USERNAME}",
+              audio:false, autologin:true } /* ]]> */</script>
+           <script type="text/javascript"
+           src="http://client4.addonchat.com/chat.js"></script><noscript>
+           To enter this chat room, please enable JavaScript in your web
+           browser. This <a href="http://www.addonchat.com/">Chat
+           Software</a> requires Java: <a href="http://www.java.com/">Get
+           Java Now</a>
+        </noscript>
+    </div>
+    <script type="text/javascript">
+        var $chat = $('.chat-container');
+        $('.global-nav-item').hover(function() {
+        console.log("hovered");
+            $chat.addClass('hidden');
+        }, function() {
+            $chat.removeClass('hidden');
+        });
+    </script>
+</div>
+<!-- INCLUDE overall_footer.html -->

@@ -22,7 +22,7 @@
 
     .register-field-set { width: 600px; margin-top: 20px; position: relative; }
     .register-field-set dt { padding: 0 0 8px 8px; }
-    .register-field-set label { font-size: 14px; color: #FFF; cursor: pointer; @include user-select(none); }
+    .register-field-set label { font-size: 14px; color: #FFF; cursor: pointer; line-height: 150%; @include user-select(none); }
     .register-field-set:first-child { margin-top: 0; }
     .register-field-set input { height: 50px; width: 100%; background-color: #F9F9F9; padding-left: 12px; @include rounded-border(2px, 4px, #F9F9F9); border-right-color: #F9F9F9; @include box-shadow(inset 0 3px 7px #D5D5D5, 0 0 7px #6D6D6D); font-size: 18px; font-weight: bold; }
     .register-field-set input:focus { border-color: #F9F9F9; }
