@@ -37,7 +37,7 @@
 
 #DISNEYMMO root level files.
 !404.html
-!eos.index.php
+!index.php
 !favicon.ico
 !robots.txt
 !*.htaccess
