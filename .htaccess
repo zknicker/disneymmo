@@ -1,7 +1,6 @@
 Options +FollowSymlinks
 RewriteEngine on
 
-RewriteCond %{HTTP_HOST} ^disneymmo\.com$ [OR]
 RewriteCond %{HTTP_HOST} ^www\.disneymmo\.com$
 RewriteRule ^/?$ "http\:\/\/disneymmo\.com" [R=301,L]
 RewriteRule ^eos$ eos.index.php?style=4 [NC]
