@@ -629,7 +629,7 @@ switch ($mode)
 			'POSTS_DAY_NUM'			=> round($posts_per_day, 2),
 			'POSTS_PCT_NUM'			=> round($percentage, 2),
             'PROFILE_BANNER_FORM_ACTION' => $phpbb_root_path . '../php/eos_profiles.ajax.php',
-            'PROFILE_BANNER'        => $profile_banner . '?' . time(),
+            'PROFILE_BANNER'        => $profile_banner,
             'CAN_CUSTOMIZE_BANNER'  => $user_id == $user->data['user_id'] ? true : false,
 
 			'OCCUPATION'	=> (!empty($member['user_occ'])) ? censor_text($member['user_occ']) : '',
