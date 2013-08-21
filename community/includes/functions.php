@@ -4339,7 +4339,7 @@ function obtain_users_online_string($online_users, $item_id = 0, $item = 'forum'
 					$online_userlist .= ($online_userlist != '') ? ', ' . $user_online_link : $user_online_link;
 					
 					$dmmo_user_online_avatar = dmmo_get_user_avatar_path($row['user_avatar'], $row['user_avatar_type']);
-					$dmmo_online_userlist .= '<li><a class="avatar avatar-small" href="#"><img data-tooltip="' . $row['username'] . '" src="';
+					$dmmo_online_userlist .= '<li><a class="avatar avatar-small" href="' . $phpbb_root_path . 'memberlist.php?mode=viewprofile&u=' . $row['user_id'] . '"><img data-tooltip="' . $row['username'] . '" src="';
 					$dmmo_online_userlist .= $dmmo_user_online_avatar;
 					$dmmo_online_userlist .= '" /></a></li>';
 				}
