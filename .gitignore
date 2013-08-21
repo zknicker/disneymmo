@@ -50,7 +50,12 @@ images/articles
 images/chat
 images/news
 images/previews
-images/profiles
+
+images/profiles/* #Default Profile Banner
+!images/profiles/banner
+images/profiles/banner/*
+!images/profiles/banner/default.jpg
+
 images/showcase
 images/theme
 
