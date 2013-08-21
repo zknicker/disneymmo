@@ -4866,7 +4866,7 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
         'DMMO_POSTS'            => $user->data['user_posts'],
         'DMMO_RANDOM_GAME_PREF' => $game_prefixes[array_rand($game_prefixes, 1)],
         
-        'DMMO_NAV_HOME'         => append_sid("{$phpbb_root_path}../eos.index.php"),
+        'DMMO_NAV_HOME'         => append_sid("http://disneymmo.com"),
         'DMMO_NAV_FORUMS'       => append_sid("{$phpbb_root_path}portal.$phpEx"),
         'DMMO_NAV_SHOP'         => append_sid("{$phpbb_root_path}../eos"),
         'DMMO_NAV_CHAT'         => append_sid("{$phpbb_root_path}../chat"),
