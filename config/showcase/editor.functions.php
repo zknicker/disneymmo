@@ -29,7 +29,7 @@ function getShowcaseJSON() {
     
     global $eos_config, $phpbb_root_path;
 
-    $showcase_json = file_get_contents($phpbb_root_path . '../' . $eos_config['showcase_json_path'], NULL);
+    $showcase_json = file_get_contents($eos_config['showcase_json_path'], true);
     return json_decode($showcase_json, TRUE);    
 }
 
@@ -37,7 +37,7 @@ function getParamsForSingleItem($slide) {
 
     global $eos_config;
     $error = "";
-
+    
     // Gather parameters from form POST.
     $params = array(
         'type'              => $_POST["type_{$slide}"],
@@ -53,8 +53,8 @@ function getParamsForSingleItem($slide) {
     // Check for null fields.
     foreach($params as $param) {
         if(!isset($param)) {
-            $error = "A field was left unset. Please fill in all fields.";
-            goto out;
+            $error = 'A field was left unset. Please fill in all fields.';
+            return array($error, $params);
         }
     }
         
@@ -62,7 +62,7 @@ function getParamsForSingleItem($slide) {
     if(!isValidURL($params['background_url']) || !isValidURL($params['title_link']) || !isValidURL($params['origin_link'])) {
     
         $error = "An invalid URL was provided.";
-        goto out;
+        return array($error, $params);
     }
     
     // Check to see if the background is a local image. If not, rehost it.
@@ -74,7 +74,7 @@ function getParamsForSingleItem($slide) {
         if(!uploadExternalImage($params['background_url'], $dir, $filename)) {
         
             $error = "Could not upload background image.";
-            goto out;
+            return array($error, $params);
         
         } else {
         
@@ -86,8 +86,7 @@ function getParamsForSingleItem($slide) {
     $title = encodeText($params['title']);
     $preview = encodeText($params['origin']);
     $caption = encodeText($params['caption']);
-   
-out:
-    return array($error, $params);
+    
+    return array(null, $params);
 }
 ?>

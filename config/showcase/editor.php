@@ -77,7 +77,7 @@ if ($user->data['is_registered'] && $auth->acl_get('a_')) {
 	<link rel='stylesheet' href='../../css/master_acp.css' type='text/css' />
 	<link rel='stylesheet' href='editor.css' type='text/css' />
 	
-	<script src='../../js/vendor/handlebars.js' type='text/javascript'></script>
+	<script src='../../js/vendor/modernizr.js' type='text/javascript'></script>
     
 </head>
 <body>
