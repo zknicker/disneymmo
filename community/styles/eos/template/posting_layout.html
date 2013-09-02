@@ -14,8 +14,8 @@
             </div>
             <!-- IF S_DISPLAY_FILTER_CHOICE -->
             <ul id="new-discussion-category-selector" class="edit-filter-grid discussion-category-selector">
-                <input type="hidden" name="f" value="{FORUM_ID}" />
                 <!-- BEGIN category_filters -->
+                <!-- IF category_filters.SELECTED --><input type="hidden" name="f" value="{category_filters.FORUM_ID}" /><!-- ENDIF -->
                 <li class="<!-- IF category_filters.SELECTED --> selected<!-- ENDIF --><!-- IF category_filters.POSTS_ARTICLES --> posts-articles<!-- ENDIF --> discussion-filter-{category_filters.FILTER_NAME_CLEAN}" data-filter-id="{category_filters.FORUM_ID}"><span>{category_filters.FILTER_NAME}</span></li>
                 <!-- END category_filters -->
             </ul>
