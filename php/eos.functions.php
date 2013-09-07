@@ -817,14 +817,14 @@ function createArticleEntry($topic_id, $forum_id, $thumbnail_url, $preview_text)
         
         $filename_ext = pathinfo($thumbnail_url, PATHINFO_EXTENSION);
         $filename = base_convert(time(), 10, 36) . '_' . $topic_id . '.' . $filename_ext;
-        $dir = $eos_config['server_root'] . '/' . $eos_config['articles_thumbnails_dir'];
+        $dir = $eos_config['public_root'] . $eos_config['articles_thumbnails_dir'];
         if(!uploadExternalImage($thumbnail_url, $dir, $filename)) {
         
             $thumbnail = getDefaultArticleThumbnail($forum_id);
         
         } else {
         
-            $thumbnail = $eos_config['public_root'] . substr($dir . $filename, strlen($eos_config['server_root']) + 1);
+            $thumbnail = $dir . $filename;
         }
     }
 
