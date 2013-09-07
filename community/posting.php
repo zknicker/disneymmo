@@ -1209,7 +1209,7 @@ if ($submit || $preview || $refresh)
 			}
 
 			$message .= '<br /><br />' . sprintf($user->lang['RETURN_FORUM'], '<a href="' . append_sid("{$phpbb_root_path}viewforum.$phpEx", 'f=' . $data['forum_id']) . '">', '</a>');
-			//trigger_error($message);
+			trigger_error($message);
 		}
 	}
 }
@@ -1406,7 +1406,7 @@ $notify_set			= ($mode != 'edit' && $config['allow_topic_notify'] && $user->data
 $notify_checked		= (isset($notify)) ? $notify : (($mode == 'post') ? $user->data['user_notify'] : $notify_set);
 
 // Page title & action URL
-$s_action = append_sid("{$phpbb_root_path}postings.$phpEx", "mode=$mode&amp;f=$forum_id");
+$s_action = append_sid("{$phpbb_root_path}posting.$phpEx", "mode=$mode&amp;f=$forum_id");
 $s_action .= ($topic_id) ? "&amp;t=$topic_id" : '';
 $s_action .= ($post_id) ? "&amp;p=$post_id" : '';
 
