@@ -29,6 +29,13 @@
                 <a class="button-generic" href="{U_REGISTER}">Create An Account</a>
                 <!-- ENDIF -->
             </div>
+            <!-- IF S_DISPLAY_FULL_LOGIN and (U_SEND_PASSWORD or U_RESEND_ACTIVATION) -->
+            <div class="usm-login-troubleshooting">
+				<!-- IF U_SEND_PASSWORD --><a href="{U_SEND_PASSWORD}">{L_FORGOT_PASS}</a><!-- ENDIF -->
+                <!-- IF U_SEND_PASSWORD and U_RESEND_ACTIVATION --><span class="separator">-</span><!-- ENDIF -->
+				<!-- IF U_RESEND_ACTIVATION --><a href="{U_RESEND_ACTIVATION}">{L_RESEND_ACTIVATION}</a><!-- ENDIF -->
+            </div>
+			<!-- ENDIF --> 
         </form>
         </div>
         <canvas id="usm-login-bg" class="usm-login-bg"></canvas>

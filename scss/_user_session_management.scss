@@ -42,6 +42,11 @@
     .usm-login-fields input         { height: 50px; width: 100%; background-color: #F9F9F9; padding-left: 12px; @include rounded-border(2px, 4px, #F9F9F9); border-right-color: #F9F9F9; @include box-shadow(inset 0 3px 7px #D5D5D5, 0 0 7px #6D6D6D); font-size: 18px; font-weight: bold; }
     .usm-login-fields input:focus   { border-color: #F9F9F9; }
     
+    .usm-login-troubleshooting { width: 600px; margin-left: -300px; position: absolute; top: 618px; left: 50%; @include opacity(.8); }
+    .usm-login-troubleshooting a { color: #FFF; font-size: 13px; }
+    .usm-login-troubleshooting a:hover { text-decoration: underline; }
+    .usm-login-troubleshooting .separator { margin: 0 10px 0 10px; color: #FFF; }
+    
     .usm-login-controls             { width: 600px; position: absolute; left: 50%; margin-left: -300px; top: 556px; }
     .usm-login-controls input,
     .usm-login-controls .button-generic { height: 50px; display: block; margin-right: 14px; float: left; border-right-width: 6px; line-height: 49px; @include transition-duration(0); }
